@@ -19,7 +19,7 @@ final class LoginController extends AbstractAPIController
         $user = User::where('email', $request['email'])->with('roles')->first();
 
         if ($user === null) {
-            return $this->respondNotFound('User not found');
+            return $this->respondNotFound('Invalid Credentials');
         }
 
         if ($user->status !== UserStatusesEnum::ACTIVE->value) {

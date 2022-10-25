@@ -41,7 +41,7 @@ final class CreateSalesDrController extends AbstractAPIController
             ],
         ]);
 
-        $salesDr->qr_code = \sprintf('collection/collection_id?dr=%s', $salesDr->id);
+        $salesDr->qr_code = \sprintf('collection/create?dr=%s', $salesDr->id);
 
         $salesDr->save();
 

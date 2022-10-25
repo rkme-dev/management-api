@@ -23,7 +23,6 @@ final class UnlinkSalesDrItemsController extends AbstractAPIController
 
         $items = OrderItem::with(['salesDrItem.salesDr.customer', 'product',])
             ->whereHas('salesDrItem', function ($query) use ($area, $tripTicketId) {
-                $query->where('is_linked', 0);
 
                 $query->whereHas('salesDr', function ($query) use ($area) {
                    $query->where('area', $area);
@@ -31,6 +30,8 @@ final class UnlinkSalesDrItemsController extends AbstractAPIController
 
                 if ($tripTicketId !== null) {
                     $query->orWhere('trip_ticket_id', $tripTicketId);
+                } else {
+                    $query->whereNull('trip_ticket_id');
                 }
             })
             ->whereHasMorph('orderable', [SalesDr::class], function($query) {
