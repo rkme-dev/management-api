@@ -97,6 +97,7 @@ use App\Http\Controllers\API\SalesDrs\ListDrByCustomerController;
 use App\Http\Controllers\API\SalesDrs\ListSalesDrController;
 use App\Http\Controllers\API\SalesDrs\ListSalesDrItemsController;
 use App\Http\Controllers\API\SalesDrs\PostSalesDrController;
+use App\Http\Controllers\API\SalesDrs\ShowSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UnlinkSalesDrItemsController;
 use App\Http\Controllers\API\SalesDrs\UnpostSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UpdateSalesDrController;
@@ -943,6 +944,11 @@ Route::group([
             'as' => 'list',
             'uses' => ListSalesDrController::class,
         ]);
+        Route::get('/sales-drs/{id}', [
+            'as' => 'show',
+            'uses' => ShowSalesDrController::class,
+        ]);
+
         Route::put('/sales-drs/{id}/post', [
             'as' => 'post',
             'uses' => PostSalesDrController::class,

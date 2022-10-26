@@ -12,7 +12,14 @@ final class ShowSalesDrController extends AbstractAPIController
 {
     public function __invoke(int $id): JsonResource
     {
-        $dr = SalesDr::with(['orderItems', 'salesDrItems'])->where('id', $id)->first();
+        $dr = SalesDr::with([
+            'customer',
+            'orderItems',
+            'salesDrItems',
+            'document',
+            'vat',
+            'term',
+        ])->where('id', $id)->first();
 
         if ($dr === null) {
             return $this->respondNotFound('Sales DR not found');
