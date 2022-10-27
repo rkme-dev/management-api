@@ -40,6 +40,10 @@ use App\Http\Controllers\API\Department\DepartmentListController;
 use App\Http\Controllers\API\Department\DepartmentRolesController;
 use App\Http\Controllers\API\Department\DepartmentShowController;
 use App\Http\Controllers\API\Department\DepartmentUpdateController;
+use App\Http\Controllers\API\Deposits\CreateDepositController;
+use App\Http\Controllers\API\Deposits\ListCheckPaymentController;
+use App\Http\Controllers\API\Deposits\ListDepositController;
+use App\Http\Controllers\API\Deposits\ShowDepositController;
 use App\Http\Controllers\API\Documents\CreateDocumentController;
 use App\Http\Controllers\API\Documents\DeleteDocumentController;
 use App\Http\Controllers\API\Documents\ListDocumentController;
@@ -1036,6 +1040,29 @@ Route::group([
         Route::put('/trip-tickets/{id}/status', [
             'as' => 'update-status',
             'uses' => UpdateTripTicketStatusController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'deposits.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/deposits', [
+            'as' => 'create',
+            'uses' => CreateDepositController::class,
+        ]);
+        Route::get('/deposits', [
+            'as' => 'list',
+            'uses' => ListDepositController::class,
+        ]);
+        Route::get('/deposits/{id}', [
+            'as' => 'update',
+            'uses' => ShowDepositController::class,
+        ]);
+
+        Route::get('/check-payments', [
+            'as' => 'list-check-payments',
+            'uses' => ListCheckPaymentController::class,
         ]);
     });
 });

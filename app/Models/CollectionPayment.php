@@ -33,7 +33,7 @@ class CollectionPayment extends Model
         return $this->belongsTo(Collection::class);
     }
 
-    public function paymentType(): MorphTo
+    public function payment(): MorphTo
     {
         return $this->morphTo();
     }
