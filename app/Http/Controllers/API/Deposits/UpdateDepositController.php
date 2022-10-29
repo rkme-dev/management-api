@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Deposits;
 
+use App\Enums\CheckStatusEnums;
 use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\Deposits\CreateDepositRequest;
+use App\Http\Requests\Collection\UpdateCollectionRequest;
 use App\Models\CollectionPaymentTypes\CheckPayment;
 use App\Models\Deposit;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-final class CreateDepositController extends AbstractAPIController
+final class UpdateDepositController extends AbstractAPIController
 {
-    public function __invoke(CreateDepositRequest $request)
+    public function __invoke(UpdateCollectionRequest $request, int $id): JsonResource
     {
-        /** @var Deposit $deposit */
-        $deposit = Deposit::create([
+        $deposit = Deposit::where('id', $id)
+            ->with('checks')
+            ->first();
+
+        $data = [
             ...$request->all([
                 'deposit_number',
                 'status',
@@ -28,11 +32,19 @@ final class CreateDepositController extends AbstractAPIController
                 'account_id',
             ]),
             ...[
-                'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
-                'created_by' => $this->getUser()->getId(),
+                'updated_by' => $this->getUser()->getId(),
             ],
-        ]);
+        ];
 
+        $deposit->update($data);
+
+        // If the check payment has been removed in update, untagged the check payment
+        CheckPayment::where('deposit_id', $deposit->getAttribute('id'))
+            ->whereNotIn('id', $request->get('check_ids'))
+            ->update([
+                'deposit_id' => null,
+                'status' => CheckStatusEnums::UNCOLLECTED->value,
+            ]);
 
         $checks = CheckPayment::whereIn('id', $request->get('check_ids'))->get();
 
@@ -40,7 +52,7 @@ final class CreateDepositController extends AbstractAPIController
         /** @var CheckPayment $check */
         foreach ($checks as $check) {
             $check->deposit()->associate($deposit);
-            $check->setAttribute('status', 'for_review');
+            $check->setAttribute('status', CheckStatusEnums::FOR_REVIEW);
             $check->save();
         }
 

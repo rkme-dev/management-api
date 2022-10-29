@@ -14,13 +14,13 @@ final class ListCheckPaymentController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $orderItems = CollectionPayment::whereHasMorph('payment', [CheckPayment::class])
+        $checks = CheckPayment::with('collection')
             ->whereHas('collection', function ($query) {
                 $query->where('status', SaleOrderStatusesEnum::POSTED);
             })
-            ->with(['payment', 'collection'])
+            ->whereNull('deposit_id')
             ->get();
 
-        return new JsonResource($orderItems);
+        return new JsonResource($checks);
     }
 }

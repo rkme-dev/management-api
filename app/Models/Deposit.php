@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\CollectionPaymentTypes\CheckPayment;
 use App\Models\Traits\HasRelationshipWithUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Deposit extends Model
@@ -26,11 +28,6 @@ class Deposit extends Model
 
     protected $table = 'deposits';
 
-    public function orderItems(): MorphMany
-    {
-        return $this->morphMany(OrderItem::class, 'orderable');
-    }
-
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
@@ -39,5 +36,10 @@ class Deposit extends Model
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function checks(): HasMany
+    {
+        return $this->hasMany(CheckPayment::class, 'deposit_id');
     }
 }

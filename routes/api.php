@@ -44,6 +44,7 @@ use App\Http\Controllers\API\Deposits\CreateDepositController;
 use App\Http\Controllers\API\Deposits\ListCheckPaymentController;
 use App\Http\Controllers\API\Deposits\ListDepositController;
 use App\Http\Controllers\API\Deposits\ShowDepositController;
+use App\Http\Controllers\API\Deposits\UpdateDepositController;
 use App\Http\Controllers\API\Documents\CreateDocumentController;
 use App\Http\Controllers\API\Documents\DeleteDocumentController;
 use App\Http\Controllers\API\Documents\ListDocumentController;
@@ -1056,8 +1057,12 @@ Route::group([
             'uses' => ListDepositController::class,
         ]);
         Route::get('/deposits/{id}', [
-            'as' => 'update',
+            'as' => 'show',
             'uses' => ShowDepositController::class,
+        ]);
+        Route::put('/deposits/{id}', [
+            'as' => 'update',
+            'uses' => UpdateDepositController::class,
         ]);
 
         Route::get('/check-payments', [
