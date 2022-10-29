@@ -14,7 +14,7 @@ final class ListCheckPaymentController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $checks = CheckPayment::with('collection')
+        $checks = CheckPayment::with(['collectionPayment', 'collection'])
             ->whereHas('collection', function ($query) {
                 $query->where('status', SaleOrderStatusesEnum::POSTED);
             })

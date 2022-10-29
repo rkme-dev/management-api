@@ -35,6 +35,6 @@ class CollectionPayment extends Model
 
     public function payment(): MorphTo
     {
-        return $this->morphTo();
+        return $this->morphTo(__FUNCTION__, 'payment_type', 'payment_id');
     }
 }
