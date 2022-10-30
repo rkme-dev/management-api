@@ -949,11 +949,6 @@ Route::group([
             'as' => 'list',
             'uses' => ListSalesDrController::class,
         ]);
-        Route::get('/sales-drs/{id}', [
-            'as' => 'show',
-            'uses' => ShowSalesDrController::class,
-        ]);
-
         Route::put('/sales-drs/{id}/post', [
             'as' => 'post',
             'uses' => PostSalesDrController::class,
@@ -974,6 +969,11 @@ Route::group([
             'as' => 'unlink-dr-items',
             'uses' => UnlinkSalesDrItemsController::class,
         ]);
+        Route::get('/sales-drs/{id}', [
+            'as' => 'show',
+            'uses' => ShowSalesDrController::class,
+        ]);
+        
 
         Route::get('/customers/{id}/sales-dr-items', [
             'as' => 'items',
