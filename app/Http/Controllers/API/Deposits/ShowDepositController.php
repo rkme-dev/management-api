@@ -13,7 +13,7 @@ final class ShowDepositController extends AbstractAPIController
     public function __invoke(int $id): JsonResource
     {
         $deposit = Deposit::with([
-            'orderItems',
+            'checks',
             'document',
             'account',
             'createdBy',

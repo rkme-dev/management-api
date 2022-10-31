@@ -27,8 +27,8 @@ final class UpdateDepositRequest extends BaseRequest
             'date_posted' => 'required',
             'clearing_date' => 'required',
             'remarks' => 'string|nullable',
-            'document_id' => 'string|required|exists:App\Models\Document,id',
-            'account_id' => 'string|required|exists:App\Models\Account,id',
+            'document_id' => 'int|required|exists:App\Models\Document,id',
+            'account_id' => 'int|required|exists:App\Models\Account,id',
         ];
     }
 }

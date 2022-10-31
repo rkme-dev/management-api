@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Deposits;
 
 use App\Enums\CheckStatusEnums;
-use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\Collection\UpdateCollectionRequest;
+use App\Http\Requests\Deposits\UpdateDepositRequest;
 use App\Models\CollectionPaymentTypes\CheckPayment;
 use App\Models\Deposit;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class UpdateDepositController extends AbstractAPIController
 {
-    public function __invoke(UpdateCollectionRequest $request, int $id): JsonResource
+    public function __invoke(UpdateDepositRequest $request, int $id): JsonResource
     {
         $deposit = Deposit::where('id', $id)
             ->with('checks')

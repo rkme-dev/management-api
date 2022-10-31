@@ -43,7 +43,9 @@ use App\Http\Controllers\API\Department\DepartmentUpdateController;
 use App\Http\Controllers\API\Deposits\CreateDepositController;
 use App\Http\Controllers\API\Deposits\ListCheckPaymentController;
 use App\Http\Controllers\API\Deposits\ListDepositController;
+use App\Http\Controllers\API\Deposits\PostDepositController;
 use App\Http\Controllers\API\Deposits\ShowDepositController;
+use App\Http\Controllers\API\Deposits\UnPostDepositController;
 use App\Http\Controllers\API\Deposits\UpdateDepositController;
 use App\Http\Controllers\API\Documents\CreateDocumentController;
 use App\Http\Controllers\API\Documents\DeleteDocumentController;
@@ -973,7 +975,7 @@ Route::group([
             'as' => 'show',
             'uses' => ShowSalesDrController::class,
         ]);
-        
+
 
         Route::get('/customers/{id}/sales-dr-items', [
             'as' => 'items',
@@ -1068,6 +1070,14 @@ Route::group([
         Route::get('/check-payments', [
             'as' => 'list-check-payments',
             'uses' => ListCheckPaymentController::class,
+        ]);
+        Route::put('/deposits/{id}/post', [
+            'as' => 'post-deposit',
+            'uses' => PostDepositController::class,
+        ]);
+        Route::put('/deposits/{id}/unpost', [
+            'as' => 'unpost-deposit',
+            'uses' => UnPostDepositController::class,
         ]);
     });
 });
