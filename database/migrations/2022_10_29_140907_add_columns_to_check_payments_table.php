@@ -20,7 +20,7 @@ return new class extends Migration
     {
         Schema::table('check_payments', function (Blueprint $table) {
             $table->dropColumn('status');
-            $table->dropForeignIdFor('deposit_id');
+            $table->dropColumn('bounced_deposit_id');
         });
     }
 };
