@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Account;
+use App\Models\Document;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,8 +24,8 @@ return new class extends Migration
             $table->datetime('date_posted');
             $table->datetime('clearing_date');
             $table->string('remarks')->nullable();
-            $table->foreignIdFor(User::class, 'document_id');
-            $table->foreignIdFor(User::class, 'account_id');
+            $table->foreignIdFor(Document::class, 'document_id');
+            $table->foreignIdFor(Account::class, 'account_id');
             $table->foreignIdFor(User::class, 'created_by');
             $table->foreignIdFor(User::class, 'updated_by')->nullable();
             $table->timestamps();
