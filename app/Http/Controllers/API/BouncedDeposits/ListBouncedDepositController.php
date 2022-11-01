@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\API\Deposits;
+namespace App\Http\Controllers\API\BouncedDeposits;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Models\Deposit;
+use App\Models\BouncedDeposit;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-final class ListDepositController extends AbstractAPIController
+final class ListBouncedDepositController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        return new JsonResource(Deposit::with([
+        return new JsonResource(BouncedDeposit::with([
                 'document',
                 'account',
                 'createdBy',

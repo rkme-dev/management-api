@@ -47,4 +47,9 @@ final class CheckPayment extends Model implements PaymentTypeInterface
     {
         return $this->belongsTo(Deposit::class, 'deposit_id');
     }
+
+    public function bouncedDeposit(): BelongsTo
+    {
+        return $this->belongsTo(Deposit::class, 'bounced_deposit_id');
+    }
 }

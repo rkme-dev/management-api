@@ -22,6 +22,13 @@ use App\Http\Controllers\API\Accounts\UpdateAccountsController;
 use App\Http\Controllers\API\Authentication\LoginController;
 use App\Http\Controllers\API\Authentication\LogoutController;
 use App\Http\Controllers\API\Authentication\UserUpdatePasswordController;
+use App\Http\Controllers\API\BouncedDeposits\CreateBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\ListBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\ListDepositChecksController;
+use App\Http\Controllers\API\BouncedDeposits\PostBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\ShowBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\UnpostBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\UpdateBouncedDepositController;
 use App\Http\Controllers\API\Collections\CreateCollectionController;
 use App\Http\Controllers\API\Collections\ListCollectionsController;
 use App\Http\Controllers\API\Collections\PostCollectionController;
@@ -1078,6 +1085,40 @@ Route::group([
         Route::put('/deposits/{id}/unpost', [
             'as' => 'unpost-deposit',
             'uses' => UnPostDepositController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'bounced-deposits.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/bounced-deposits', [
+            'as' => 'create',
+            'uses' => CreateBouncedDepositController::class,
+        ]);
+        Route::get('/bounced-deposits', [
+            'as' => 'list',
+            'uses' => ListBouncedDepositController::class,
+        ]);
+        Route::get('/bounced-deposits/{id}', [
+            'as' => 'show',
+            'uses' => ShowBouncedDepositController::class,
+        ]);
+        Route::put('/bounced-deposits/{id}', [
+            'as' => 'update',
+            'uses' => UpdateBouncedDepositController::class,
+        ]);
+        Route::get('/deposit-check-payments', [
+            'as' => 'list-deposit-check-payments',
+            'uses' => ListDepositChecksController::class,
+        ]);
+        Route::put('/bounced-deposits/{id}/post', [
+            'as' => 'post-bounced-deposit',
+            'uses' => PostBouncedDepositController::class,
+        ]);
+        Route::put('/bounced-deposits/{id}/unpost', [
+            'as' => 'unpost-bounced-deposit',
+            'uses' => UnpostBouncedDepositController::class,
         ]);
     });
 });

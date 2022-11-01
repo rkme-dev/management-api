@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\API\Deposits;
+namespace App\Http\Controllers\API\BouncedDeposits;
 
 use App\Enums\CheckStatusEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\Deposits\UpdateDepositRequest;
+use App\Models\BouncedDeposit;
 use App\Models\CollectionPaymentTypes\CheckPayment;
-use App\Models\Deposit;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-final class UpdateDepositController extends AbstractAPIController
+final class UpdateBouncedDepositController extends AbstractAPIController
 {
     public function __invoke(UpdateDepositRequest $request, int $id): JsonResource
     {
-        $deposit = Deposit::where('id', $id)
+        $bouncedDeposit = BouncedDeposit::where('id', $id)
             ->with('checks')
             ->first();
 
         $data = [
             ...$request->all([
-                'deposit_number',
+                'bounced_number',
                 'status',
                 'amount',
                 'date_posted',
@@ -35,13 +35,13 @@ final class UpdateDepositController extends AbstractAPIController
             ],
         ];
 
-        $deposit->update($data);
+        $bouncedDeposit->update($data);
 
         // If the check payment has been removed in update, untagged the check payment
-        CheckPayment::where('deposit_id', $deposit->getAttribute('id'))
+        CheckPayment::where('bounced_deposit_id', $bouncedDeposit->getAttribute('id'))
             ->whereNotIn('id', $request->get('check_ids'))
             ->update([
-                'deposit_id' => null,
+                'bounced_deposit_id' => null,
                 'status' => CheckStatusEnums::UNCOLLECTED->value,
             ]);
 
@@ -50,11 +50,11 @@ final class UpdateDepositController extends AbstractAPIController
         // @TODO each check update should be trigger thru an event or job
         /** @var CheckPayment $check */
         foreach ($checks as $check) {
-            $check->deposit()->associate($deposit);
+            $check->bouncedDeposit()->associate($bouncedDeposit);
             $check->setAttribute('status', CheckStatusEnums::FOR_REVIEW);
             $check->save();
         }
 
-        return new JsonResource($deposit);
+        return new JsonResource($bouncedDeposit);
     }
 }
