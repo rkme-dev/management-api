@@ -114,7 +114,7 @@
 
 @include('includes.header')
 <div class="head-title">
-    <h2 class="text-center mt-1 p-0">STOCK RELEASE FORM</h2>
+    <h2 class="text-center mt-1 p-0">TRIP TICKET</h2>
 </div>
 <div class="add-detail mt-10">
     <div class="w-50 float-left mt-10">
