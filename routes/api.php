@@ -62,6 +62,12 @@ use App\Http\Controllers\API\Locations\ListLocationController;
 use App\Http\Controllers\API\Locations\ShowLocationController;
 use App\Http\Controllers\API\Locations\UpdateLocationController;
 use App\Http\Controllers\API\Module\ModuleListController;
+use App\Http\Controllers\API\PhysicalCount\CreatePhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\ListPhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\ShowPhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\UpdatePhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\PostPhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\UnpostPhysicalCountController;
 use App\Http\Controllers\API\Product\ProductCreateController;
 use App\Http\Controllers\API\Product\ProductDeleteController;
 use App\Http\Controllers\API\Product\ProductListController;
@@ -1030,6 +1036,36 @@ Route::group([
         Route::put('/trip-tickets/{id}/status', [
             'as' => 'update-status',
             'uses' => UpdateTripTicketStatusController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'physical-counts.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/physical-counts', [
+            'as' => 'create',
+            'uses' => CreatePhysicalCountController::class,
+        ]);
+        Route::get('/physical-counts', [
+            'as' => 'list',
+            'uses' => ListPhysicalCountController::class,
+        ]);
+        Route::get('/physical-counts/{physical_count}', [
+            'as' => 'show',
+            'uses' => ShowPhysicalCountController::class,
+        ]);
+        Route::put('/physical-counts/{physical_count}', [
+            'as' => 'update',
+            'uses' => UpdatePhysicalCountController::class,
+        ]);
+        Route::put('/physical-counts/{physical_count}/post', [
+            'as' => 'post',
+            'uses' => PostPhysicalCountController::class,
+        ]);
+        Route::put('/physical-counts/{physical_count}/unpost', [
+            'as' => 'unpost',
+            'uses' => UnpostPhysicalCountController::class,
         ]);
     });
 });
