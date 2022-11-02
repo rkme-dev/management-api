@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API\BouncedDeposits;
 
 use App\Enums\CheckStatusEnums;
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Http\Requests\BouncedDeposits\UpdateBouncedDepositRequest;
 use App\Http\Requests\Deposits\UpdateDepositRequest;
 use App\Models\BouncedDeposit;
 use App\Models\CollectionPaymentTypes\CheckPayment;
@@ -13,7 +14,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 final class UpdateBouncedDepositController extends AbstractAPIController
 {
-    public function __invoke(UpdateDepositRequest $request, int $id): JsonResource
+    public function __invoke(UpdateBouncedDepositRequest $request, int $id): JsonResource
     {
         $bouncedDeposit = BouncedDeposit::where('id', $id)
             ->with('checks')

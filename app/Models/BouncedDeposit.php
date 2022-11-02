@@ -25,7 +25,7 @@ class BouncedDeposit extends Model
         'created_by',
     ];
 
-    protected $table = 'deposits';
+    protected $table = 'bounced_deposits';
 
     public function document(): BelongsTo
     {

@@ -6,7 +6,6 @@ namespace App\Http\Controllers\API\Deposits;
 
 use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Models\Collection;
 use App\Models\CollectionPayment;
 use App\Models\CollectionPaymentTypes\CheckPayment;
 use Illuminate\Http\Request;

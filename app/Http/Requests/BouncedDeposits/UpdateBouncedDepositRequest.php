@@ -18,7 +18,7 @@ final class UpdateBouncedDepositRequest extends BaseRequest
     {
         return [
             'check_ids' => 'array',
-            'deposit_number' => [
+            'bounced_number' => [
                 'string',
                 'required',
                 Rule::unique('bounced_deposits','bounced_number')->ignore($this->id),
