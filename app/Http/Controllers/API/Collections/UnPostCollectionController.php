@@ -7,10 +7,17 @@ namespace App\Http\Controllers\API\Collections;
 use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\Collection;
+use App\Services\Collections\Interfaces\CollectionUnpostResolverInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class UnPostCollectionController extends AbstractAPIController
 {
+    private CollectionUnpostResolverInterface $collectionUnpostResolver;
+
+    public function __construct(CollectionUnpostResolverInterface $collectionUnpostResolver) {
+        $this->collectionUnpostResolver = $collectionUnpostResolver;
+    }
+
     /**
      * @throws \Exception
      */
@@ -24,6 +31,8 @@ final class UnPostCollectionController extends AbstractAPIController
         ]);
 
         $collection->refresh();
+
+        $this->collectionUnpostResolver->resolve($collection);
 
         return new JsonResource($collection);
     }

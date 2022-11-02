@@ -17,6 +17,11 @@ class SalesDrPayment extends Model
         'created_by',
     ];
 
+    public function getSalesDr(): SalesDr
+    {
+        return $this->salesDr;
+    }
+
     public function collection(): BelongsTo
     {
         return $this->belongsTo(Collection::class);

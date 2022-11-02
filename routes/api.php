@@ -22,6 +22,13 @@ use App\Http\Controllers\API\Accounts\UpdateAccountsController;
 use App\Http\Controllers\API\Authentication\LoginController;
 use App\Http\Controllers\API\Authentication\LogoutController;
 use App\Http\Controllers\API\Authentication\UserUpdatePasswordController;
+use App\Http\Controllers\API\BouncedDeposits\CreateBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\ListBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\ListDepositChecksController;
+use App\Http\Controllers\API\BouncedDeposits\PostBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\ShowBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\UnpostBouncedDepositController;
+use App\Http\Controllers\API\BouncedDeposits\UpdateBouncedDepositController;
 use App\Http\Controllers\API\Collections\CreateCollectionController;
 use App\Http\Controllers\API\Collections\ListCollectionsController;
 use App\Http\Controllers\API\Collections\PostCollectionController;
@@ -40,6 +47,13 @@ use App\Http\Controllers\API\Department\DepartmentListController;
 use App\Http\Controllers\API\Department\DepartmentRolesController;
 use App\Http\Controllers\API\Department\DepartmentShowController;
 use App\Http\Controllers\API\Department\DepartmentUpdateController;
+use App\Http\Controllers\API\Deposits\CreateDepositController;
+use App\Http\Controllers\API\Deposits\ListCheckPaymentController;
+use App\Http\Controllers\API\Deposits\ListDepositController;
+use App\Http\Controllers\API\Deposits\PostDepositController;
+use App\Http\Controllers\API\Deposits\ShowDepositController;
+use App\Http\Controllers\API\Deposits\UnPostDepositController;
+use App\Http\Controllers\API\Deposits\UpdateDepositController;
 use App\Http\Controllers\API\Documents\CreateDocumentController;
 use App\Http\Controllers\API\Documents\DeleteDocumentController;
 use App\Http\Controllers\API\Documents\ListDocumentController;
@@ -103,6 +117,7 @@ use App\Http\Controllers\API\SalesDrs\ListDrByCustomerController;
 use App\Http\Controllers\API\SalesDrs\ListSalesDrController;
 use App\Http\Controllers\API\SalesDrs\ListSalesDrItemsController;
 use App\Http\Controllers\API\SalesDrs\PostSalesDrController;
+use App\Http\Controllers\API\SalesDrs\ShowSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UnlinkSalesDrItemsController;
 use App\Http\Controllers\API\SalesDrs\UnpostSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UpdateSalesDrController;
@@ -969,6 +984,11 @@ Route::group([
             'as' => 'unlink-dr-items',
             'uses' => UnlinkSalesDrItemsController::class,
         ]);
+        Route::get('/sales-drs/{id}', [
+            'as' => 'show',
+            'uses' => ShowSalesDrController::class,
+        ]);
+
 
         Route::get('/customers/{id}/sales-dr-items', [
             'as' => 'items',
@@ -1066,6 +1086,75 @@ Route::group([
         Route::put('/physical-counts/{physical_count}/unpost', [
             'as' => 'unpost',
             'uses' => UnpostPhysicalCountController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'deposits.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/deposits', [
+            'as' => 'create',
+            'uses' => CreateDepositController::class,
+        ]);
+        Route::get('/deposits', [
+            'as' => 'list',
+            'uses' => ListDepositController::class,
+        ]);
+        Route::get('/deposits/{id}', [
+            'as' => 'show',
+            'uses' => ShowDepositController::class,
+        ]);
+        Route::put('/deposits/{id}', [
+            'as' => 'update',
+            'uses' => UpdateDepositController::class,
+        ]);
+
+        Route::get('/check-payments', [
+            'as' => 'list-check-payments',
+            'uses' => ListCheckPaymentController::class,
+        ]);
+        Route::put('/deposits/{id}/post', [
+            'as' => 'post-deposit',
+            'uses' => PostDepositController::class,
+        ]);
+        Route::put('/deposits/{id}/unpost', [
+            'as' => 'unpost-deposit',
+            'uses' => UnPostDepositController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'bounced-deposits.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/bounced-deposits', [
+            'as' => 'create',
+            'uses' => CreateBouncedDepositController::class,
+        ]);
+        Route::get('/bounced-deposits', [
+            'as' => 'list',
+            'uses' => ListBouncedDepositController::class,
+        ]);
+        Route::get('/bounced-deposits/{id}', [
+            'as' => 'show',
+            'uses' => ShowBouncedDepositController::class,
+        ]);
+        Route::put('/bounced-deposits/{id}', [
+            'as' => 'update',
+            'uses' => UpdateBouncedDepositController::class,
+        ]);
+        Route::get('/deposit-check-payments', [
+            'as' => 'list-deposit-check-payments',
+            'uses' => ListDepositChecksController::class,
+        ]);
+        Route::put('/bounced-deposits/{id}/post', [
+            'as' => 'post-bounced-deposit',
+            'uses' => PostBouncedDepositController::class,
+        ]);
+        Route::put('/bounced-deposits/{id}/unpost', [
+            'as' => 'unpost-bounced-deposit',
+            'uses' => UnpostBouncedDepositController::class,
         ]);
     });
 });

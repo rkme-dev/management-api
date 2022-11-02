@@ -5,6 +5,7 @@ use App\Http\Controllers\PurchaseOrderPrintController;
 use App\Http\Controllers\SalesOrder\SalesOrderCollectionReceiptController;
 use App\Http\Controllers\SalesOrder\SalesOrderDeliveryReceiptController;
 use App\Http\Controllers\SalesOrder\SalesOrderPrintController;
+use App\Http\Controllers\Logistics\TripTicketsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +42,11 @@ Route::get('print-so-delivery-receipt/{id}', [
 Route::get('print-so-collection-receipt/{id}', [
     'as' => 'print.sales-order.collection-receipt',
     'uses' => SalesOrderCollectionReceiptController::class
+]);
+
+Route::get('print-trip-ticket/{id}', [
+    'as' => 'print.logistics.trip-ticket',
+    'uses' => TripTicketsController::class
 ]);
 
 Route::get('/', function () {

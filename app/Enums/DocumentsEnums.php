@@ -17,4 +17,6 @@ enum DocumentsEnums: string
     case COLLECTION = 'Collection';
 
     case DEPOSIT = 'Deposit';
+
+    case BOUNCED = 'Bounced';
 }
