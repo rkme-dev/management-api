@@ -95,7 +95,13 @@ use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderPaymentLogShowController
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderPierToWarehouseController;
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderShowController;
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderStockArrivalController;
+use App\Http\Controllers\API\RawMaterial\AddUnitAndPackingToRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\CreateRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\ListRawMaterialController;
 use App\Http\Controllers\API\RawMaterial\RawMaterialsListController;
+use App\Http\Controllers\API\RawMaterial\RemoveUnitAndPackingToRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\ShowRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\UpdateRawMaterialController;
 use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderCreateController;
 use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderListController;
 use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderShowController;
@@ -942,6 +948,36 @@ Route::group([
         Route::put('/finish-products/{id}/unit-packing', [
             'as' => 'remove-unit-packing',
             'uses' => RemoveUnitAndPackingToProductController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'raw-materials.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/raw-materials', [
+            'as' => 'create',
+            'uses' => CreateRawMaterialController::class,
+        ]);
+        Route::get('/raw-materials', [
+            'as' => 'list',
+            'uses' => ListRawMaterialController::class,
+        ]);
+        Route::get('/raw-materials/{id}', [
+            'as' => 'show',
+            'uses' => ShowRawMaterialController::class,
+        ]);
+        Route::put('/raw-materials/{id}', [
+            'as' => 'update',
+            'uses' => UpdateRawMaterialController::class,
+        ]);
+        Route::post('/raw-materials/{id}/unit-packing', [
+            'as' => 'add-unit-packing',
+            'uses' => AddUnitAndPackingToRawMaterialController::class,
+        ]);
+        Route::put('/raw-materials/{id}/unit-packing', [
+            'as' => 'remove-unit-packing',
+            'uses' => RemoveUnitAndPackingToRawMaterialController::class,
         ]);
     });
 
