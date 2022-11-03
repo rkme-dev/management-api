@@ -126,11 +126,7 @@
 
 @include('includes.header')
 <div class="mt-10 text-bold w-50" style="position:absolute; left: 20px;top: -10px;">
-    {{-- {!! DNS2D::getBarcodeHTML((string) $order['qr_code'] ?? '', 'QRCODE', 3,3) !!} --}}
     <img src="../public/enco.png" height="60px" alt="Image"/>
-</div>
-<div class="mt-10 text-bold w-50" style="position:absolute; left: 600px;top: -10px;">
-    {!! DNS2D::getBarcodeHTML((string) $order['qr_code'] ?? '', 'QRCODE', 3,3) !!}
 </div>
 <div class="head-title">
     <h2 class="text-center mt-1 p-0">COLLECTION RECEIPT</h2>
@@ -183,7 +179,7 @@
             <td colspan="7">
                 <div class="total-part">
                     <div class="total-left w-80 float-left text-bold" align="left" style="margin-left:70px">
-                        <p>Total Total:</p>
+                        <p>Total:</p>
                     </div>
                     <div class="total-right w-50 float-right text-bold" align="right"  style="margin-right:50px">
                         <p>PHP {{ $order['total_amount'] }}</p>

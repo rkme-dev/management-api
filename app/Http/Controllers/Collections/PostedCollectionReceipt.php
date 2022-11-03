@@ -38,7 +38,7 @@ class PostedCollectionReceipt extends Controller
             return $carry + (int) $item['sales_dr']['remaining_balance'];
         }));
 
-        $collection['amount_collected'] = $currency->format((int) $remaining_balance - (int) $collection['total_amount']);
+        $collection['amount_collected'] = $currency->format((float) $remaining_balance - (float) $collection['total_amount']);
 
         $collection['balance'] = $remaining_balance;
 
