@@ -13,6 +13,8 @@ final class RoleListController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        return new RolesResource(Role::with('abilities')->get());
+        return new RolesResource(Role::with('abilities')
+            ->orderBy('created_at', 'desc')
+            ->get());
     }
 }

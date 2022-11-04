@@ -25,6 +25,7 @@ final class ListSalesOrderItemsController extends AbstractAPIController
                     ->whereRaw('sales_dr_items.sales_order_item_id = order_items.id');
             })
             ->with(['orderable.customer'])
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $result = [];

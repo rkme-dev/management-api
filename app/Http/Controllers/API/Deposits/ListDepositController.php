@@ -16,7 +16,9 @@ final class ListDepositController extends AbstractAPIController
                 'document',
                 'account',
                 'createdBy',
-            ])->get()
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get()
         );
     }
 }

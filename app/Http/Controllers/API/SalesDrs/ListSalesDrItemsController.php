@@ -19,6 +19,7 @@ final class ListSalesDrItemsController extends AbstractAPIController
             $query->where('status', '=', SaleOrderStatusesEnum::POSTED->value);
             $query->where('customer_id', $id);
         })
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $result = [];

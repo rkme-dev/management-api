@@ -13,7 +13,9 @@ final class ListSalesDrController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $salesDr = SalesDr::with('customer', 'document', 'orderItems', 'salesDrItems')->get();
+        $salesDr = SalesDr::with('customer', 'document', 'orderItems', 'salesDrItems')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return new JsonResource($salesDr);
     }

@@ -589,25 +589,25 @@ Route::group([
         'as' => 'raw-materials.',
         'prefix' => '',
     ], function () {
-        Route::post('/raw-materials/release-orders', [
-            'as' => 'create',
-            'uses' => ReleaseOrderCreateController::class,
-        ]);
-
-        Route::get('/raw-materials/release-orders', [
-            'as' => 'list',
-            'uses' => ReleaseOrderListController::class,
-        ]);
-
-        Route::get('/raw-materials/release-orders/{id}', [
-            'as' => 'show',
-            'uses' => ReleaseOrderShowController::class,
-        ]);
-
-        Route::put('/raw-materials/release-orders/{id}', [
-            'as' => 'update',
-            'uses' => ReleaseOrderUpdateController::class,
-        ]);
+//        Route::post('/raw-materials/release-orders', [
+//            'as' => 'create',
+//            'uses' => ReleaseOrderCreateController::class,
+//        ]);
+//
+//        Route::get('/raw-materials/release-orders', [
+//            'as' => 'list',
+//            'uses' => ReleaseOrderListController::class,
+//        ]);
+//
+//        Route::get('/raw-materials/release-orders/{id}', [
+//            'as' => 'show',
+//            'uses' => ReleaseOrderShowController::class,
+//        ]);
+//
+//        Route::put('/raw-materials/release-orders/{id}', [
+//            'as' => 'update',
+//            'uses' => ReleaseOrderUpdateController::class,
+//        ]);
     });
 
 
