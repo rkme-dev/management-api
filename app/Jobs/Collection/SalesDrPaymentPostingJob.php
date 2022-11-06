@@ -29,6 +29,10 @@ final class SalesDrPaymentPostingJob implements ShouldQueue
     {
         $salesDrPayment = SalesDrPayment::where('id', $this->salesDrPaymentId)->first();
 
+        if ($salesDrPayment === null) {
+            return;
+        }
+
         $salesDrPaymentResolver->resolve($salesDrPayment);
     }
 }
