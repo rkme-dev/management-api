@@ -28,6 +28,7 @@ final class CreateDepositController extends AbstractAPIController
                 'account_id',
             ]),
             ...[
+                'deposit_number' => $this->generateNumber('deposits', 'DP'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
             ],

@@ -20,7 +20,6 @@ final class CreateSalesDrRequest extends BaseRequest
             'area' => 'string|nullable',
             'amount' => 'nullable',
             'date_posted' => 'date|required',
-            'sales_dr_number' => 'string|required|unique:App\Models\SalesDr,sales_dr_number',
             'remarks' => 'string|nullable',
             'customer_id' => 'required|exists:App\Models\Customer,id',
             'document_id' => 'int|required|exists:App\Models\Document,id',

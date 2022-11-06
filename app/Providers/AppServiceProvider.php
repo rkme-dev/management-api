@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
+use App\Services\ModuleNumber\Resolvers\ModuleNumberResolver;
 use App\Services\Processors\Stack;
 use App\Services\PurchaseOrder\Processors\Interfaces\PurchaseOrderProcessorInterface;
 use App\Services\PurchaseOrder\Processors\Middleware\ApprovePendingPurchaseOrderMiddleware;
@@ -21,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(ModuleNumberResolverInterface::class, ModuleNumberResolver::class);
+
         $this->app->bind(
             PurchaseOrderProcessorInterface::class,
             static function (Application $app): PurchaseOrderProcessor {

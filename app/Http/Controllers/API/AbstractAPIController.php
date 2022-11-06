@@ -6,7 +6,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Resources\ErrorResource;
 use App\Models\User;
+use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
+use App\Services\ModuleNumber\Resolvers\ModuleNumberResolver;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -14,6 +17,13 @@ use Throwable;
 
 abstract class AbstractAPIController
 {
+    public function generateNumber(string $table, string $key): string
+    {
+        $resolver = new ModuleNumberResolver();
+
+        return $resolver->resolve($table, $key);
+    }
+
     public function getUser(): ?User
     {
         /** @var User $user */

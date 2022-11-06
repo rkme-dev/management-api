@@ -21,7 +21,6 @@ final class CreateCollectionRequest extends BaseRequest
             'address' => 'string|nullable',
             'amount' => 'nullable',
             'date_posted' => 'date|required',
-            'collection_order_number' => 'string|required|unique:App\Models\Collection,collection_order_number',
             'remarks' => 'string|nullable',
             'customer_id' => 'required|exists:App\Models\Customer,id',
             'document_id' => 'int|required|exists:App\Models\Document,id',
