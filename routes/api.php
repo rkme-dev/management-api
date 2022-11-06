@@ -140,6 +140,7 @@ use App\Http\Controllers\API\SalesOrders\PostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ShowSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UnpostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UpdateSalesOrderController;
+use App\Http\Controllers\API\StockCard\StockCardReportController;
 use App\Http\Controllers\API\Supplier\SupplierCreateController;
 use App\Http\Controllers\API\Supplier\SupplierDeleteController;
 use App\Http\Controllers\API\Supplier\SupplierListController;
@@ -1191,6 +1192,16 @@ Route::group([
         Route::put('/bounced-deposits/{id}/unpost', [
             'as' => 'unpost-bounced-deposit',
             'uses' => UnpostBouncedDepositController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => '',
+        'prefix' => ''
+    ], function () {
+        Route::get('/products/{product}/stockcard-report/', [
+            'as' => 'stockcard-report',
+            'uses' => StockCardReportController::class,
         ]);
     });
 });
