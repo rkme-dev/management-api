@@ -13,7 +13,7 @@ class CountItem extends Model
     /**
      * @var string[]
      */
-    protected $guarded = [];
+    protected $guarded = ['name'];
 
     public function product(): BelongsTo
     {

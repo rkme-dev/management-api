@@ -24,6 +24,7 @@ class UpdatePhysicalCountRequest extends BaseRequest
             'count_date' => 'date',
             'account_title' => 'string|nullable',
             'count_items' => 'array|required',
+            'count_items.*.id' => 'int|nullable|exists:count_items,id',
             'count_items.*.brand' => 'string|nullable',
             'count_items.*.product_id' => 'int|required|exists:products,id',
             'count_items.*.group_1' => 'string|nullable',
