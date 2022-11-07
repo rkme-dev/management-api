@@ -55,7 +55,7 @@ final class UpdatePhysicalCountController extends AbstractAPIController
                 $countItem->setAttribute('group_2', Arr::get($item, 'group_2'));
                 $countItem->setAttribute('unit', Arr::get($item, 'unit'));
                 $countItem->setAttribute('quantity', Arr::get($item, 'quantity'));
-                $countItem->setAttribute('price', Arr::get($item, 'price'));
+                $countItem->setAttribute('cost', Arr::get($item, 'cost'));
                 $countItem->setAttribute('total_amount', Arr::get($item, 'total_amount'));
                 $countItem->save();
 

@@ -27,6 +27,11 @@ class PhysicalCount extends Model
         return $this->belongsTo(Document::class);
     }
 
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
+    }
+
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
