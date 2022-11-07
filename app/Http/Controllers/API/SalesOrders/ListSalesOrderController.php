@@ -13,7 +13,9 @@ final class ListSalesOrderController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $salesOrder = SalesOrder::with('customer', 'document', 'orderItems')->get();
+        $salesOrder = SalesOrder::with('customer', 'document', 'orderItems')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return new JsonResource($salesOrder);
     }

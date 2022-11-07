@@ -6,12 +6,22 @@ namespace App\Http\Controllers\API\SalesDrs;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\SalesDr;
+use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ShowSalesDrController extends AbstractAPIController
 {
+    private ModuleNumberResolverInterface $moduleNumberResolver;
+
+    public function __construct(ModuleNumberResolverInterface $moduleNumberResolver) {
+        $this->moduleNumberResolver = $moduleNumberResolver;
+    }
+
     public function __invoke(int $id): JsonResource
     {
+        $test = $this->moduleNumberResolver->resolve('sales_drs', 'SO');
+
+        dd($test);
         $dr = SalesDr::with([
             'customer',
             'orderItems',

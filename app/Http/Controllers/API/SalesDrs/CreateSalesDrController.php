@@ -23,7 +23,6 @@ final class CreateSalesDrController extends AbstractAPIController
                 'area',
                 'address',
                 'date_posted',
-                'sales_dr_number',
                 'remarks',
                 'customer_id',
                 'document_id',
@@ -35,6 +34,7 @@ final class CreateSalesDrController extends AbstractAPIController
                 'amount',
             ]),
             ...[
+                'sales_dr_number' => $this->generateNumber('sales_drs', 'DR'),
                 'remaining_balance' => $request->get('amount'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),

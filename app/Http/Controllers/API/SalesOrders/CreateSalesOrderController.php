@@ -21,7 +21,6 @@ final class CreateSalesOrderController extends AbstractAPIController
                 'area',
                 'address',
                 'date_posted',
-                'sales_order_number',
                 'remarks',
                 'customer_id',
                 'document_id',
@@ -34,6 +33,7 @@ final class CreateSalesOrderController extends AbstractAPIController
                 'amount',
             ]),
             ...[
+                'sales_order_number' => $this->generateNumber('sales_orders', 'SO'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
                 ],

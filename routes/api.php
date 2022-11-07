@@ -101,7 +101,13 @@ use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderPaymentLogShowController
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderPierToWarehouseController;
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderShowController;
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderStockArrivalController;
+use App\Http\Controllers\API\RawMaterial\AddUnitAndPackingToRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\CreateRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\ListRawMaterialController;
 use App\Http\Controllers\API\RawMaterial\RawMaterialsListController;
+use App\Http\Controllers\API\RawMaterial\RemoveUnitAndPackingToRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\ShowRawMaterialController;
+use App\Http\Controllers\API\RawMaterial\UpdateRawMaterialController;
 use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderCreateController;
 use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderListController;
 use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderShowController;
@@ -134,6 +140,7 @@ use App\Http\Controllers\API\SalesOrders\PostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ShowSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UnpostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UpdateSalesOrderController;
+use App\Http\Controllers\API\StockCard\StockCardReportController;
 use App\Http\Controllers\API\Supplier\SupplierCreateController;
 use App\Http\Controllers\API\Supplier\SupplierDeleteController;
 use App\Http\Controllers\API\Supplier\SupplierListController;
@@ -583,25 +590,25 @@ Route::group([
         'as' => 'raw-materials.',
         'prefix' => '',
     ], function () {
-        Route::post('/raw-materials/release-orders', [
-            'as' => 'create',
-            'uses' => ReleaseOrderCreateController::class,
-        ]);
-
-        Route::get('/raw-materials/release-orders', [
-            'as' => 'list',
-            'uses' => ReleaseOrderListController::class,
-        ]);
-
-        Route::get('/raw-materials/release-orders/{id}', [
-            'as' => 'show',
-            'uses' => ReleaseOrderShowController::class,
-        ]);
-
-        Route::put('/raw-materials/release-orders/{id}', [
-            'as' => 'update',
-            'uses' => ReleaseOrderUpdateController::class,
-        ]);
+//        Route::post('/raw-materials/release-orders', [
+//            'as' => 'create',
+//            'uses' => ReleaseOrderCreateController::class,
+//        ]);
+//
+//        Route::get('/raw-materials/release-orders', [
+//            'as' => 'list',
+//            'uses' => ReleaseOrderListController::class,
+//        ]);
+//
+//        Route::get('/raw-materials/release-orders/{id}', [
+//            'as' => 'show',
+//            'uses' => ReleaseOrderShowController::class,
+//        ]);
+//
+//        Route::put('/raw-materials/release-orders/{id}', [
+//            'as' => 'update',
+//            'uses' => ReleaseOrderUpdateController::class,
+//        ]);
     });
 
 
@@ -951,6 +958,36 @@ Route::group([
         ]);
     });
 
+    Route::group([
+        'as' => 'raw-materials.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/raw-materials', [
+            'as' => 'create',
+            'uses' => CreateRawMaterialController::class,
+        ]);
+        Route::get('/raw-materials', [
+            'as' => 'list',
+            'uses' => ListRawMaterialController::class,
+        ]);
+        Route::get('/raw-materials/{id}', [
+            'as' => 'show',
+            'uses' => ShowRawMaterialController::class,
+        ]);
+        Route::put('/raw-materials/{id}', [
+            'as' => 'update',
+            'uses' => UpdateRawMaterialController::class,
+        ]);
+        Route::post('/raw-materials/{id}/unit-packing', [
+            'as' => 'add-unit-packing',
+            'uses' => AddUnitAndPackingToRawMaterialController::class,
+        ]);
+        Route::put('/raw-materials/{id}/unit-packing', [
+            'as' => 'remove-unit-packing',
+            'uses' => RemoveUnitAndPackingToRawMaterialController::class,
+        ]);
+    });
+
 
     Route::group([
         'as' => 'sales-drs.',
@@ -1155,6 +1192,16 @@ Route::group([
         Route::put('/bounced-deposits/{id}/unpost', [
             'as' => 'unpost-bounced-deposit',
             'uses' => UnpostBouncedDepositController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => '',
+        'prefix' => ''
+    ], function () {
+        Route::get('/products/{product}/stockcard-report/', [
+            'as' => 'stockcard-report',
+            'uses' => StockCardReportController::class,
         ]);
     });
 });

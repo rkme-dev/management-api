@@ -12,7 +12,7 @@ final class PurchaseOrderListController extends AbstractAPIController
 {
     public function __invoke(): JsonResponse
     {
-        $orders = PurchaseOrder::all();
+        $orders = PurchaseOrder::orderBy('created_at', 'desc')->get();
 
         return $this->respondOK(
             [

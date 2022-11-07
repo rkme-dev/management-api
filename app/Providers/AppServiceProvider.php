@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\InventoryService\Interfaces\ProductItemCountResolverInterface;
+use App\Services\InventoryService\Resolvers\ProductItemCountResolver;
+use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
+use App\Services\ModuleNumber\Resolvers\ModuleNumberResolver;
 use App\Services\Processors\Stack;
 use App\Services\PurchaseOrder\Processors\Interfaces\PurchaseOrderProcessorInterface;
 use App\Services\PurchaseOrder\Processors\Middleware\ApprovePendingPurchaseOrderMiddleware;
@@ -21,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $services = [
+            ModuleNumberResolverInterface::class => ModuleNumberResolver::class,
+            ProductItemCountResolverInterface::class => ProductItemCountResolver::class,
+        ];
+
+        foreach ($services as $abstract => $concrete) {
+            $this->app->bind($abstract, $concrete);
+        }
+
         $this->app->bind(
             PurchaseOrderProcessorInterface::class,
             static function (Application $app): PurchaseOrderProcessor {

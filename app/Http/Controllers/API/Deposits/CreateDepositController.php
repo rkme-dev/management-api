@@ -28,6 +28,7 @@ final class CreateDepositController extends AbstractAPIController
                 'account_id',
             ]),
             ...[
+                'deposit_number' => $this->generateNumber('deposits', 'DP'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
             ],
@@ -39,6 +40,8 @@ final class CreateDepositController extends AbstractAPIController
         // @TODO each check update should be trigger thru an event or job
         /** @var CheckPayment $check */
         foreach ($checks as $check) {
+            $check->collectionPayment->collection->setAttribute('has_deposit', true);
+            $check->collectionPayment->collection->save();
             $check->deposit()->associate($deposit);
             $check->setAttribute('status', 'for_review');
             $check->save();

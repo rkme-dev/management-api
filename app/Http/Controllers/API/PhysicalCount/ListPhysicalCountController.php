@@ -17,7 +17,9 @@ final class ListPhysicalCountController extends AbstractAPIController
             'location',
             'createdBy',
             'countItems'
-        )->get();
+        )
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return new JsonResource($physicalCount);
     }

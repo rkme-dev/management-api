@@ -12,7 +12,9 @@ final class ListTripTicketsController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $tickets = TripTicket::with('salesDrItems.drOrderItem','document', 'orderItems')->get();
+        $tickets = TripTicket::with('salesDrItems.drOrderItem','document', 'orderItems')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return new JsonResource($tickets);
     }

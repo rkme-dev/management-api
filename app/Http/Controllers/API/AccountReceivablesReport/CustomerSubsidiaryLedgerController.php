@@ -31,7 +31,7 @@ final class CustomerSubsidiaryLedgerController extends AbstractAPIController
             ...$collections
         ];
 
-        $result = [];
+        $result = new \Illuminate\Support\Collection();
 
         foreach($orders as $order) {
             $source = ($order instanceof SalesOrder === true) ? 'Sales' : 'Collection';
@@ -39,16 +39,16 @@ final class CustomerSubsidiaryLedgerController extends AbstractAPIController
             $orderNumber = $source === 'Sales' ? $order->getAttribute('sales_order_number') :
                 $order->getAttribute('collection_order_number');
 
-            $result[] = [
+            $result->push([
                 'order_number' => $orderNumber,
                 'date_posted' => (new Carbon($order->getAttribute('date_posted')))->toDateString(),
                 'source' => $source,
                 'document' => $order->document->getAttribute('document_name'),
                 'amount' => number_format((float)$order->getAttribute('amount'), 2),
                 'currency' => 'PHP',
-            ];
+            ]);
         }
 
-        return new JsonResource($result);
+        return new JsonResource($result->sortByDesc('date_posted'));
     }
 }

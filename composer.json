@@ -8,6 +8,7 @@
         "php": "^8.1",
         "ext-bcmath": "*",
         "ext-intl": "*",
+        "ext-gd": "*",
         "barryvdh/laravel-dompdf": "^2.0",
         "doctrine/dbal": "^3.4",
         "guzzlehttp/guzzle": "^7.2",

@@ -43,11 +43,11 @@ final class ListCheckPaymentController extends AbstractAPIController
 //                ->where('deposit_id', $id)
 //                ->get();
 
-            $checks = CheckPayment::whereIn('id', $collectionPaymentIds)->with([
+            $checks = CheckPayment::where('deposit_id', $id)
+            ->with([
                 'collectionPayment',
                 'collection',
-            ])
-                ->where('deposit_id', $id)->get();
+            ])->get();
         }
 
         return new JsonResource($checks);

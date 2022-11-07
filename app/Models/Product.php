@@ -43,7 +43,12 @@ final class Product extends Model
             'product_unit_packing',
             'product_id',
             'unit_packing_id',
-        )->withPivot(['packing']);
+        )->withPivot([
+            'packing',
+            'unit_packing_id',
+            'actual_balance',
+            'reserved_balance'
+        ]);
     }
 
     public function suppliers(): BelongsToMany

@@ -12,6 +12,8 @@ final class ListUnitPackingController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        return new JsonResource(UnitPacking::all());
+        $unitPackings = UnitPacking::with(['product.units'])->get();
+
+        return new JsonResource($unitPackings);
     }
 }

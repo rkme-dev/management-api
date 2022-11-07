@@ -12,24 +12,33 @@ final class SalesDrPaymentResolver implements SalesDrPaymentResolverInterface
 {
     public function resolve(SalesDrPayment $salesDrPayment): void
     {
-        $amountToPay = $salesDrPayment->getAttribute('amount_to_pay');
+        $amountToPay = (float) $salesDrPayment->getAttribute('amount_to_pay');
 
         /** @var SalesDr $salesDr */
         $salesDr = $salesDrPayment->salesDr;
 
-        // Sales DR - deduct the remaining balance amount from payment
-        $salesDrRemainingBalance = $salesDr->getAttribute('remaining_balance');
+        $salesDr->refresh();
 
-        if ($salesDrRemainingBalance === 0) {
+        // Sales DR - deduct the remaining balance amount from payment
+        $salesDrRemainingBalance = (float) $salesDr->getAttribute('remaining_balance');
+
+        if ($salesDrRemainingBalance === 0.00) {
             return;
         }
-
-        $salesDrRemainingBalance = (float) $salesDrRemainingBalance - (float) $amountToPay;
-        $salesDr->setAttribute('remaining_balance', $salesDrRemainingBalance);
-        $salesDr->save();
 
         // Sales Dr Payment - tag as applied
         $salesDrPayment->setAttribute('is_applied', 1);
         $salesDrPayment->save();
+
+        if ($salesDrRemainingBalance < $amountToPay) {
+            $salesDr->setAttribute('remaining_balance', 0);
+            $salesDr->save();
+
+            return;
+        }
+
+        $salesDrRemainingBalance = $salesDrRemainingBalance - $amountToPay;
+        $salesDr->setAttribute('remaining_balance', $salesDrRemainingBalance);
+        $salesDr->save();
     }
 }
