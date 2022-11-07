@@ -12,7 +12,12 @@ final class ListPhysicalCountController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $physicalCount = PhysicalCount::with('document', 'createdBy', 'countItems')->get();
+        $physicalCount = PhysicalCount::with(
+            'document',
+            'location',
+            'createdBy',
+            'countItems'
+        )->get();
 
         return new JsonResource($physicalCount);
     }

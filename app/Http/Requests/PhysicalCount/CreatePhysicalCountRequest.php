@@ -22,7 +22,7 @@ class CreatePhysicalCountRequest extends BaseRequest
             'remarks' => 'string|nullable',
             'count_by' => 'string|required',
             'count_date' => 'date',
-            'account_title' => 'string|required',
+            'account_id' => 'int|required|exists:accounts,id',
             'count_items' => 'array|required',
             'count_items.*.brand' => 'string|nullable',
             'count_items.*.product_id' => 'int|required|exists:products,id',
@@ -30,7 +30,7 @@ class CreatePhysicalCountRequest extends BaseRequest
             'count_items.*.group_2' => 'string|nullable',
             'count_items.*.unit' => 'required',
             'count_items.*.quantity' => 'int|required',
-            'count_items.*.price' => 'required',
+            'count_items.*.cost' => 'nullable',
             'count_items.*.total_amount' => 'required',
         ];
     }

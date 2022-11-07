@@ -6,6 +6,8 @@ namespace App\Enums;
 
 enum DocumentsEnums: string
 {
+    case Physical = 'Physical';
+
     case PO = 'Purchase Order';
 
     case SALES = 'Sales';
