@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API\SalesDrs;
 
 use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Models\OrderItem;
 use App\Models\SalesDr;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,20 @@ final class UnpostSalesDrController extends AbstractAPIController
         ]);
 
         $salesDr->refresh();
+
+        /** @var OrderItem $orderItem */
+        foreach ($salesDr->orderItems as $orderItem) {
+            $unit = $orderItem->product->units->where('name', $orderItem->getAttribute('unit'))->first();;
+
+            $remaining = (float) $unit->pivot->getAttribute('actual_balance') + (float) $orderItem->getAttribute('actual_quantity');
+
+            $unit->pivot->setAttribute('actual_balance', $remaining);
+
+            $unit->pivot->save();
+
+            $unit->pivot->refresh();
+        }
+
 
         return new JsonResource($salesDr);
     }
