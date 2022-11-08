@@ -12,7 +12,7 @@ final class ListCollectionsController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        $collections = Collection::with('salesDrPayments.salesDr', 'payments', 'salesDrPayments', 'customer', 'document')
+        $collections = Collection::with('salesDrPayments.salesDr', 'payments.payment', 'salesDrPayments', 'customer', 'document')
             ->orderBy('created_at', 'desc')
             ->get();
 
