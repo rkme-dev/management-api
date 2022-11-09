@@ -16,6 +16,7 @@ final class UpdateSalesDrRequest extends BaseRequest
     public function rules(): array
     {
         return [
+            'sales_invoice_number' => 'nullable',
             'area' => 'string|nullable',
             'amount' => 'nullable',
             'date_posted' => 'date',

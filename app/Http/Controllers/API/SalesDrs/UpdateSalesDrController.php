@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API\SalesDrs;
 
 use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Http\Requests\SalesDrs\UpdateSalesDrRequest;
 use App\Http\Requests\SalesOrders\UpdateSalesOrderRequest;
 use App\Models\OrderItem;
 use App\Models\SalesDr;
@@ -17,13 +18,14 @@ use Illuminate\Support\Arr;
 
 final class UpdateSalesDrController extends AbstractAPIController
 {
-    public function __invoke(UpdateSalesOrderRequest $request, int $id): JsonResource
+    public function __invoke(UpdateSalesDrRequest $request, int $id): JsonResource
     {
         /** @var SalesDr $salesDr */
         $salesDr = SalesDr::with('orderItems')->where('id', $id)->first();
 
         $data = [
             ...$request->all([
+                'sales_invoice_number',
                 'address',
                 'area',
                 'date_posted',

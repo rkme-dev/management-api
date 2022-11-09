@@ -20,6 +20,7 @@ final class CreateSalesDrController extends AbstractAPIController
     {
         $salesDr = SalesDr::create([
             ...$request->all([
+                'sales_invoice_number',
                 'area',
                 'address',
                 'date_posted',

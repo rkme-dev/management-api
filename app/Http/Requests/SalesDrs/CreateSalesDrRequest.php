@@ -16,6 +16,7 @@ final class CreateSalesDrRequest extends BaseRequest
     public function rules(): array
     {
         return [
+            'sales_invoice_number' => 'nullable',
             'address' => 'string|nullable',
             'area' => 'string|nullable',
             'amount' => 'nullable',
