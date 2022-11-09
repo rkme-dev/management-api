@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 
 class PhysicalCount extends Model
 {
@@ -16,9 +17,19 @@ class PhysicalCount extends Model
      */
     protected $guarded = [];
 
+    public function getItems(): Collection
+    {
+        return $this->countItems;
+    }
+
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
+    }
+
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
     }
 
     public function createdBy(): BelongsTo

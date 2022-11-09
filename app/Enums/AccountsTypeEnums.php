@@ -10,6 +10,8 @@ enum AccountsTypeEnums: string
 
     case AP = 'Accounts Payable';
 
+    case ASSET = 'Asset';
+
     case BANK = 'Bank';
 
     case CASH = 'Cash';

@@ -17,7 +17,6 @@ final class CreateTripTicketController extends AbstractAPIController
     public function __invoke(CreateTripTicketRequest $request): JsonResource
     {
         $data = $request->only([
-            'trip_ticket_number',
             'date_posted',
             'area',
             'driver',
@@ -31,6 +30,7 @@ final class CreateTripTicketController extends AbstractAPIController
         $data = [
             ...$data,
             ...[
+                'trip_ticket_number' => $this->generateNumber('trip_tickets', 'TR'),
                 'status' => TripTicketStatusesEnum::FOR_TRANSIT->value,
                 'created_by' => $this->getUser()->getId(),
             ],

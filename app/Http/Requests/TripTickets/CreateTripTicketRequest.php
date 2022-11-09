@@ -17,11 +17,6 @@ final class CreateTripTicketRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'trip_ticket_number' => [
-                'string',
-                'required',
-                'unique:App\Models\TripTicket,trip_ticket_number',
-            ],
             'date_posted' => 'required',
             'area' => 'required|string',
             'driver' => 'required|string',

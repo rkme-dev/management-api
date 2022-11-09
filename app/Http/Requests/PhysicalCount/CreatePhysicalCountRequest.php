@@ -16,13 +16,13 @@ class CreatePhysicalCountRequest extends BaseRequest
         return [
             'date_posted' => 'date',
             'document_id' => 'int|required|exists:documents,id',
-            'location' => 'string|nullable',
+            'location_id' => 'int|required|exists:locations,id',
             'group_1' => 'string|nullable',
             'group_2' => 'string|nullable',
             'remarks' => 'string|nullable',
-            'count_by' => 'string|nullable',
+            'count_by' => 'string|required',
             'count_date' => 'date',
-            'account_title' => 'string|nullable',
+            'account_id' => 'int|required|exists:accounts,id',
             'count_items' => 'array|required',
             'count_items.*.brand' => 'string|nullable',
             'count_items.*.product_id' => 'int|required|exists:products,id',
@@ -30,7 +30,7 @@ class CreatePhysicalCountRequest extends BaseRequest
             'count_items.*.group_2' => 'string|nullable',
             'count_items.*.unit' => 'required',
             'count_items.*.quantity' => 'int|required',
-            'count_items.*.price' => 'required',
+            'count_items.*.cost' => 'nullable',
             'count_items.*.total_amount' => 'required',
         ];
     }

@@ -17,7 +17,6 @@ final class CreateDepositRequest extends BaseRequest
     {
         return [
             'check_ids' => 'array',
-            'deposit_number' => 'string|required|unique:App\Models\Deposit,deposit_number',
             'date_posted' => 'required',
             'clearing_date' => 'required',
             'remarks' => 'string|nullable',

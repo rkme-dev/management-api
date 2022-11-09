@@ -17,7 +17,6 @@ final class CreateBouncedDepositRequest extends BaseRequest
     {
         return [
             'check_ids' => 'array',
-            'bounced_number' => 'string|required|unique:App\Models\BouncedDeposit,bounced_number',
             'date_posted' => 'required',
             'clearing_date' => 'required',
             'remarks' => 'string|nullable',
