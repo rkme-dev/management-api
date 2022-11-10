@@ -13,6 +13,7 @@ final class ListDepositController extends AbstractAPIController
     public function __invoke(): JsonResource
     {
         return new JsonResource(Deposit::with([
+                'checks',
                 'document',
                 'account',
                 'createdBy',
