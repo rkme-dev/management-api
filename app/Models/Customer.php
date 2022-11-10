@@ -44,4 +44,9 @@ final class Customer extends Model
     {
         return $this->hasMany(Collection::class);
     }
+
+    public function salesDrs(): HasMany
+    {
+        return $this->hasMany(SalesDr::class);
+    }
 }

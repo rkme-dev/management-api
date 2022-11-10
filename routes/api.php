@@ -40,6 +40,8 @@ use App\Http\Controllers\API\Customer\CustomerDeleteController;
 use App\Http\Controllers\API\Customer\CustomerListController;
 use App\Http\Controllers\API\Customer\CustomerShowController;
 use App\Http\Controllers\API\Customer\CustomerUpdateController;
+use App\Http\Controllers\API\Customer\CustomerAgingController;
+use App\Http\Controllers\API\Customer\CustomerAgingTransactionController;
 use App\Http\Controllers\API\Department\DepartmentAbilitiesController;
 use App\Http\Controllers\API\Department\DepartmentCreateController;
 use App\Http\Controllers\API\Department\DepartmentDeleteController;
@@ -747,6 +749,14 @@ Route::group([
         Route::get('/customers', [
             'as' => 'list',
             'uses' => CustomerListController::class,
+        ]);
+        Route::get('/customers/aging', [
+            'as' => 'aging',
+            'uses' => CustomerAgingController::class,
+        ]);
+        Route::get('/customers/aging-transaction/{id}', [
+            'as' => 'aging-transaction',
+            'uses' => CustomerAgingTransactionController::class,
         ]);
         Route::get('/customers/{id}', [
             'as' => 'show',
