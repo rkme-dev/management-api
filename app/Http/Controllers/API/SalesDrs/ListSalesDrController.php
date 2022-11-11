@@ -23,7 +23,7 @@ final class ListSalesDrController extends AbstractAPIController
         $salesDr = SalesDr::with('customer', 'document', 'orderItems', 'salesDrItems')
             ->where(function($query) use ($todayOnly, $dateToday) {
                 if ($todayOnly === true) {
-                    $query->where('date_posted', $dateToday);
+                    $query->whereDate('date_posted', $dateToday);
                 }
             })
             ->orderBy('created_at', 'desc')
