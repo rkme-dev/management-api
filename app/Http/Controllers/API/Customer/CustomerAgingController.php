@@ -8,10 +8,11 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class CustomerAgingController extends AbstractAPIController
 {
-    public function __invoke(): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $customers = Customer::doesntHave('collections')
                         ->whereHas('salesDrs', function ($q) {
@@ -19,8 +20,13 @@ class CustomerAgingController extends AbstractAPIController
                         })
                         ->with('salesDrs',
                             'salesDrs.document',
-                            'salesDrs.term'
-                        )->get()?->toArray();
+                            'salesDrs.term');
+
+        if ($request->has('cId')) {
+            $customers = $customers->where('id', $request->get('cId'));
+        }
+        $customers = $customers->get()?->toArray();
+                        
 
         $currency = new \NumberFormatter(
             'en_PH',
