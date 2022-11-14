@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SalesOrder;
 
+use App\Enums\PrintCopyEnums;
 use App\Http\Controllers\Controller;
 use App\Models\SalesDr;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -46,8 +47,11 @@ class SalesOrderDeliveryReceiptController extends Controller
         $salesOrder['amount'] = $currency->format($salesOrder['amount']);
         $salesOrder['created_at'] = new Carbon($salesOrder['created_at']);
 
+        $copies = PrintCopyEnums::cases();
+
         $pdf = PDF::loadView('sales-order/delivery-receipt', [
                 'order' => $salesOrder,
+                'copies' => $copies
             ]
         );
 
