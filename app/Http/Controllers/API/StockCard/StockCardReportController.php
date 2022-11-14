@@ -3,44 +3,39 @@
 namespace App\Http\Controllers\API\StockCard;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\SalesDr;
+use App\Models\StockcardReport;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StockCardReportController extends AbstractAPIController
 {
     public function __invoke(Product $product): JsonResource
     {
-        $items = OrderItem::with(['product', 'orderable.document'])
-            ->whereHasMorph(
-                'orderable',
-                SalesDr::class,
-                function (Builder $query) {
-                    $query->where('status', 'posted');
-                }
-            )
-            ->where('product_id', $product->id)
-            ->get()
-            ->map(function (OrderItem $item) {
-                return [
-                    'date' => (new Carbon($item->getAttribute('created_at')))->toDateString(),
-                    'event' => $item->orderable->document->getAttribute('module'),
-                    'document' => $item->orderable->document->getAttribute('document_name'),
-                    'doc_number' => $item->orderable->document->getAttribute('description'),
-                    'remarks' => $item->orderable->getAttribute('remarks'),
-                    'quantity' => $item->getAttribute('quantity'),
-                    'unit' => $item->getAttribute('unit'),
-                    'price' => $item->getAttribute('price'),
-                    'status' => $item->orderable->getAttribute('status'),
-                    'quantity_in' => null,
-                    'quantity_out' => $item->getAttribute('quantity'),
-                    'balance' => $item->orderable->getAttribute('remaining_balance')
-                ];
-            });
+        $result = StockcardReport::where('product_id', $product->getAttribute('id'))
+            ->orderBy('date', 'desc')
+            ->orderBy('unit', 'desc')
+            ->orderBy('morphable_type', 'desc')
+            ->orderBy('morphable_id', 'desc')
+            ->get();
 
-        return new JsonResource($items);
+        $result = $result->map(function (StockcardReport $stockcardReport) {
+            return [
+                'date' => (new Carbon($stockcardReport->getAttribute('date')))->toDateString(),
+                'event' => $stockcardReport->getAttribute('event'),
+                'document' => $stockcardReport->getAttribute('document'),
+                'document_number' => $stockcardReport->getAttribute('document_number'),
+                'remarks'  => $stockcardReport->getAttribute('remarks'),
+                'quantity' => number_format($stockcardReport->getAttribute('quantity')),
+                'unit' => $stockcardReport->getAttribute('unit'),
+                'price' => number_format($stockcardReport->getAttribute('price'), 2, '.'),
+                'status' => 'Good',
+                'quantity_in' => number_format($stockcardReport->getAttribute('quantity_in')),
+                'quantity_out' => number_format($stockcardReport->getAttribute('quantity_out')),
+                'balance'  => number_format($stockcardReport->getAttribute('balance')),
+            ];
+        });
+
+        return new JsonResource($result);
     }
 }

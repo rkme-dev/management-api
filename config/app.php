@@ -200,7 +200,8 @@ return [
 
         // Services from the App
         App\Providers\CollectionPaymentTypeServiceProvider::class,
-        App\Providers\CollectionServiceProvider::class
+        App\Providers\CollectionServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
     ],
 
     /*

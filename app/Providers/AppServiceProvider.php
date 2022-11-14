@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Services\InventoryService\Interfaces\ProductItemCountResolverInterface;
+use App\Services\InventoryService\Interfaces\StockcardFactoryInterface;
 use App\Services\InventoryService\Resolvers\ProductItemCountResolver;
+use App\Services\InventoryService\Resolvers\StockcardFactory;
 use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
 use App\Services\ModuleNumber\Resolvers\ModuleNumberResolver;
 use App\Services\Processors\Stack;
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $services = [
             ModuleNumberResolverInterface::class => ModuleNumberResolver::class,
             ProductItemCountResolverInterface::class => ProductItemCountResolver::class,
+            StockcardFactoryInterface::class => StockcardFactory::class,
         ];
 
         foreach ($services as $abstract => $concrete) {

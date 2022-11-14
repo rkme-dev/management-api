@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\PhysicalCount;
 
 use App\Enums\PhysicalCountStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Jobs\Reports\RemoveStockcardReportJob;
 use App\Models\PhysicalCount;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,6 +19,10 @@ final class UnpostPhysicalCountController extends AbstractAPIController
             ]);
 
         $physicalCount->refresh();
+
+        foreach ($physicalCount->getItems() as $item) {
+            RemoveStockcardReportJob::dispatch(get_class($item), $item->getAttribute('id'));
+        }
 
         return new JsonResource($physicalCount);
     }

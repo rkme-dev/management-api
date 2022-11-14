@@ -19,4 +19,9 @@ class CountItem extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public function physicalCount(): BelongsTo
+    {
+        return $this->belongsTo(PhysicalCount::class, 'physical_count_id');
+    }
 }
