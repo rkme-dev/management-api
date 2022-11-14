@@ -21,7 +21,6 @@ final class ShowSalesDrController extends AbstractAPIController
     {
         $test = $this->moduleNumberResolver->resolve('sales_drs', 'SO');
 
-        dd($test);
         $dr = SalesDr::with([
             'customer',
             'orderItems',
