@@ -16,7 +16,7 @@ class SalesOrderDeliveryReceiptController extends Controller
      */
     public function __invoke(Request $request, string $id)
     {
-        $salesOrder = SalesDr::with('payments', 'salesDrItems.tripTicket', 'document', 'salesman1', 'salesman2', 'vat', 'orderItems', 'customer', 'term')
+        $salesOrder = SalesDr::with('payments', 'salesDrItems.tripTicket', 'document', 'salesman1', 'salesman2', 'vat', 'orderItems.product', 'customer', 'term')
             ->where('id', $id)->first()?->toArray();
 
         $currency = new \NumberFormatter(

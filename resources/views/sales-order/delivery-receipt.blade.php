@@ -7,6 +7,12 @@
     body {
         font-family: 'Roboto Condensed', sans-serif;
     }
+    .title {
+        color: #0070c0;
+    }
+    .font-i {
+        font-style: italic;
+    }
 
     .m-0 {
         margin: 0px;
@@ -19,9 +25,18 @@
     .pt-5 {
         padding-top: 5px;
     }
+    .pt-50 {
+        padding-top: 50px;
+    }
+    .pl-15 {
+        padding-left: 15px;
+    }
 
     .mt-10 {
         margin-top: 10px;
+    }
+    .mt-50 {
+        margin-top: 50px;
     }
 
     .text-center {
@@ -31,17 +46,38 @@
     .w-100 {
         width: 100%;
     }
-
+    .w-40 {
+        width: 40%;
+    }
     .w-50 {
         width: 50%;
+    }
+    .w-80 {
+        width: 80%;
     }
 
     .w-85 {
         width: 85%;
     }
 
+    .w-10 {
+        width: 10%;
+    }
     .w-15 {
         width: 15%;
+    }
+    .w-20 {
+        width: 20%;
+    }
+    .w-28 {
+        width: 28%;
+    }
+    .w-30 {
+        width: 30%;
+    }
+
+    .font-10 {
+        font-size: 10;
     }
 
     .logo img {
@@ -116,8 +152,19 @@
         margin-top: 10px;
         margin-right: 30px;
         position: absolute;
-        top: 75px;
+        top: 118px;
         right: 0px;
+    }
+    .inline{
+        display: inline-block;
+    }
+    .nextline{
+        display: block;
+    }
+    .bd-none {
+        border-left: none;
+        border-bottom: none;
+        border-right: none;
     }
     .page-break {
         page-break-after: always;
@@ -129,25 +176,44 @@
     <div class="mt-10 text-bold w-50" style="position:absolute; left: 600px;top: -10px;">
         {!! DNS2D::getBarcodeHTML((string) $order['qr_code'] ?? '', 'QRCODE', 3,3) !!}
     </div>
-    <div class="head-title">
+    <div class="head-title mt-50">
         <h2 class="text-center mt-1 p-0">DELIVERY RECEIPT</h2>
         <span class="mt-1 p-0 copy"> {{ ucfirst($copy->value) }} Copy </span>
     </div>
 
-    <div class="add-detail mt-10">
-        <div class="w-50 float-left mt-10">
-            <p class="m-0 pt-5 text-bold w-100">Customer: <span class="gray-color">{{$order['customer']['name']}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Address: <span class="gray-color">{{$order['address'] ?? ''}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">SO Date: <span class="gray-color">{{$order['created_at']}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">SO Status: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['status']))}}</span></p>
+    <div class="mt-10 font-10">
+        <div class="nextline">
+            <div class="inline w-40">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">Customer:</span> <span class="gray-color">{{$order['customer']['name']}}</span></p>
+            </div>
+            <div class="inline w-30">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">Date:</span> <span class="gray-color">{{date("M d, Y", strtotime($order['created_at']))}}</span></p>
+            </div>
+            <div class="inline float-right w-20">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">DR No:</span> <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
+            </div>
         </div>
-        <div class="w-50 float-right mt-10">
-            <p class="m-0 pt-5 text-bold w-100">Terms: <span class="gray-color">{{$order['term']['description'] ?? ''}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">DR No: <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Plate No: <span class="gray-color">{{$order['plate_number']}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Date: <span class="gray-color">{{$order['created_at']}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Salesman 1: <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Salesman 2: <span class="gray-color">{{$order['salesman2']['salesman_name'] ?? 'N/A'}}</span></p>
+        <div class="nextline">
+            <div class="inline w-40">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">Address:</span> <span class="gray-color">{{$order['address'] ?? ''}}</span></p>
+            </div>
+            <div class="inline">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">Plate No:</span> <span class="gray-color">{{$order['plate_number']}}</span></p>
+            </div>
+        </div>
+        <div class="nextline">
+            <div class="inline w-20">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">SO No.:</span> <span class="gray-color"></span></p>
+            </div>
+            <div class="inline w-20">
+                <p class="m-0 pt-5"><span class="text-bold">SO Date:</span> <span class="gray-color"></span></p>
+            </div>
+            <div class="inline w-10">
+                <p class="m-0 "><span class="text-bold">Terms:</span> <span class="gray-color"></span></p>
+            </div>
+            <div class="inline float-right w-20">
+                <p class="m-0 pt-5 w-100"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
+            </div>
         </div>
         <div style="clear: both;"></div>
     </div>
@@ -155,35 +221,39 @@
     <div class="table-section bill-tbl w-100 mt-10">
         <table class="table w-100 mt-10">
             <tr>
-                <th class="w-50">Item</th>
+                <th class="w-50">Particulars</th>
                 <th class="w-15">Qty</th>
                 <th class="w-15">Unit Price</th>
-                <th class="w-50 border-top">Total</th>
+                <th class="w-20 border-top">Total</th>
                 <div style="clear: both;"></div>
             </tr>
             @foreach($order['order_items'] as $item)
                 <tr align="center">
-                    <td>{{ $item['product_id'] }}</td>
+                    <td>{{ $item['product']['name'] }}</td>
                     <td>{{ $item['quantity'] }}</td>
                     <td>{{ $item['price'] }}</td>
                     <td>PHP {{ $item['total_amount'] }}</td>
                     <div style="clear: both;"></div>
                 </tr>
             @endforeach
-            <tr>
-                <td colspan="7">
-                    <div class="total-part">
-                        <div class="total-left w-95 float-left text-bold" align="right" style="margin-left:195px">
-                            <p>Sub Total:</p>
-                        </div>
-                        <div class="total-right w-25 float-right text-bold" align="right">
-                            <p>PHP {{ $order['amount'] }}</p>
-                        </div>
-                        <div style="clear: both;"></div>
+            <tr class="bd-none">
+                <td class="bd-none"></td> 
+                <td class="bd-none"></td> 
+                <td class="bd-none">
+                    <div class="total-part float-right text-bold">
+                        <p>Total:</p>
+                    </div>
+                </td>
+                <td class="bd-none">
+                    <div class="total-part w-25 float-left text-bold">
+                        <p>PHP {{ $order['amount'] }}</p>
                     </div>
                 </td>
             </tr>
         </table>
+    </div>
+    <div class="nextline pt-50">
+        <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']))}}</span></p>
     </div>
     @if($key != 2)
     <div class="page-break"></div>
