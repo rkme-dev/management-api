@@ -187,7 +187,7 @@
                 <p class="m-0 pt-5 w-100"><span class="text-bold">Customer:</span> <span class="gray-color">{{$order['customer']['name']}}</span></p>
             </div>
             <div class="inline w-30">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">Date:</span> <span class="gray-color">{{date("M d, Y", strtotime($order['created_at']))}}</span></p>
+                <p class="m-0 pt-5 w-100"><span class="text-bold">Date:</span> <span class="gray-color">{{date("M d, Y", strtotime($order['date_posted']))}} {{ date("h:i A", strtotime($order['created_at'])) }}</span></p>
             </div>
             <div class="inline float-right w-20">
                 <p class="m-0 pt-5 w-100"><span class="text-bold">DR No:</span> <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
