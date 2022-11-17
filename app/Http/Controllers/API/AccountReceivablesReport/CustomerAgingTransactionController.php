@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Customer;
+namespace App\Http\Controllers\Api\AccountReceivablesReport;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\Customer;
@@ -43,25 +43,12 @@ class CustomerAgingTransactionController extends AbstractAPIController
 
             $customer['sales_drs'][$index]['heightyone_above'] = $aged_date >= 181 ? $remaining_balance : 0;
 
+            $customer['sales_drs'][$index]['remaining_balance_num'] = (float) $item['remaining_balance'];
         }
-
-        $customer['one_thirty_total'] = 0;
-
-        $customer['thirtyone_sixty_total'] = 0;
-
-        $customer['sixtyone_ninety_total'] = 0;
-
-        $customer['ninetyone_htwenty_total'] = 0;
-
-        $customer['htwentyone_hfifty_total'] = 0;
-
-        $customer['hfiftyone_heighty_total'] = 0;
-
-        $customer['heightyone_above_total'] = 0;
 
         return $this->respondOK(
             [
-                'data' => $customer
+                'data' => $customer['sales_drs']
             ]
         );
     }

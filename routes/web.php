@@ -7,6 +7,8 @@ use App\Http\Controllers\SalesOrder\SalesOrderDeliveryReceiptController;
 use App\Http\Controllers\SalesOrder\SalesOrderPrintController;
 use App\Http\Controllers\Logistics\TripTicketsController;
 use App\Http\Controllers\Collections\PostedCollectionReceipt;
+use App\Http\Controllers\AccountReceivablesReport\CustomerAgingReceiptController;
+use App\Http\Controllers\AccountReceivablesReport\CustomerAgingItemReceiptController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,16 @@ Route::get('print-trip-ticket/{id}', [
 Route::get('posted-collection-receipt/{id}', [
     'as' => 'print.collections.posted-receipt',
     'uses' => PostedCollectionReceipt::class
+]);
+
+Route::get('print-customer-aging', [
+    'as' => 'print.customer-aging',
+    'uses' => CustomerAgingReceiptController::class
+]);
+
+Route::get('print-customer-aging/{id}', [
+    'as' => 'print.customer-aging-item',
+    'uses' => CustomerAgingItemReceiptController::class
 ]);
 
 Route::get('/', function () {
