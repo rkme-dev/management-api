@@ -28,8 +28,18 @@
     .pt-50 {
         padding-top: 50px;
     }
-    .pl-15 {
-        padding-left: 15px;
+    .pt-200 {
+        padding-top: 200px;
+    }
+
+    .pd-10 {
+        padding-bottom: 10px;
+    }
+    .pl-40 {
+        padding-left: 40px;
+    }
+    .pr-40 {
+        padding-right: 40px;
     }
 
     .mt-10 {
@@ -74,6 +84,9 @@
     }
     .w-30 {
         width: 30%;
+    }
+    .font-9 {
+        font-size: 9;
     }
 
     .font-10 {
@@ -166,6 +179,12 @@
         border-bottom: none;
         border-right: none;
     }
+    .footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
     .page-break {
         page-break-after: always;
     }
@@ -184,35 +203,29 @@
     <div class="mt-10 font-10">
         <div class="nextline">
             <div class="inline w-40">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">Customer:</span> <span class="gray-color">{{$order['customer']['name']}}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Customer:</span> <span class="gray-color">{{$order['customer']['name']}}</span></p>
             </div>
             <div class="inline w-30">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">Date:</span> <span class="gray-color">{{date("M d, Y", strtotime($order['date_posted']))}} {{ date("h:i A", strtotime($order['created_at'])) }}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Date:</span> <span class="gray-color">{{date("M d, Y", strtotime($order['date_posted']))}}</span></p>
             </div>
             <div class="inline float-right w-20">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">DR No:</span> <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">DR No:</span> <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
             </div>
         </div>
         <div class="nextline">
             <div class="inline w-40">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">Address:</span> <span class="gray-color">{{$order['address'] ?? ''}}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Address:</span> <span class="gray-color">{{$order['address'] ?? ''}}</span></p>
             </div>
             <div class="inline">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">Plate No:</span> <span class="gray-color">{{$order['plate_number']}}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Plate No:</span> <span class="gray-color">{{$order['plate_number']}}</span></p>
             </div>
         </div>
         <div class="nextline">
-            <div class="inline w-20">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">SO No.:</span> <span class="gray-color"></span></p>
-            </div>
-            <div class="inline w-20">
-                <p class="m-0 pt-5"><span class="text-bold">SO Date:</span> <span class="gray-color"></span></p>
-            </div>
             <div class="inline w-10">
-                <p class="m-0 "><span class="text-bold">Terms:</span> <span class="gray-color"></span></p>
+                <p class="m-0 pd-10"><span class="text-bold">Terms:</span> <span class="gray-color"></span></p>
             </div>
             <div class="inline float-right w-20">
-                <p class="m-0 pt-5 w-100"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
             </div>
         </div>
         <div style="clear: both;"></div>
@@ -221,15 +234,17 @@
     <div class="table-section bill-tbl w-100 mt-10">
         <table class="table w-100 mt-10">
             <tr>
-                <th class="w-50">Particulars</th>
+                <th class="w-30">SO No.</th>
+                <th class="w-30">Particulars</th>
                 <th class="w-15">Qty</th>
                 <th class="w-15">Unit Price</th>
                 <th class="w-20 border-top">Total</th>
                 <div style="clear: both;"></div>
             </tr>
-            @foreach($order['order_items'] as $item)
+            @foreach($order['legit_order_items'] as $item)
                 <tr align="center">
-                    <td>{{ $item['product']['name'] }}</td>
+                    <td>{{ $item['sales_order_number'] }}</td>
+                    <td>{{ $item['product_name'] }}</td>
                     <td>{{ $item['quantity'] }}</td>
                     <td>{{ $item['price'] }}</td>
                     <td>PHP {{ $item['total_amount'] }}</td>
@@ -237,6 +252,7 @@
                 </tr>
             @endforeach
             <tr class="bd-none">
+                <td class="bd-none"></td> 
                 <td class="bd-none"></td> 
                 <td class="bd-none"></td> 
                 <td class="bd-none">
@@ -254,6 +270,37 @@
     </div>
     <div class="nextline pt-50">
         <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']))}}</span></p>
+    </div>
+    <p class="font-i text-bold text-center pt-200 font-9 pl-40 pr-40">
+        The undersigned herein states that he/she has inspected the goods upon deliver and hereby acknowledges Receipt of items listed in this deliver receipt found to be in good order.
+    </p>
+    <div class="inline w-20 pt-200">
+        <p class="font-i font-9">
+            Accounting Prepared:
+        </p>
+    </div>
+    <div class="inline w-15 pt-200">
+        <p class="font-i font-9">
+            Sales Checked:
+        </p>
+    </div>
+    <div class="inline w-20 pt-200">
+        <p class="font-i font-9">
+            Warehouse Verified:
+        </p>
+    </div>
+    <div class="inline w-20 pt-200">
+        <p class="font-i font-9">
+            Logistics Released:
+        </p>
+    </div>
+    <div class="inline w-15 pt-200">
+        <p class="font-i font-9">
+            Received By:
+        </p>
+    </div>
+    <div class="footer">
+        @include('includes.footer')
     </div>
     @if($key != 2)
     <div class="page-break"></div>
