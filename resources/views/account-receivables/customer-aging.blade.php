@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Enco Bottling Corporation</title>
+    <title style="color: blueviolet">Enco Group Customer Aging</title>
 </head>
 <style type="text/css">
     body {
         font-family: 'Roboto Condensed', sans-serif;
     }
-
+    .title {
+        color: #0070c0;
+    }
     .m-0 {
         margin: 0px;
     }
@@ -129,9 +131,9 @@
 <body>
 
 @include('includes.header')
-<div class="mt-10 text-bold w-50" style="position:absolute; left: 20px;top: -10px;">
+{{-- <div class="mt-10 text-bold w-50" style="position:absolute; left: 20px;top: -10px;">
     <img src="../public/enco.png" height="60px" alt="Image"/>
-</div>
+</div> --}}
 <div class="head-title">
     <h2 class="text-center mt-1 p-0">Accounts Receivable {{ $title }}</h2>
 </div>

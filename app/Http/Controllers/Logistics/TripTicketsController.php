@@ -18,6 +18,9 @@ class TripTicketsController extends Controller
         $ticket = TripTicket::with('salesDrItems.drOrderItem.product','salesDrItems.salesDr.customer','document', 'orderItems')
                             ->where('id', $id)->first()?->toArray();
 
+        $ticket['date_posted'] = Carbon::parse($ticket['date_posted'])->format('Y-m-d');
+        $ticket['timestamp'] = Carbon::parse($ticket['created_at'])->format('H:i:s');
+
         $pdf = PDF::loadView('logistics/trip-ticket', [
                 'order' => $ticket,
             ]
