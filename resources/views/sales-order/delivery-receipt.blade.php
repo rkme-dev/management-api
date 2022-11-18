@@ -28,8 +28,8 @@
     .pt-50 {
         padding-top: 50px;
     }
-    .pt-200 {
-        padding-top: 200px;
+    .pt-130 {
+        padding-top: 130px;
     }
 
     .pd-10 {
@@ -271,30 +271,30 @@
     <div class="nextline pt-50">
         <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']))}}</span></p>
     </div>
-    <p class="font-i text-bold text-center pt-200 font-9 pl-40 pr-40">
+    <p class="font-i text-bold text-center pt-130 font-9 pl-40 pr-40">
         The undersigned herein states that he/she has inspected the goods upon deliver and hereby acknowledges Receipt of items listed in this deliver receipt found to be in good order.
     </p>
-    <div class="inline w-20 pt-200">
+    <div class="inline w-20 pt-130">
         <p class="font-i font-9">
             Accounting Prepared:
         </p>
     </div>
-    <div class="inline w-15 pt-200">
+    <div class="inline w-15 pt-130">
         <p class="font-i font-9">
             Sales Checked:
         </p>
     </div>
-    <div class="inline w-20 pt-200">
+    <div class="inline w-20 pt-130">
         <p class="font-i font-9">
             Warehouse Verified:
         </p>
     </div>
-    <div class="inline w-20 pt-200">
+    <div class="inline w-20 pt-130">
         <p class="font-i font-9">
             Logistics Released:
         </p>
     </div>
-    <div class="inline w-15 pt-200">
+    <div class="inline w-15 pt-130">
         <p class="font-i font-9">
             Received By:
         </p>
