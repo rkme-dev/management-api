@@ -19,7 +19,11 @@ class SalesOrderDeliveryReceiptController extends Controller
     public function __invoke(Request $request, string $id)
     {
         $salesOrder = SalesDr::with('payments', 'salesDrItems.tripTicket', 'document', 'salesman1', 'salesman2', 'vat', 'orderItems', 'customer', 'term')
-            ->where('id', $id)->first()?->toArray();
+            ->where('id', $id)->first();
+
+        $dr = $salesOrder;
+
+        $salesOrde = $salesOrder?->toArray();
 
         $currency = new \NumberFormatter(
             'en_PH',
@@ -54,11 +58,12 @@ class SalesOrderDeliveryReceiptController extends Controller
 
         $legitSalesOrder = [];
 
-        foreach ($orderItems as $orderItem) {
+        /** @var OrderItem $orderItem */
+        foreach ($dr->orderItems as $orderItem) {
             $sales = $orderItem->orderable;
 
             $legitSalesOrder[] = [
-                'sales_order_number' => $sales->getAttribute('sales_order_number'),
+                'sales_order_number' => $orderItem->salesDrItem->salesOrderItem->orderable->getAttribute('sales_order_number'),
                 'product_name' => $orderItem->product->getAttribute('name'),
                 'quantity' => number_format($orderItem->getAttribute('quantity')),
                 'price' => number_format($orderItem->getAttribute('price')),
