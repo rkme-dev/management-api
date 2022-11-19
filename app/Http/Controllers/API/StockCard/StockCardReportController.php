@@ -39,7 +39,7 @@ class StockCardReportController extends AbstractAPIController
 
         $result = $result->map(function (StockcardReport $stockcardReport) {
             return [
-                'date' => (new Carbon($stockcardReport->getAttribute('date')))->toDateString(),
+                'date' => (new Carbon($stockcardReport->getAttribute('date')))->toDateTimeString(),
                 'event' => $stockcardReport->getAttribute('event'),
                 'document' => $stockcardReport->getAttribute('document'),
                 'document_number' => $stockcardReport->getAttribute('document_number'),
