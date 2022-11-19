@@ -31,7 +31,7 @@ class StockCardReportController extends AbstractAPIController
                     $query->where('unit', '=', $unit);
                 }
             })
-            ->orderBy('date', 'desc')
+            ->orderBy('date', 'asc')
             ->orderBy('unit', 'desc')
             ->orderBy('morphable_type', 'desc')
             ->orderBy('morphable_id', 'desc')
