@@ -125,9 +125,9 @@
 <body>
 
 @include('includes.header')
-<div class="mt-10 text-bold w-50" style="position:absolute; left: 20px;top: -10px;">
+{{-- <div class="mt-10 text-bold w-50" style="position:absolute; left: 20px;top: -10px;">
     <img src="../public/enco.png" height="60px" alt="Image"/>
-</div>
+</div> --}}
 <div class="head-title">
     <h2 class="text-center mt-1 p-0">COLLECTION RECEIPT</h2>
 </div>
