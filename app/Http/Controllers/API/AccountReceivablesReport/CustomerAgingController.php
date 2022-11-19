@@ -63,56 +63,58 @@ class CustomerAgingController extends AbstractAPIController
 
             $totalPerCustomer = collect($customers[$index]['sales_drs']);
             
-            $customers[$index]['one_thirty_total'] = (string) $totalPerCustomer->where('aged_days','<=',30)
+            $customers[$index]['one_thirty_total'] = (string) $currency->format($totalPerCustomer->where('aged_days','<=',30)
                                                     ->reduce(function ($carry, $item) {
                                                         return $carry + (float) $item['remaining_balance'];
-                                                    },0);
+                                                    },0));
 
-            $customers[$index]['thirtyone_sixty_total'] = (string) $totalPerCustomer
+            $customers[$index]['thirtyone_sixty_total'] = (string) $currency->format( $totalPerCustomer
                                                     ->where('aged_days','>=',31)
                                                     ->where('aged_days','<=',60)
                                                     ->reduce(function ($carry, $item) {
                                                         return $carry + (float) $item['remaining_balance'];
-                                                    },0);
+                                                    },0));
 
-            $customers[$index]['sixtyone_ninety_total'] = (string) $totalPerCustomer
+            $customers[$index]['sixtyone_ninety_total'] = (string) $currency->format( $totalPerCustomer
                                                 ->where('aged_days','>=',61)
                                                 ->where('aged_days','<=',90)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
-                                                },0);
+                                                },0));
 
-            $customers[$index]['ninetyone_htwenty_total'] = (string) $totalPerCustomer
+            $customers[$index]['ninetyone_htwenty_total'] = (string) $currency->format( $totalPerCustomer
                                                 ->where('aged_days','>=',91)
                                                 ->where('aged_days','<=',120)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
-                                                },0);
+                                                },0));
 
-            $customers[$index]['htwentyone_hfifty_total'] = (string) $totalPerCustomer
+            $customers[$index]['htwentyone_hfifty_total'] = (string) $currency->format( $totalPerCustomer
                                                 ->where('aged_days','>=',121)
                                                 ->where('aged_days','<=',150)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
-                                                },0);
+                                                },0));
 
-            $customers[$index]['hfiftyone_heighty_total'] = (string) $totalPerCustomer
+            $customers[$index]['hfiftyone_heighty_total'] = (string) $currency->format( $totalPerCustomer
                                             ->where('aged_days','>=',151)
                                             ->where('aged_days','<=',180)
                                             ->reduce(function ($carry, $item) {
                                                 return $carry + (float) $item['remaining_balance'];
-                                            },0);
+                                            },0));
 
-            $customers[$index]['heightyone_above_total'] = (string) $totalPerCustomer
+            $customers[$index]['heightyone_above_total'] = (string) $currency->format( $totalPerCustomer
                                                 ->where('aged_days','>=',180)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
-                                                },0);
+                                                },0));
 
-            $customers[$index]['total'] = $totalPerCustomer
+            $customers[$index]['total'] =  $totalPerCustomer
                                             ->reduce(function ($carry, $item) {
                                                 return $carry + (float) $item['remaining_balance'];
                                             },0);
+
+            $customers[$index]['total_curr'] = $currency->format($customers[$index]['total'] );
 
         }
 
