@@ -18,9 +18,9 @@ class CustomerAgingItemReceiptController extends Controller
     public function __invoke(string $id)
     {
         $customer = Customer::where('id', $id)
-                        ->doesntHave('collections')
                         ->whereHas('salesDrs', function ($q) {
-                            $q->where('status','posted');
+                            $q->where('status','posted')
+                            ->where('remaining_balance','>',0);
                         })
                         ->with('salesDrs',
                             'salesDrs.document',
