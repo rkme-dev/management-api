@@ -23,7 +23,7 @@ class SalesOrderDeliveryReceiptController extends Controller
 
         $dr = $salesOrder;
 
-        $salesOrde = $salesOrder?->toArray();
+        $salesOrder = $salesOrder?->toArray();
 
         $currency = new \NumberFormatter(
             'en_PH',
