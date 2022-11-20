@@ -6,17 +6,21 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Resources\ErrorResource;
 use App\Models\User;
-use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
 use App\Services\ModuleNumber\Resolvers\ModuleNumberResolver;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
-use Throwable;
 
 abstract class AbstractAPIController
 {
+    public function generateDateTime(string $date): Carbon
+    {
+        $time = (new Carbon())->toTimeString();
+
+        return new Carbon(\sprintf('%s %s', $date, $time));
+    }
+
     public function generateNumber(string $table, string $key): string
     {
         $resolver = new ModuleNumberResolver();

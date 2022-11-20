@@ -11,6 +11,7 @@ use App\Models\OrderItem;
 use App\Models\SalesDr;
 use App\Models\SalesDrItem;
 use App\Models\SalesOrder;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
@@ -23,7 +24,6 @@ final class CreateSalesDrController extends AbstractAPIController
                 'sales_invoice_number',
                 'area',
                 'address',
-                'date_posted',
                 'remarks',
                 'customer_id',
                 'document_id',
@@ -35,6 +35,7 @@ final class CreateSalesDrController extends AbstractAPIController
                 'amount',
             ]),
             ...[
+                'date_posted' => $this->generateDateTime($request->get('date_posted')),
                 'sales_dr_number' => $this->generateNumber('sales_drs', 'DR'),
                 'remaining_balance' => $request->get('amount'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,

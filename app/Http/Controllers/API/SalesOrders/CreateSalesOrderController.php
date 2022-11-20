@@ -9,6 +9,7 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\SalesOrders\CreateSalesOrderRequest;
 use App\Models\OrderItem;
 use App\Models\SalesOrder;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
@@ -20,7 +21,6 @@ final class CreateSalesOrderController extends AbstractAPIController
             ...$request->all([
                 'area',
                 'address',
-                'date_posted',
                 'remarks',
                 'customer_id',
                 'document_id',
@@ -33,6 +33,7 @@ final class CreateSalesOrderController extends AbstractAPIController
                 'amount',
             ]),
             ...[
+                'date_posted' => $this->generateDateTime($request->get('date_posted')),
                 'sales_order_number' => $this->generateNumber('sales_orders', 'SO'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),

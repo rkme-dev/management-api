@@ -42,7 +42,6 @@ final class CreateCollectionController extends AbstractAPIController
     {
         $collection = Collection::create([
             ...$request->all([
-                'date_posted',
                 'remarks',
                 'customer_id',
                 'document_id',
@@ -55,6 +54,7 @@ final class CreateCollectionController extends AbstractAPIController
                 'amount',
             ]),
             ...[
+                'date_posted' => $this->generateDateTime($request->get('date_posted')),
                 'collection_order_number' => $this->generateNumber('collections', 'OR'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
