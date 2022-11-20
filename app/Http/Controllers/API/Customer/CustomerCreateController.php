@@ -14,7 +14,6 @@ final class CustomerCreateController extends AbstractAPIController
     public function __invoke(CustomerCreateRequest $request): JsonResponse
     {
         $data = $request->all([
-            'code',
             'name',
             'address',
             'delivery_address',
@@ -33,6 +32,8 @@ final class CustomerCreateController extends AbstractAPIController
             'type',
             'notes',
         ]);
+
+        $data['code'] = $this->generateNumber('customers', 'CIF', false);
 
         $data['created_by'] = $this->getUser()->getId();
 

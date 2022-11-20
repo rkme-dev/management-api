@@ -24,7 +24,6 @@ class CustomerCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'nullable|string|unique:App\Models\Customer,code',
             'name' => 'required|max:255',
             'address' => 'nullable|string',
             'delivery_address' => 'nullable|string',
