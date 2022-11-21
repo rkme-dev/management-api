@@ -52,16 +52,10 @@ class SalesOrderDeliveryReceiptController extends Controller
         /**
          * Getting the legit SALES ORDER
          */
-        $orderItems = OrderItem::whereHasMorph('orderable', [SalesOrder::class], function ($query) use($salesOrder) {
-            $query->where('customer_id', $salesOrder['customer']['id']);
-        })->orderBy('id', 'desc')->get();
-
         $legitSalesOrder = [];
 
         /** @var OrderItem $orderItem */
         foreach ($dr->orderItems as $orderItem) {
-            $sales = $orderItem->orderable;
-
             $legitSalesOrder[] = [
                 'sales_order_number' => $orderItem->salesDrItem->salesOrderItem->orderable->getAttribute('sales_order_number'),
                 'product_name' => $orderItem->product->getAttribute('name'),
@@ -75,6 +69,9 @@ class SalesOrderDeliveryReceiptController extends Controller
 
         $copies = PrintCopyEnums::cases();
 
+        // return view('sales-order/delivery-receipt', [
+        //     'order' => $salesOrder,
+        //     'copies' => $copies]);
         $pdf = PDF::loadView('sales-order/delivery-receipt', [
                 'order' => $salesOrder,
                 'copies' => $copies
