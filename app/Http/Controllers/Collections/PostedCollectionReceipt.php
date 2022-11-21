@@ -30,15 +30,19 @@ class PostedCollectionReceipt extends Controller
 
         $collection['qr_code'] = $collection['qr_code'] ?? 'N/A';
 
-        $collection['total_amount'] = $currency->format(collect($collection['payments'])->reduce(function ($carry, $item) {
+        $total_amount_num = collect($collection['payments'])->reduce(function ($carry, $item) {
             return $carry + (float) $item['amount'];
-        }));
+        });
 
-        $remaining_balance = $currency->format(collect($collection['sales_dr_payments'])->reduce(function ($carry, $item) {
+        $remaining_balance_num = collect($collection['sales_dr_payments'])->reduce(function ($carry, $item) {
             return $carry + (float) $item['sales_dr']['remaining_balance'];
-        }));
+        });
 
-        $collection['amount_collected'] = $currency->format((float) $remaining_balance - (float) $collection['total_amount']);
+        $collection['total_amount'] = $currency->format($total_amount_num );
+
+        $remaining_balance = $currency->format($remaining_balance_num);
+
+        $collection['amount_collected'] = $currency->format((float) $total_amount_num - (float) $remaining_balance_num);
 
         $collection['balance'] = $remaining_balance;
 
