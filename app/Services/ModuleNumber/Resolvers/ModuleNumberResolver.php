@@ -19,7 +19,7 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
             $id = 0;
         }
 
-        $id = $this->validateId($id, $table);
+        $id = $id + 1;
 
         $id = \str_pad((string) $id,7,"0",STR_PAD_LEFT);
 
