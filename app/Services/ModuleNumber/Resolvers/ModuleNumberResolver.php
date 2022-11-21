@@ -19,7 +19,7 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
             $id = 0;
         }
 
-        $id++;
+        $id = $this->validateId($id, $table);
 
         $id = \str_pad((string) $id,7,"0",STR_PAD_LEFT);
 
@@ -30,5 +30,18 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
         }
 
         return \sprintf('%s%s', $key, $id);
+    }
+
+    public function validateId(int &$id, string $table): int
+    {
+        $exist = DB::table($table)->latest()->first()?->id;
+
+        if ($exist !== null) {
+            $id = $id + 1;
+
+            $this->validateId($id, $table);
+        }
+
+        return $id;
     }
 }
