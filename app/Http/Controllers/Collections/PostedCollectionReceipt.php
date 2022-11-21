@@ -42,7 +42,7 @@ class PostedCollectionReceipt extends Controller
 
         $remaining_balance = $currency->format($remaining_balance_num);
 
-        $collection['amount_collected'] = $currency->format(max((float) $remaining_balance_num - (float) $total_amount_num, 0));
+        $collection['amount_collected'] = $currency->format((float) $total_amount_num - (float) $remaining_balance_num);
 
         $collection['balance'] = $remaining_balance;
 
