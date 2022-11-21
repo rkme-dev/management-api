@@ -21,6 +21,12 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 
         $id = $id + 1;
 
+        $exist = DB::table($table)->where('id', $id);
+
+        if ($exist !== null) {
+            $id = $id + 1;
+        }
+
         $id = \str_pad((string) $id,7,"0",STR_PAD_LEFT);
 
         if ($withYear === true) {
