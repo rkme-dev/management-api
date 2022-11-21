@@ -127,6 +127,7 @@ use App\Http\Controllers\API\SalesDrs\ListSalesDrItemsController;
 use App\Http\Controllers\API\SalesDrs\PostSalesDrController;
 use App\Http\Controllers\API\SalesDrs\ShowSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UnlinkSalesDrItemsController;
+use App\Http\Controllers\API\SalesDrs\UnpaidSalesDrListController;
 use App\Http\Controllers\API\SalesDrs\UnpostSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UpdateSalesDrController;
 use App\Http\Controllers\API\Salesmans\CreateSalesmanController;
@@ -1023,6 +1024,10 @@ Route::group([
             'as' => 'areas',
             'uses' => AreaListBySalesDRController::class,
         ]);
+        Route::get('/sales-drs/unpaid', [
+            'as' => 'unpaid-list',
+            'uses' => UnpaidSalesDrListController::class,
+        ]);
         Route::put('/sales-drs/{id}', [
             'as' => 'update',
             'uses' => UpdateSalesDrController::class,
@@ -1031,11 +1036,6 @@ Route::group([
             'as' => 'unlink-dr-items',
             'uses' => UnlinkSalesDrItemsController::class,
         ]);
-        Route::get('/sales-drs/{id}', [
-            'as' => 'show',
-            'uses' => ShowSalesDrController::class,
-        ]);
-
 
         Route::get('/customers/{id}/sales-dr-items', [
             'as' => 'items',
@@ -1050,6 +1050,11 @@ Route::group([
             'as' => 'ledger-report',
             'uses' => CustomerSubsidiaryLedgerController::class,
         ]);
+        Route::get('/sales-drs/{id}', [
+            'as' => 'show',
+            'uses' => ShowSalesDrController::class,
+        ]);
+
 
     });
 
