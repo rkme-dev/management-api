@@ -35,6 +35,9 @@
     .pd-10 {
         padding-bottom: 10px;
     }
+    .pl-7 {
+        padding-left: 7px;
+    }
     .pl-40 {
         padding-left: 40px;
     }
@@ -52,6 +55,9 @@
     .text-center {
         text-align: center !important;
     }
+    .text-right {
+        text-align: right !important;
+    }
 
     .w-100 {
         width: 100%;
@@ -61,6 +67,9 @@
     }
     .w-50 {
         width: 50%;
+    }
+    .w-60 {
+        width: 60%;
     }
     .w-80 {
         width: 80%;
@@ -77,6 +86,9 @@
         width: 15%;
     }
     .w-20 {
+        width: 20%;
+    }
+    .w-25 {
         width: 20%;
     }
     .w-28 {
@@ -205,11 +217,11 @@
             <div class="inline w-40">
                 <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Customer:</span> <span class="gray-color">{{$order['customer']['name']}}</span></p>
             </div>
-            <div class="inline w-30">
+            <div class="inline w-20">
                 <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Date:</span> <span class="gray-color">{{date("M d, Y", strtotime($order['date_posted']))}}</span></p>
             </div>
-            <div class="inline float-right w-20">
-                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">DR No:</span> <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
+            <div class="inline w-30">
+                <p class="m-0 pt-5 w-100 pd-10 text-right"><span class="text-bold">DR No:</span> <span class="gray-color">{{$order['sales_dr_number'] ?? ''}}</span></p>
             </div>
         </div>
         <div class="nextline">
@@ -221,11 +233,11 @@
             </div>
         </div>
         <div class="nextline">
-            <div class="inline w-10">
+            <div class="inline w-60">
                 <p class="m-0 pd-10"><span class="text-bold">Terms:</span> <span class="gray-color"></span></p>
             </div>
-            <div class="inline float-right w-20">
-                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
+            <div class="inline w-30">
+                <p class="m-0 pt-5 w-100 pd-10 text-right pl-7"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
             </div>
         </div>
         <div style="clear: both;"></div>
@@ -251,22 +263,11 @@
                     <div style="clear: both;"></div>
                 </tr>
             @endforeach
-            <tr class="bd-none">
-                <td class="bd-none"></td> 
-                <td class="bd-none"></td> 
-                <td class="bd-none"></td> 
-                <td class="bd-none">
-                    <div class="total-part float-right text-bold">
-                        <p>Total:</p>
-                    </div>
-                </td>
-                <td class="bd-none">
-                    <div class="total-part w-25 float-left text-bold">
-                        <p>PHP {{ $order['amount'] }}</p>
-                    </div>
-                </td>
-            </tr>
         </table>
+
+        <div>
+            <p class="total-part float-right text-bold">Total: PHP {{ $order['amount'] }}</p>
+        </div>
     </div>
     <div class="nextline pt-50">
         <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']))}}</span></p>
