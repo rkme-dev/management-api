@@ -40,7 +40,7 @@ final class UnpaidSalesDrListController extends AbstractAPIController
                 'price' => $orderItem->getAttribute('price'),
                 'customer' => $salesDr->customer,
                 'total_amount' => $orderItem->getAttribute('total_amount'),
-                'remaining_balance' => $orderItem->getAttribute('remaining_balance'),
+                'remaining_balance' => $salesDr->getAttribute('remaining_balance'),
             ];
         }
 
