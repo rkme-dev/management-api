@@ -15,5 +15,9 @@ final class DatabaseSeeder extends Seeder
             AbilitiesSeeder::class,
             RolesSeeder::class,
         ]);
+        $this->call(DocumentsTableSeeder::class);
+        $this->call(TermsTableSeeder::class);
+        $this->call(UnitPackingsTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
     }
 }
