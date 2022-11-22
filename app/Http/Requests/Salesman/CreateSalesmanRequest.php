@@ -20,7 +20,6 @@ final class CreateSalesmanRequest extends BaseRequest
         return [
             'is_active' => 'required|boolean',
             'quota' => 'nullable',
-            'salesman_code' => 'string|required|unique:App\Models\Salesman,salesman_code',
             'salesman_name' => 'string|required',
 
         ];

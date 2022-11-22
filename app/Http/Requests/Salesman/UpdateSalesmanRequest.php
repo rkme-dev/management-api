@@ -19,7 +19,6 @@ final class UpdateSalesmanRequest extends BaseRequest
     {
         return [
             'is_active' => 'required|boolean',
-            'salesman_code' => 'string|required',
             'salesman_name' => 'string|required',
             'quota' => 'nullable',
 
