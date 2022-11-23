@@ -16,7 +16,6 @@ return new class extends Migration
 
     public function down()
     {
-        $table->string('group_1')->nullable(false)->change();
-        $table->string('group_2')->nullable(false)->change();
+
     }
 };
