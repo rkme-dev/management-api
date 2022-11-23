@@ -19,8 +19,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('check_payments', function (Blueprint $table) {
-            $table->dropColumn('status');
-            $table->dropColumn('bounced_deposit_id');
+            if (Schema::hasColumn('check_payments','status') === true) {
+                $table->dropColumn('status');
+            }
+
+            $table->dropColumn('deposit_id');
         });
     }
 };
