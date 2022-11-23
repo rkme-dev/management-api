@@ -20,7 +20,7 @@ final class CreateSalesmanController extends AbstractAPIController
             'quota',
         ]);
 
-        $data['salesman_code'] = $this->generateNumber('customers', 'SA', false);
+        $data['salesman_code'] = $this->generateNumber('salesman_file', 'SA', false);
         $data['created_by'] = $this->getUser()->getId();
 
         return new JsonResource(Salesman::create($data));
