@@ -16,6 +16,7 @@ final class UnpaidSalesDrListController extends AbstractAPIController
     {
         $unpaidSalesDRs = SalesDr::where('status', '=', SaleOrderStatusesEnum::POSTED->value)
             ->where('remaining_balance', '>', 0)
+            ->where('has_collection', 0)
             ->with('customer')
             ->orderBy('id', 'desc')
             ->get();

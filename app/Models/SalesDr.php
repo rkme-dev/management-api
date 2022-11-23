@@ -28,6 +28,7 @@ final class SalesDr extends Model implements AuditableInterface
      * @var string[]
      */
     protected $fillable = [
+        'has_collection',
         'sales_invoice_number',
         'promo_code',
         'address',

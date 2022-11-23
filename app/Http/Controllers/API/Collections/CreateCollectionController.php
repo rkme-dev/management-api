@@ -78,6 +78,8 @@ final class CreateCollectionController extends AbstractAPIController
             $request->get('dr_items')
         );
 
+        $this->updateSalesDrHasCollection($request->get('dr_items'));
+
         return new JsonResource($collection);
     }
 
@@ -151,5 +153,14 @@ final class CreateCollectionController extends AbstractAPIController
                 'amount' => Arr::get($payment, 'amount'),
             ]));
         }
+    }
+
+    private function updateSalesDrHasCollection(array $salesDr): void
+    {
+        $salesDrIds = array_column($salesDr, 'id') ?? [];
+
+        SalesDr::whereIn('id', $salesDrIds)->update([
+            'has_collection' => true,
+        ]);
     }
 }
