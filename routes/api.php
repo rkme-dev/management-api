@@ -138,6 +138,7 @@ use App\Http\Controllers\API\Salesmans\UpdateSalesmanController;
 use App\Http\Controllers\API\SalesOrders\CreateSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ListSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ListSalesOrderItemsController;
+use App\Http\Controllers\API\SalesOrders\ListSalesOrderWithoutDRController;
 use App\Http\Controllers\API\SalesOrders\SalesOrderItemsByCustomerController;
 use App\Http\Controllers\API\SalesOrders\PostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ShowSalesOrderController;
@@ -911,6 +912,12 @@ Route::group([
             'as' => 'items',
             'uses' => SalesOrderItemsByCustomerController::class,
         ]);
+
+        Route::get('/sales-orders/for-dr', [
+            'as' => 'so-for-dr',
+            'uses' => ListSalesOrderWithoutDRController::class,
+        ]);
+
         Route::get('sales-orders-items', [
             'as' => 'order-items',
             'uses' => ListSalesOrderItemsController::class,
