@@ -913,7 +913,7 @@ Route::group([
             'uses' => SalesOrderItemsByCustomerController::class,
         ]);
 
-        Route::get('/sales-orders/for-dr', [
+        Route::get('/sales-orders-for-dr', [
             'as' => 'so-for-dr',
             'uses' => ListSalesOrderWithoutDRController::class,
         ]);
