@@ -38,73 +38,84 @@ class CustomerAgingController extends AbstractAPIController
         foreach ($customers ?? [] as $index => $customer) {
 
             foreach ($customers[$index]['sales_drs'] ?? [] as $x => $item) {
-
-                $aged_date = Carbon::parse($item['date_posted'])->diffInDays(Carbon::today());
-    
-                $remaining_balance = $item['remaining_balance'];
-    
-                $customers[$index]['sales_drs'][$x]['aged_days'] = $aged_date;
                 
-                $customers[$index]['sales_drs'][$x]['one_thirty'] = $aged_date <= 30 ?  $currency->format((float) $remaining_balance) : 0;
-    
-                $customers[$index]['sales_drs'][$x]['thirtyone_sixty'] = $aged_date >= 31 && $aged_date <= 60 ? $currency->format((float) $remaining_balance) : 0;
-    
-                $customers[$index]['sales_drs'][$x]['sixtyone_ninety'] =  $aged_date >= 61 && $aged_date <= 90 ? $currency->format((float) $remaining_balance) : 0;
-    
-                $customers[$index]['sales_drs'][$x]['ninetyone_htwenty'] = $aged_date >= 91 && $aged_date <= 120 ? $currency->format((float) $remaining_balance) : 0;
-    
-                $customers[$index]['sales_drs'][$x]['htwentyone_hfifty'] = $aged_date >= 121 && $aged_date <= 150 ? $currency->format((float) $remaining_balance) : 0;
-    
-                $customers[$index]['sales_drs'][$x]['hfiftyone_heighty'] = $aged_date >= 151 && $aged_date <= 180 ? $currency->format((float) $remaining_balance) : 0;
-    
-                $customers[$index]['sales_drs'][$x]['heightyone_above'] = $aged_date >= 181 ? $currency->format((float) $remaining_balance) : 0;
+                $term = $item['term'] ? (int) $item['term']['days'] : 0;
+                
+                $age_days = Carbon::parse($item['date_posted'])->diffInDays(Carbon::today());
+
+                $overdue = $term - $age_days;
+                
+                $customers[$index]['sales_drs'][$x]['term_days'] = $term;
+                
+                $customers[$index]['sales_drs'][$x]['age_days'] = $age_days;                
+                
+                $customers[$index]['sales_drs'][$x]['overdue'] = abs($overdue);
+                
+                $customers[$index]['sales_drs'][$x]['is_current'] = $overdue > 0 ? true : false;
     
             }
 
             $totalPerCustomer = collect($customers[$index]['sales_drs']);
+
+            $customers[$index]['current'] = (string) $currency->format($totalPerCustomer
+                                            ->where('is_current',true)
+                                            ->reduce(function ($carry, $item) {
+                                                return $carry + (float) $item['remaining_balance'];
+                                            },0));
             
-            $customers[$index]['one_thirty_total'] = (string) $currency->format($totalPerCustomer->where('aged_days','<=',30)
+            $customers[$index]['one_thirty_total'] = (string) $currency->format(
+                                                    $totalPerCustomer
+                                                    ->where('is_current',false)
+                                                    ->where('overdue','<=',30)
                                                     ->reduce(function ($carry, $item) {
                                                         return $carry + (float) $item['remaining_balance'];
                                                     },0));
 
-            $customers[$index]['thirtyone_sixty_total'] = (string) $currency->format( $totalPerCustomer
-                                                    ->where('aged_days','>=',31)
-                                                    ->where('aged_days','<=',60)
+            $customers[$index]['thirtyone_sixty_total'] = (string) $currency->format( 
+                                                    $totalPerCustomer
+                                                    ->where('is_current',false)
+                                                    ->where('overdue','>=',31)
+                                                    ->where('overdue','<=',60)
                                                     ->reduce(function ($carry, $item) {
                                                         return $carry + (float) $item['remaining_balance'];
                                                     },0));
 
-            $customers[$index]['sixtyone_ninety_total'] = (string) $currency->format( $totalPerCustomer
-                                                ->where('aged_days','>=',61)
-                                                ->where('aged_days','<=',90)
+            $customers[$index]['sixtyone_ninety_total'] = (string) $currency->format( 
+                                                $totalPerCustomer
+                                                ->where('is_current',false)
+                                                ->where('overdue','>=',61)
+                                                ->where('overdue','<=',90)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
                                                 },0));
 
             $customers[$index]['ninetyone_htwenty_total'] = (string) $currency->format( $totalPerCustomer
-                                                ->where('aged_days','>=',91)
-                                                ->where('aged_days','<=',120)
+                                                ->where('is_current',false)
+                                                ->where('overdue','>=',91)
+                                                ->where('overdue','<=',120)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
                                                 },0));
 
             $customers[$index]['htwentyone_hfifty_total'] = (string) $currency->format( $totalPerCustomer
-                                                ->where('aged_days','>=',121)
-                                                ->where('aged_days','<=',150)
+                                                ->where('is_current',false)
+                                                ->where('overdue','>=',121)
+                                                ->where('overdue','<=',150)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
                                                 },0));
 
             $customers[$index]['hfiftyone_heighty_total'] = (string) $currency->format( $totalPerCustomer
-                                            ->where('aged_days','>=',151)
-                                            ->where('aged_days','<=',180)
+                                            ->where('is_current',false)
+                                            ->where('overdue','>=',151)
+                                            ->where('overdue','<=',180)
                                             ->reduce(function ($carry, $item) {
                                                 return $carry + (float) $item['remaining_balance'];
                                             },0));
 
             $customers[$index]['heightyone_above_total'] = (string) $currency->format( $totalPerCustomer
-                                                ->where('aged_days','>=',180)
+                                                ->where('is_current',false)
+                                                ->where('overdue','>=',180)
                                                 ->reduce(function ($carry, $item) {
                                                     return $carry + (float) $item['remaining_balance'];
                                                 },0));

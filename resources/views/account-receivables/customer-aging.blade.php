@@ -144,6 +144,7 @@
     <table class="table w-100 mt-10 sm-text">
         <tr>
             <th class="w-85">Customer Name</th>
+            <th class="w-50">Current</th>
             <th class="w-50">1-30</th>
             <th class="w-50">31-60</th>
             <th class="w-50">61-90</th>
@@ -157,6 +158,7 @@
         @foreach($order as $key => $item)
             <tr align="center">
                 <td>{{ $item['name'] }}</td>
+                <td>{{ $item['current'] }}</td>
                 <td>{{ $item['one_thirty_total'] }}</td>
                 <td>{{ $item['thirtyone_sixty_total'] }}</td>
                 <td>{{ $item['sixtyone_ninety_total'] }}</td>
@@ -169,7 +171,7 @@
             </tr>
         @endforeach
         <tr>
-            <td colspan="10">
+            <td colspan="11">
                 <div class="total-part">
                     <div class="total-left w-80 float-left text-bold" align="left" style="margin-left:50px">
                         <p>Total:</p>
