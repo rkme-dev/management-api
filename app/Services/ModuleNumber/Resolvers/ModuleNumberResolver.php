@@ -13,7 +13,7 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 {
     public function resolve(string $table, string $key, bool $withYear = true): string
     {
-        $id = DB::table($table)->latest()->first()?->id;
+        $id = DB::table($table)->orderBy('id', 'desc')->first()?->id;
 
         if ($id === null) {
             $id = 0;
