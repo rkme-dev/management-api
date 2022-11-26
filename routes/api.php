@@ -179,6 +179,7 @@ use App\Http\Controllers\API\Warehouse\DeleteWarehouseController;
 use App\Http\Controllers\API\Warehouse\ListWarehouseController;
 use App\Http\Controllers\API\Warehouse\ShowWarehouseController;
 use App\Http\Controllers\API\Warehouse\UpdateWarehouseController;
+use App\Http\Controllers\ListTripTicketSalesDrController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -1043,11 +1044,11 @@ Route::group([
             'as' => 'unlink-dr-items',
             'uses' => UnlinkSalesDrItemsController::class,
         ]);
-
-        Route::get('/customers/{id}/sales-dr-items', [
-            'as' => 'items',
-            'uses' => ListSalesDrItemsController::class,
+        Route::get('/sales-drs/unlink-items/', [
+            'as' => 'unlink-dr-items',
+            'uses' => UnlinkSalesDrItemsController::class,
         ]);
+
         Route::get('/customers/{id}/sales-dr', [
             'as' => 'dr-by-customer-id',
             'uses' => ListDrByCustomerController::class,
@@ -1115,6 +1116,11 @@ Route::group([
         Route::put('/trip-tickets/{id}/status', [
             'as' => 'update-status',
             'uses' => UpdateTripTicketStatusController::class,
+        ]);
+
+        Route::get('/trip-tickets/{id}/sales-dr-items', [
+            'as' => 'sales-dr-items-list',
+            'uses' => ListTripTicketSalesDrController::class,
         ]);
     });
 

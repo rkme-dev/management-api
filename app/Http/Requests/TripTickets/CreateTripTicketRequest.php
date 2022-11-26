@@ -26,11 +26,12 @@ final class CreateTripTicketRequest extends BaseRequest
             'document_id' => 'required|int|exists:App\Models\Document,id',
             'remarks' => 'string|nullable',
             'dr_items' => 'array|required',
+            'departed_date' => 'required|string',
+            'departed_time' => 'required|string',
             'dr_items.*' => [
                 'int',
                 'required',
-                Rule::exists('order_items', 'id')
-                    ->where('orderable_type', 'App\Models\SalesDr'),
+                Rule::exists('sales_drs', 'id'),
             ],
         ];
     }
