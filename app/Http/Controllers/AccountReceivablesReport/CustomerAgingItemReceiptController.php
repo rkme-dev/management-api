@@ -48,21 +48,23 @@ class CustomerAgingItemReceiptController extends Controller
 
             $overdue_term = abs($transaction);
 
-            $customer['sales_drs'][$index]['current'] = $transaction >= 0 ?  $remaining_balance : 0;
+            $customer['sales_drs'][$index]['current'] = $transaction >= 0 ?  (string) $currency->format((float) $remaining_balance) : 0;
             
-            $customer['sales_drs'][$index]['one_thirty'] = $transaction < 0 &&  $overdue_term <= 30 ?  $remaining_balance : 0;
+            $customer['sales_drs'][$index]['one_thirty'] = $transaction < 0 &&  $overdue_term <= 30 ?  (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['thirtyone_sixty'] = $transaction < 0 && $overdue_term >= 31 && $overdue_term <= 60 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['thirtyone_sixty'] = $transaction < 0 && $overdue_term >= 31 && $overdue_term <= 60 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['sixtyone_ninety'] =  $transaction < 0 && $overdue_term >= 61 && $overdue_term <= 90 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['sixtyone_ninety'] =  $transaction < 0 && $overdue_term >= 61 && $overdue_term <= 90 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['ninetyone_htwenty'] = $transaction < 0 && $overdue_term >= 91 && $overdue_term <= 120 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['ninetyone_htwenty'] = $transaction < 0 && $overdue_term >= 91 && $overdue_term <= 120 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['htwentyone_hfifty'] = $transaction < 0 && $overdue_term >= 121 && $overdue_term <= 150 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['htwentyone_hfifty'] = $transaction < 0 && $overdue_term >= 121 && $overdue_term <= 150 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['hfiftyone_heighty'] = $transaction < 0 && $overdue_term >= 151 && $overdue_term <= 180 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['hfiftyone_heighty'] = $transaction < 0 && $overdue_term >= 151 && $overdue_term <= 180 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['heightyone_above'] = $transaction < 0 && $overdue_term >= 181 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['heightyone_above'] = $transaction < 0 && $overdue_term >= 181 ? (string) $currency->format((float) $remaining_balance) : 0;
+            
+            $customer['sales_drs'][$index]['remaining_balance_curr'] = (string) $currency->format((float) $remaining_balance);
 
         }
 

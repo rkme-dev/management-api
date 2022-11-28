@@ -194,6 +194,7 @@
             <th class="w-85">Date</th>
             <th class="w-50">DR No</th>
             <th class="w-50">Terms</th>
+            <th class="w-50">Current</th>
             <th class="w-50">1-30</th>
             <th class="w-50">31-60</th>
             <th class="w-50">61-90</th>
@@ -209,6 +210,7 @@
                 <td>{{ $item['date_posted'] }}</td>
                 <td>{{ $item['sales_dr_number'] }}</td>
                 <td>{{ $item['term'] ? $item['term']['code'] : 'N/A' }}</td>
+                <td>{{ $item['current'] }}</td>
                 <td>{{ $item['one_thirty'] }}</td>
                 <td>{{ $item['thirtyone_sixty'] }}</td>
                 <td>{{ $item['sixtyone_ninety'] }}</td>
@@ -216,7 +218,7 @@
                 <td>{{ $item['htwentyone_hfifty'] }}</td>
                 <td>{{ $item['hfiftyone_heighty'] }}</td>
                 <td>{{ $item['heightyone_above'] }}</td>
-                <td>{{ $item['remaining_balance'] }}</td>
+                <td>{{ $item['remaining_balance_curr'] }}</td>
                 <div style="clear: both;"></div>
             </tr>
         @endforeach
