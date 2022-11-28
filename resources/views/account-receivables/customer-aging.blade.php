@@ -223,7 +223,7 @@
             </tr>
         @endforeach
         <tr>
-            <td colspan="12">
+            <td colspan="13">
                 <div class="total-part">
                     <div class="total-left w-80 float-left text-bold" align="left" style="margin-left:50px">
                         <p>Total:</p>
