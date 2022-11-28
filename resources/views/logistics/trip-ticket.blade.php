@@ -49,7 +49,7 @@
         margin-top: 50px;
     }
     .mt-40 {
-        margin-top: 50px;
+        margin-top: 40px;
     }
 
     .text-center {
@@ -184,8 +184,9 @@
         margin-top: 10px;
         margin-right: 30px;
         position: absolute;
-        top: 80px;
+        top: 120px;
         right: 0px;
+        color: #DC3444;
     }
     .inline{
         display: inline-block;
@@ -211,21 +212,21 @@
 <body>
 
 @include('includes.header')
-<div>
+<div class="mt-40">
     <h2 class="text-center mt-1 p-0">TRIP TICKET</h2>
-    <span class="mt-1 p-0 copy"> {{$order['trip_ticket_number']}} </span>
+    <span class="mt-1 p-0 copy"> {{$ticket['trip_ticket_number']}} </span>
 </div>
 
 <div class="mt-10 font-10">
     <div class="nextline">
         <div class="inline w-50">
-            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Driver:</span> <span class="gray-color"> {{$order['driver']}} </span></p>
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Driver:</span> <span class="gray-color"> {{$ticket['driver']}} </span></p>
         </div>
         <div class="inline w-30">
-            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Vehicle:</span> <span class="gray-color"> {{ $order['truck'] }} </span></p>
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Vehicle:</span> <span class="gray-color"> {{ $ticket['truck'] }} </span></p>
         </div>
         <div class="inline">
-            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Date:</span>  <span class="gray-color"> {{ $order['date_posted'] }} </span></p>
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Date:</span>  <span class="gray-color"> {{ date('M d, Y', strtotime($ticket['date_posted'])) }} </span></p>
         </div>
         
     </div>
@@ -234,15 +235,24 @@
             <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Warehouse:</span> <span class="gray-color"> </span></p>
         </div>
         <div class="inline w-20">
-            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Mileage:</span> <span class="gray-color"> </span></p>
-        </div>
-        <div class="inline w-20">
-            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Plate No:</span> <span class="gray-color"> {{ $order['plate_number'] }} </span></p>
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Plate No:</span> <span class="gray-color"> {{ $ticket['plate_number'] }} </span></p>
         </div>
         <div class="inline">
-            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Departure Time:</span> <span class="gray-color"> </span></p>
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Departure Date:</span> <span class="gray-color"> {{ date('M d, Y', strtotime($ticket['departed_at'])) }} </span></p>
         </div>
     </div>
+    <div class="nextline">
+        <div class="inline w-30">
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Area:</span> <span class="gray-color">{{ $ticket['area'] }}</span></p>
+        </div>
+        <div class="inline w-20">
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Mileage:</span> <span class="gray-color"> </span></p>
+        </div>
+        <div class="inline">
+            <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Departure Time:</span> <span class="gray-color"> {{ date('h:i:s A', strtotime($ticket['departed_at'])) }} </span></p>
+        </div>
+    </div>
+
     
     <div style="clear: both;"></div>
 </div>
@@ -250,23 +260,21 @@
 <div class="table-section bill-tbl w-100 mt-10">
     <table class="table w-100 mt-10">
         <tr>
+            <th class="w-30">Date.</th>
             <th class="w-30">DR No.</th>
             <th class="w-40">Customer</th>
-            <th class="w-40">Item</th>
-            <th class="w-15">Quantity</th>
-            <th class="w-15">Unit</th>
-            <th class="w-20">Area</th>
+            <th class="w-15">Total Amount</th>
+            <th class="w-15">Remaining Balance</th>
             <th class="w-20">Time of Arrival</th>
             <div style="clear: both;"></div>
         </tr>
-        @foreach($order['sales_dr_items'] as $key => $item)
+        @foreach($salesDr as $key => $item)
             <tr align="center">
-                <td>{{ $item['sales_dr']['sales_dr_number'] }}</td>
-                <td>{{ $item['sales_dr']['customer']['name'] }}</td>
-                <td>{{ $item['dr_order_item']['product']['name'] }}</td>
-                <td>{{ $item['dr_order_item']['actual_quantity'] }}</td>
-                <td>{{ $item['dr_order_item']['unit'] }}</td>
-                <td></td>
+                <td>{{ date('M d, Y h:i A', strtotime($item['date_posted'])) }}</td>
+                <td>{{ $item['sales_dr_number'] }}</td>
+                <td>{{ $item['customer']['name'] }}</td>
+                <td>P {{ number_format($item['amount']) }}</td>
+                <td>P {{ number_format($item['remaining_balance']) }}</td>
                 <td></td>
                 <div style="clear: both;"></div>
             </tr>
@@ -274,7 +282,7 @@
     </table>
 </div>
 <div class="nextline pt-20">
-    <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']))}}</span></p>
+    <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $ticket['remarks']))}}</span></p>
 </div>
 
 <div class="text-center pt-130 font-10 pl-20 pr-20">
@@ -311,9 +319,9 @@
     <div style="padding-left: 7%">
     
     </div>
-
+    @include('includes.footer')
     <p class="font-10 gray-color text-center m-0">
-        Timestamp: {{ $order['date_posted'] }} {{ $order['timestamp'] }}
+        Timestamp: {{ $ticket['date_posted'] }} {{ $ticket['timestamp'] }}
     </p>
 </div>
 </html>

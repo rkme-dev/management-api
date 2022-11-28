@@ -15,14 +15,21 @@ class TripTicketsController extends Controller
      */
     public function __invoke(Request $request, string $id)
     {   
-        $ticket = TripTicket::with('salesDrItems.drOrderItem.product','salesDrItems.salesDr.customer','document', 'orderItems')
+        $ticket = TripTicket::with('salesDrItems.salesDr.customer','document', 'orderItems')
                             ->where('id', $id)->first()?->toArray();
 
         $ticket['date_posted'] = Carbon::parse($ticket['date_posted'])->format('Y-m-d');
         $ticket['timestamp'] = Carbon::parse($ticket['created_at'])->format('H:i:s');
 
+        $salesDrArr = collect([]);
+
+        foreach ($ticket['sales_dr_items'] as $salesDr) {
+            $salesDrArr[] = $salesDr['sales_dr'];
+        }
+
         $pdf = PDF::loadView('logistics/trip-ticket', [
-                'order' => $ticket,
+                'ticket' => $ticket,
+                'salesDr' => $salesDrArr->unique()
             ]
         );
         

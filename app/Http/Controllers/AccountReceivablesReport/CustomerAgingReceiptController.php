@@ -55,7 +55,7 @@ class CustomerAgingReceiptController extends Controller
                 
                 $customers[$index]['sales_drs'][$x]['overdue'] = abs($overdue);
                 
-                $customers[$index]['sales_drs'][$x]['is_current'] = $overdue > 0 ? true : false;
+                $customers[$index]['sales_drs'][$x]['is_current'] = $overdue >= 0 ? true : false;
     
             }
 

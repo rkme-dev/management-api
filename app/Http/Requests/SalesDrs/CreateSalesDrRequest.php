@@ -30,7 +30,7 @@ final class CreateSalesDrRequest extends BaseRequest
             'vat_id' => 'int|nullable|exists:App\Models\Vat,id',
             'qr_code' => 'string|nullable',
             'order_item_ids' => 'array|required',
-//            'order_item_ids.*' => 'int|required|exists:App\Models\OrderItem,id',
+            // 'order_item_ids.*' => 'int|required|exists:App\Models\OrderItem,id',
         ];
     }
 }

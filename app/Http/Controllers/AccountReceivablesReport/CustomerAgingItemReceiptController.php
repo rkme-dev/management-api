@@ -36,25 +36,35 @@ class CustomerAgingItemReceiptController extends Controller
 
         foreach ($customer['sales_drs'] ?? [] as $index => $item) {
 
-            $aged_date = Carbon::parse($item['date_posted'])->diffInDays(Carbon::today());
+            // $aged_date = Carbon::parse($item['date_posted'])->diffInDays(Carbon::today());
 
             $remaining_balance = $item['remaining_balance'];
 
-            $customer['sales_drs'][$index]['aged_days'] = $aged_date;
+            $term = $item['term'] ? (int) $item['term']['days'] : 0;
+
+            $age_days = Carbon::parse($item['date_posted'])->diffInDays(Carbon::today());
+
+            $transaction = $term - $age_days;
+
+            $overdue_term = abs($transaction);
+
+            $customer['sales_drs'][$index]['current'] = $transaction >= 0 ?  (string) $currency->format((float) $remaining_balance) : 0;
             
-            $customer['sales_drs'][$index]['one_thirty'] = $aged_date <= 30 ?  $remaining_balance : 0;
+            $customer['sales_drs'][$index]['one_thirty'] = $transaction < 0 &&  $overdue_term <= 30 ?  (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['thirtyone_sixty'] = $aged_date >= 31 && $aged_date <= 60 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['thirtyone_sixty'] = $transaction < 0 && $overdue_term >= 31 && $overdue_term <= 60 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['sixtyone_ninety'] =  $aged_date >= 61 && $aged_date <= 90 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['sixtyone_ninety'] =  $transaction < 0 && $overdue_term >= 61 && $overdue_term <= 90 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['ninetyone_htwenty'] = $aged_date >= 91 && $aged_date <= 120 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['ninetyone_htwenty'] = $transaction < 0 && $overdue_term >= 91 && $overdue_term <= 120 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['htwentyone_hfifty'] = $aged_date >= 121 && $aged_date <= 150 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['htwentyone_hfifty'] = $transaction < 0 && $overdue_term >= 121 && $overdue_term <= 150 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['hfiftyone_heighty'] = $aged_date >= 151 && $aged_date <= 180 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['hfiftyone_heighty'] = $transaction < 0 && $overdue_term >= 151 && $overdue_term <= 180 ? (string) $currency->format((float) $remaining_balance) : 0;
 
-            $customer['sales_drs'][$index]['heightyone_above'] = $aged_date >= 181 ? $remaining_balance : 0;
+            $customer['sales_drs'][$index]['heightyone_above'] = $transaction < 0 && $overdue_term >= 181 ? (string) $currency->format((float) $remaining_balance) : 0;
+            
+            $customer['sales_drs'][$index]['remaining_balance_curr'] = (string) $currency->format((float) $remaining_balance);
 
         }
 
