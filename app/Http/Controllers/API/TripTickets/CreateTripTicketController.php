@@ -8,13 +8,14 @@ use App\Enums\TripTicketStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\TripTickets\CreateTripTicketRequest;
 use App\Models\OrderItem;
+use App\Models\SalesDr;
 use App\Models\SalesDrItem;
 use App\Models\TripTicket;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class CreateTripTicketController extends AbstractAPIController
 {
-    public function __invoke(CreateTripTicketRequest $request): JsonResource
+    public function __invoke(CreateTripTicketRequest $request)
     {
         $data = $request->only([
             'date_posted',
@@ -25,6 +26,8 @@ final class CreateTripTicketController extends AbstractAPIController
             'plate_number',
             'document_id',
             'remarks',
+            'departed_date',
+            'departed_time',
         ]);
 
         $data = [
@@ -33,11 +36,11 @@ final class CreateTripTicketController extends AbstractAPIController
                 'trip_ticket_number' => $this->generateNumber('trip_tickets', 'TR'),
                 'status' => TripTicketStatusesEnum::FOR_TRANSIT->value,
                 'created_by' => $this->getUser()->getId(),
+                'departed_at' => $data['departed_date'] . ' ' . $data['departed_time'],
             ],
         ];
 
         $tripTicket = TripTicket::create($data);
-
         $this->saveDrItems($tripTicket, $request->get('dr_items'));
 
         $tripTicket->salesDrItems;
@@ -45,22 +48,18 @@ final class CreateTripTicketController extends AbstractAPIController
         return new JsonResource($tripTicket);
     }
 
-    private function saveDrItems(TripTicket $tripTicket, array $orderItemIds): void
+    private function saveDrItems(TripTicket $tripTicket, array $orderItemIds)
     {
-        $orderItems = OrderItem::whereIn('id', $orderItemIds)->get();
+        $salesDRs = SalesDr::whereIn('id', $orderItemIds)->get();
 
-        /** @var OrderItem $orderItem */
-        foreach ($orderItems as $orderItem) {
-            /** @var SalesDrItem $salesDrItem */
-            $salesDrItem = $orderItem->salesDrItem;
-
-            $salesDrItem->setAttribute('trip_ticket_id', $tripTicket->getAttribute('id'));
-
-            $salesDrItem->setAttribute('is_linked', 1);
-
-            $salesDrItem->salesDr->setAttribute('is_linked', 1)->save();
-
-            $salesDrItem->save();
+        foreach ($salesDRs as $salesDr) {
+            $salesDrItem = $salesDr->salesDrItems()->update([
+                'trip_ticket_id' => $tripTicket->getAttribute('id'),
+                'is_linked' => 1,
+            ]);
         }
+        SalesDr::whereIn('id', $orderItemIds)->update([
+            'is_linked' => 1
+        ]);
     }
 }

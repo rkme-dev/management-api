@@ -54,15 +54,12 @@ final class CreateSalesDrController extends AbstractAPIController
 
     private function setOrderItems(SalesDr $order, ?array $orderItemIds): void
     {
-        $orderItems = OrderItem::whereIn('id', $orderItemIds)
+        $orderItems = OrderItem::whereIn('orderable_id', $orderItemIds)
             ->where('orderable_type', 'App\Models\SalesOrder')
             ->with('orderable')
             ->get();
 
-
-        $salesOrderIds = array_column($orderItems->toArray(), 'orderable_id');
-
-        SalesOrder::whereIn('id', $salesOrderIds)->update([
+        SalesOrder::whereIn('id', $orderItemIds)->update([
             'has_dr' => 1,
         ]);
 
