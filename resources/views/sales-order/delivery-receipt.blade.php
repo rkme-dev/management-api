@@ -234,7 +234,7 @@
         </div>
         <div class="nextline">
             <div class="inline w-60">
-                <p class="m-0 pd-10"><span class="text-bold">Terms:</span> <span class="gray-color"></span></p>
+                <p class="m-0 pd-10"><span class="text-bold">Terms:</span> <span class="gray-color"> {{ $order['term']['description'] }}</span></p>
             </div>
             <div class="inline w-30">
                 <p class="m-0 pt-5 w-100 pd-10 text-right pl-7"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
