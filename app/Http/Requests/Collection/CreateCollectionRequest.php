@@ -38,7 +38,7 @@ final class CreateCollectionRequest extends BaseRequest
             'payment_items.*.account_id' => [
                 'int',
                 'required',
-                'exists:App\Models\Account,id'
+                'exists:App\Models\Account,id',
             ],
             'payment_items.*.amount' => [
                 'required',

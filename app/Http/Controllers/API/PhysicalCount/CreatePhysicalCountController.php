@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\PhysicalCount;
 
 use App\Enums\PhysicalCountStatusesEnum;
-use App\Models\PhysicalCount;
-use App\Models\CountItem;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\PhysicalCount\CreatePhysicalCountRequest;
+use App\Models\CountItem;
+use App\Models\PhysicalCount;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +32,7 @@ final class CreatePhysicalCountController extends AbstractAPIController
                     )
                 );
 
-                if (!$physicalCount) {
+                if (! $physicalCount) {
                     return;
                 }
 

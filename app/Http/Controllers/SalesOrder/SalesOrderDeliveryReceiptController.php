@@ -6,7 +6,6 @@ use App\Enums\PrintCopyEnums;
 use App\Http\Controllers\Controller;
 use App\Models\OrderItem;
 use App\Models\SalesDr;
-use App\Models\SalesOrder;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -37,13 +36,12 @@ class SalesOrderDeliveryReceiptController extends Controller
         $salesOrder['qr_code'] = $salesOrder['qr_code'] ?? 'N/A';
 
         foreach ($salesOrder['sales_dr_items'] ?? [] as $item) {
-            if (empty($item['trip_ticket']['plate_number'] ?? null) === false ) {
+            if (empty($item['trip_ticket']['plate_number'] ?? null) === false) {
                 $plateNumber = $item['trip_ticket']['plate_number'];
 
                 break;
             }
         }
-
 
         $salesOrder['plate_number'] = $plateNumber;
         $salesOrder['amount'] = $currency->format($salesOrder['amount']);
@@ -66,16 +64,15 @@ class SalesOrderDeliveryReceiptController extends Controller
         }
         $salesOrder['legit_order_items'] = $legitSalesOrder;
 
-
         $copies = PrintCopyEnums::cases();
 
         // return view('sales-order/delivery-receipt', [
         //     'order' => $salesOrder,
         //     'copies' => $copies]);
         $pdf = PDF::loadView('sales-order/delivery-receipt', [
-                'order' => $salesOrder,
-                'copies' => $copies
-            ]
+            'order' => $salesOrder,
+            'copies' => $copies,
+        ]
         );
 
         return $pdf->stream();

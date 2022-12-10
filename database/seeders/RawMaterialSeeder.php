@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Enums\ProductTypeEnums;
 use App\Enums\RawMaterialTypeEnums;
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 

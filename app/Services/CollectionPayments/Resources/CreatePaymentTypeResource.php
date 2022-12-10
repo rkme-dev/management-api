@@ -32,12 +32,13 @@ final class CreatePaymentTypeResource implements Initialisable
     }
 
     /**
-     * @param string|null $bank
+     * @param  string|null  $bank
      * @return CreatePaymentTypeResource
      */
     public function setBank(?string $bank): self
     {
         $this->bank = $bank;
+
         return $this;
     }
 
@@ -50,12 +51,13 @@ final class CreatePaymentTypeResource implements Initialisable
     }
 
     /**
-     * @param string|null $bankAccountNumber
+     * @param  string|null  $bankAccountNumber
      * @return CreatePaymentTypeResource
      */
     public function setBankAccountNumber(?string $bankAccountNumber): self
     {
         $this->bankAccountNumber = $bankAccountNumber;
+
         return $this;
     }
 
@@ -68,12 +70,13 @@ final class CreatePaymentTypeResource implements Initialisable
     }
 
     /**
-     * @param string|null $checkType
+     * @param  string|null  $checkType
      * @return CreatePaymentTypeResource
      */
     public function setCheckType(?string $checkType): self
     {
         $this->checkType = $checkType;
+
         return $this;
     }
 
@@ -86,12 +89,13 @@ final class CreatePaymentTypeResource implements Initialisable
     }
 
     /**
-     * @param string|null $checkNumber
+     * @param  string|null  $checkNumber
      * @return CreatePaymentTypeResource
      */
     public function setCheckNumber(?string $checkNumber): self
     {
         $this->checkNumber = $checkNumber;
+
         return $this;
     }
 
@@ -104,12 +108,13 @@ final class CreatePaymentTypeResource implements Initialisable
     }
 
     /**
-     * @param string|null $modeOfTransfer
+     * @param  string|null  $modeOfTransfer
      * @return CreatePaymentTypeResource
      */
     public function setModeOfTransfer(?string $modeOfTransfer): self
     {
         $this->modeOfTransfer = $modeOfTransfer;
+
         return $this;
     }
 
@@ -122,12 +127,13 @@ final class CreatePaymentTypeResource implements Initialisable
     }
 
     /**
-     * @param string|null $transactionNumber
+     * @param  string|null  $transactionNumber
      * @return CreatePaymentTypeResource
      */
     public function setTransactionNumber(?string $transactionNumber): self
     {
         $this->transactionNumber = $transactionNumber;
+
         return $this;
     }
 }

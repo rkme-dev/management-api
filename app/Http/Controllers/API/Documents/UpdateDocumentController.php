@@ -19,19 +19,18 @@ final class UpdateDocumentController extends AbstractAPIController
             'document_name',
             'module',
             'description',
-            'notes'
+            'notes',
         ]);
 
         $document = Document::find($id);
 
         if ($request->get('document_name') !== $document->document_name) {
-
             $exist = Document::where('document_name', $request->get('document_name'))->first();
 
             if ($exist !== null) {
-                return Response::json(array(
+                return Response::json([
                     'name' => 'Document name already exist.',
-                ), 422);
+                ], 422);
             }
         }
 

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableInterface;
 
@@ -18,7 +17,7 @@ final class SalesDrItem extends Model implements AuditableInterface
         'sales_dr_id',
         'sales_order_item_id',
         'sales_dr_item_id',
-        'trip_ticket_id'
+        'trip_ticket_id',
     ];
 
     public function tripTicket(): BelongsTo

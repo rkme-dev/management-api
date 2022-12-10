@@ -6,7 +6,6 @@ namespace App\Http\Controllers\API\TripTickets;
 
 use App\Enums\TripTicketStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\TripTickets\UpdateTripTicketRequest;
 use App\Models\TripTicket;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

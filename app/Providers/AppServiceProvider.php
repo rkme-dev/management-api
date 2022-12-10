@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         );
 
         Event::listen(MigrationsStarted::class, function () {
-            if ( env('APP_ENV') === 'development' ) {
+            if (env('APP_ENV') === 'development') {
                 DB::statement('SET SESSION sql_require_primary_key=0');
             }
         });

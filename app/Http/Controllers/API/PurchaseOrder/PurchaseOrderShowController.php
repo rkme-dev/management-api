@@ -8,8 +8,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\PurchaseOrder;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Str;
-use OwenIt\Auditing\Models\Audit;
 
 final class PurchaseOrderShowController extends AbstractAPIController
 {
@@ -19,7 +17,6 @@ final class PurchaseOrderShowController extends AbstractAPIController
 
         $totalPesoPaidAmount = null;
         $totalUSDPaidAmount = null;
-
 
         foreach ($purchaseOrder->paymentLogs as $paymentLog) {
             $pesoAmount = floatval(preg_replace('/[^0-9.]/', '', $paymentLog->getAttribute('peso_conversion')));
@@ -75,15 +72,15 @@ final class PurchaseOrderShowController extends AbstractAPIController
         }
 
         return $this->respondOK([
-                'data' => [
-                    'order' => $purchaseOrder,
-                    'balance_amount' => $balanceAmount,
-                    'total_peso_paid_amount' => $totalPesoPaidAmount,
-                    'total_usd_paid_amount' => $totalUSDPaidAmount,
-                    'supplier' => $supplier,
-                    'items' => $orderItems,
-                ],
-            ]
+            'data' => [
+                'order' => $purchaseOrder,
+                'balance_amount' => $balanceAmount,
+                'total_peso_paid_amount' => $totalPesoPaidAmount,
+                'total_usd_paid_amount' => $totalUSDPaidAmount,
+                'supplier' => $supplier,
+                'items' => $orderItems,
+            ],
+        ]
         );
     }
 }

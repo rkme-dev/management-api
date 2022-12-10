@@ -6,7 +6,6 @@ namespace App\Http\Resources\Ability;
 
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
-use App\Models\User;
 use Silber\Bouncer\Database\Ability;
 
 final class AbilityResource extends Resource

@@ -30,7 +30,7 @@ final class RoleCreateRequest extends BaseRequest
     {
         return [
             'name' => 'string|required|unique:Silber\Bouncer\Database\Role,title',
-            'abilities' => 'array|nullable'
+            'abilities' => 'array|nullable',
         ];
     }
 }

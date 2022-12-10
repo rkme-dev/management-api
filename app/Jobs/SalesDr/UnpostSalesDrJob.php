@@ -18,13 +18,14 @@ final class UnpostSalesDrJob implements ShouldQueue
 
     public function __construct(
         public int $orderItemId
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {
         $orderItem = OrderItem::find($this->orderItemId);
 
-        $unit = $orderItem->product->units->where('name', $orderItem->getAttribute('unit'))->first();;
+        $unit = $orderItem->product->units->where('name', $orderItem->getAttribute('unit'))->first();
 
         $remaining = (float) $unit->pivot->getAttribute('actual_balance') + (float) $orderItem->getAttribute('actual_quantity');
 

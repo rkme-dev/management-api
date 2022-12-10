@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 
 class LocationsTableSeeder extends Seeder
 {
-
     /**
      * Auto generated seed file
      *
@@ -14,27 +13,23 @@ class LocationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('locations')->delete();
-        
-        \DB::table('locations')->insert(array (
-            0 => 
-            array (
+
+        \DB::table('locations')->insert([
+            0 => [
                 'id' => 1,
-            'location_code' => 'Eco Group of Companies (Back Office)',
+                'location_code' => 'Eco Group of Companies (Back Office)',
                 'description' => 'Quezon City Office',
                 'address' => 'Blk. 6 Lot 7 Almond St. Sherwood Heights Cor. Himlayan Rd. Pasong Tamo, Quezon City',
                 'type' => 'Office',
                 'is_active' => true,
                 'created_by' => 1,
-                'updated_by' => NULL,
-                'deleted_at' => NULL,
+                'updated_by' => null,
+                'deleted_at' => null,
                 'created_at' => '2022-10-29 15:51:23',
                 'updated_at' => '2022-10-29 15:51:23',
-            ),
-            1 => 
-            array (
+            ],
+            1 => [
                 'id' => 2,
                 'location_code' => 'Main WH',
                 'description' => 'Main Warehouse',
@@ -43,12 +38,10 @@ class LocationsTableSeeder extends Seeder
                 'is_active' => true,
                 'created_by' => 1,
                 'updated_by' => 1,
-                'deleted_at' => NULL,
+                'deleted_at' => null,
                 'created_at' => '2022-11-07 19:45:15',
                 'updated_at' => '2022-11-09 20:42:14',
-            ),
-        ));
-        
-        
+            ],
+        ]);
     }
 }

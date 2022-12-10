@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class AccessLevelCreateRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -34,7 +33,7 @@ final class AccessLevelCreateRequest extends BaseRequest
         return [
             'name' => 'required|string|unique:App\Models\AccessLevel,name',
             'role_ids' => 'array|nullable',
-            'ability_ids' => 'array|nullable'
+            'ability_ids' => 'array|nullable',
         ];
     }
 }

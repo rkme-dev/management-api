@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\SalesDrs;
 
-use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\SalesDrs\UpdateSalesDrRequest;
-use App\Http\Requests\SalesOrders\UpdateSalesOrderRequest;
 use App\Models\OrderItem;
 use App\Models\SalesDr;
 use App\Models\SalesDrItem;
 use App\Models\SalesOrder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Arr;
 
 final class UpdateSalesDrController extends AbstractAPIController
 {
@@ -52,7 +49,6 @@ final class UpdateSalesDrController extends AbstractAPIController
         $orderItems = $this->resolveOrderItems($salesDr, $request->get('order_item_ids'));
 
         $this->processSalesOrderItems($salesDr, $orderItems);
-
 
         return new JsonResource($salesDr);
     }
@@ -116,7 +112,7 @@ final class UpdateSalesDrController extends AbstractAPIController
             $orderDrItem->setAttribute('unit', $orderItem->getAttribute('unit'));
             $orderDrItem->setAttribute('actual_quantity', $orderItem->getAttribute('actual_quantity'));
             $orderDrItem->setAttribute('total_amount', $orderItem->getAttribute('total_amount'));
-            $orderDrItem->setAttribute('price',  $orderItem->getAttribute('price'));
+            $orderDrItem->setAttribute('price', $orderItem->getAttribute('price'));
             $orderDrItem->save();
 
             SalesDrItem::create([

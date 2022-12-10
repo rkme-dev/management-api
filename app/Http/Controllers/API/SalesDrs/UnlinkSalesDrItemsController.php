@@ -21,11 +21,10 @@ final class UnlinkSalesDrItemsController extends AbstractAPIController
 
         $tripTicketId = is_numeric($tripTicketId) ? $tripTicketId : null;
 
-        $items = OrderItem::with(['salesDrItem.salesDr.customer', 'product',])
+        $items = OrderItem::with(['salesDrItem.salesDr.customer', 'product'])
             ->whereHas('salesDrItem', function ($query) use ($area, $tripTicketId) {
-
                 $query->whereHas('salesDr', function ($query) use ($area) {
-                   $query->where('area', $area);
+                    $query->where('area', $area);
                 });
 
                 if ($tripTicketId !== null) {
@@ -34,7 +33,7 @@ final class UnlinkSalesDrItemsController extends AbstractAPIController
                     $query->whereNull('trip_ticket_id');
                 }
             })
-            ->whereHasMorph('orderable', [SalesDr::class], function($query) {
+            ->whereHasMorph('orderable', [SalesDr::class], function ($query) {
                 $query->where('status', SaleOrderStatusesEnum::POSTED);
             })
             ->where('orderable_type', 'App\Models\SalesDr')

@@ -42,8 +42,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-
-
             $table->foreign('salesman_id_1')->references('id')->on('salesman_file');
             $table->foreign('salesman_id_2')->references('id')->on('salesman_file');
             $table->foreign('term_id')->references('id')->on('terms');

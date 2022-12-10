@@ -9,7 +9,7 @@ trait InitialisableTrait
     /**
      * Initialisable constructor.
      *
-     * @param mixed[]|null $payload
+     * @param  mixed[]|null  $payload
      */
     public function __construct(?array $payload = [])
     {
@@ -19,7 +19,7 @@ trait InitialisableTrait
     /**
      * Sets the instance attributes based on the give key value pairs
      *
-     * @param mixed[] $payload
+     * @param  mixed[]  $payload
      */
     private function initialiseAttributes(array $payload): void
     {
@@ -28,7 +28,7 @@ trait InitialisableTrait
         }
         foreach ($payload as $key => $value) {
             // Generate setter method name from key.
-            $method = $this->getSetterMethodName((string)$key);
+            $method = $this->getSetterMethodName((string) $key);
 
             if (\method_exists(self::class, $method) !== true) {
                 continue;

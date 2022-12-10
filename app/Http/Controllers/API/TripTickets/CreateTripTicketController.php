@@ -7,9 +7,7 @@ namespace App\Http\Controllers\API\TripTickets;
 use App\Enums\TripTicketStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\TripTickets\CreateTripTicketRequest;
-use App\Models\OrderItem;
 use App\Models\SalesDr;
-use App\Models\SalesDrItem;
 use App\Models\TripTicket;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -36,7 +34,7 @@ final class CreateTripTicketController extends AbstractAPIController
                 'trip_ticket_number' => $this->generateNumber('trip_tickets', 'TR'),
                 'status' => TripTicketStatusesEnum::FOR_TRANSIT->value,
                 'created_by' => $this->getUser()->getId(),
-                'departed_at' => $data['departed_date'] . ' ' . $data['departed_time'],
+                'departed_at' => $data['departed_date'].' '.$data['departed_time'],
             ],
         ];
 
@@ -59,7 +57,7 @@ final class CreateTripTicketController extends AbstractAPIController
             ]);
         }
         SalesDr::whereIn('id', $orderItemIds)->update([
-            'is_linked' => 1
+            'is_linked' => 1,
         ]);
     }
 }

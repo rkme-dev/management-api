@@ -13,8 +13,7 @@ final class ListFinishProductController extends AbstractAPIController
 {
     public function __invoke(): JsonResource
     {
-        return new JsonResource(Product::
-        where('type', ProductTypeEnums::FINISHED_PRODUCT->value)
+        return new JsonResource(Product::where('type', ProductTypeEnums::FINISHED_PRODUCT->value)
             ->whereNull('deleted_at')
         ->with('units')
             ->orderBy('created_at', 'desc')

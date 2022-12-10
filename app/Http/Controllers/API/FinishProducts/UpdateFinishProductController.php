@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\FinishProducts;
 
-use App\Enums\ProductTypeEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\FinishProduct\UpdateFinishProductRequest;
 use App\Models\Product;
@@ -33,7 +32,7 @@ final class UpdateFinishProductController extends AbstractAPIController
             ...[
                 'slug' => Str::slug($request->get('name')),
                 'updated_by' => $this->getUser()->getId(),
-            ]
+            ],
         ];
 
         $product->update($data);

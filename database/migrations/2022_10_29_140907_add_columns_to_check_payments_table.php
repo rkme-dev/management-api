@@ -19,7 +19,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('check_payments', function (Blueprint $table) {
-            if (Schema::hasColumn('check_payments','status') === true) {
+            if (Schema::hasColumn('check_payments', 'status') === true) {
                 $table->dropColumn('status');
             }
 

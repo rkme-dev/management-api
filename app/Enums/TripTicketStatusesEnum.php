@@ -8,7 +8,7 @@ enum TripTicketStatusesEnum: string
 {
     case FOR_TRANSIT = 'For Transit';
 
-    case IN_TRANSIT = "In Transit";
+    case IN_TRANSIT = 'In Transit';
 
     case DELIVERED = 'Delivered';
 }

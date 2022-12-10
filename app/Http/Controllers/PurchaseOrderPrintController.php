@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseOrder;
-use App\Models\Supplier;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,7 +21,7 @@ class PurchaseOrderPrintController extends Controller
         $items = $purchaseOrder->orderItems;
         $supplier = $purchaseOrder->supplier;
 
-        $orderNumber = \str_pad((string) $purchaseOrder->id,8,"0",STR_PAD_LEFT);
+        $orderNumber = \str_pad((string) $purchaseOrder->id, 8, '0', STR_PAD_LEFT);
 
         $orderNumber = sprintf('PO-%s', $orderNumber);
 
@@ -40,11 +39,11 @@ class PurchaseOrderPrintController extends Controller
         $order['created_at'] = new Carbon($order['created_at']);
 
         $pdf = PDF::loadView('purchase_order', [
-                'orderNumber' => $orderNumber,
-                'order' => $order,
-                'items' => $orderItems,
-                'supplier' => $supplier,
-            ]
+            'orderNumber' => $orderNumber,
+            'order' => $order,
+            'items' => $orderItems,
+            'supplier' => $supplier,
+        ]
         );
 
         return $pdf->download('some-barcode.pdf');

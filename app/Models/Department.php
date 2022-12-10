@@ -22,7 +22,7 @@ final class Department extends Model
     ];
 
     protected $casts = [
-      'status' => DepartmentStatusesEnum::class,
+        'status' => DepartmentStatusesEnum::class,
     ];
 
     public function getUsers(): Collection

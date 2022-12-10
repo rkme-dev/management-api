@@ -9,7 +9,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\SalesOrders\CreateSalesOrderRequest;
 use App\Models\OrderItem;
 use App\Models\SalesOrder;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 
@@ -37,7 +36,7 @@ final class CreateSalesOrderController extends AbstractAPIController
                 'sales_order_number' => $this->generateNumber('sales_orders', 'SO'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
-                ],
+            ],
         ]);
 
         $this->setOrderItems($salesOrder, $request->get('order_items'));

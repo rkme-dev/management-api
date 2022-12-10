@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API\PurchaseOrder;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\PaymentLogs;
 use App\Models\PurchaseOrder;
-use App\Models\PurchaseOrderLogs;
 use Illuminate\Http\JsonResponse;
 
 final class PurchaseOrderPaymentLogShowController extends AbstractAPIController

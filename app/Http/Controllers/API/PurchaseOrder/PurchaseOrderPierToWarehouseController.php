@@ -16,7 +16,6 @@ final class PurchaseOrderPierToWarehouseController extends AbstractAPIController
         $expectedStatus = PurchaseOrderStatusEnum::IN_TRANSIT->value;
 
         try {
-
             $order = PurchaseOrder::where([
                 'status' => $expectedStatus,
                 'active' => true,
@@ -27,7 +26,7 @@ final class PurchaseOrderPierToWarehouseController extends AbstractAPIController
             $orderItems = $order->orderItems;
 
             foreach ($rawMaterials as $rawMaterial) {
-                $actualQuantity = (int) $rawMaterial['total_box'] * (int) $rawMaterial['pieces_per_box'] ;
+                $actualQuantity = (int) $rawMaterial['total_box'] * (int) $rawMaterial['pieces_per_box'];
 
                 $orderItem = $orderItems->where('product_id', $rawMaterial['id'])->first();
                 $orderItem->setAttribute('total_box', $rawMaterial['total_box']);
@@ -46,7 +45,6 @@ final class PurchaseOrderPierToWarehouseController extends AbstractAPIController
             ]);
 
             $this->attachLogs($request->user()->getAttribute('id'), $id, $updateStatus);
-
 
             return $this->respondOk($order->get()->toArray());
         } catch (\Throwable $exception) {

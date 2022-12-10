@@ -6,7 +6,6 @@ namespace App\Services\CollectionPayments\Resources;
 
 use App\Helpers\InitialisableTrait;
 use App\Helpers\Interfaces\Initialisable;
-use App\Models\Account;
 use App\Models\Collection;
 use App\Models\CollectionPaymentTypes\PaymentTypeInterface;
 use App\Models\User;
@@ -37,12 +36,13 @@ final class CreateCollectionPaymentResource implements Initialisable
     }
 
     /**
-     * @param Collection $collection
+     * @param  Collection  $collection
      * @return CreateCollectionPaymentResource
      */
     public function setCollection(Collection $collection): self
     {
         $this->collection = $collection;
+
         return $this;
     }
 
@@ -54,6 +54,7 @@ final class CreateCollectionPaymentResource implements Initialisable
     public function setAccountId(int $accountId): self
     {
         $this->accountId = $accountId;
+
         return $this;
     }
 
@@ -66,12 +67,13 @@ final class CreateCollectionPaymentResource implements Initialisable
     }
 
     /**
-     * @param PaymentTypeInterface $type
+     * @param  PaymentTypeInterface  $type
      * @return CreateCollectionPaymentResource
      */
     public function setType(PaymentTypeInterface $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -84,12 +86,13 @@ final class CreateCollectionPaymentResource implements Initialisable
     }
 
     /**
-     * @param Carbon $paymentDate
+     * @param  Carbon  $paymentDate
      * @return CreateCollectionPaymentResource
      */
     public function setPaymentDate(Carbon $paymentDate): self
     {
         $this->paymentDate = $paymentDate;
+
         return $this;
     }
 
@@ -102,12 +105,13 @@ final class CreateCollectionPaymentResource implements Initialisable
     }
 
     /**
-     * @param User $createdBy
+     * @param  User  $createdBy
      * @return CreateCollectionPaymentResource
      */
     public function setCreatedBy(User $createdBy): self
     {
         $this->createdBy = $createdBy;
+
         return $this;
     }
 
@@ -119,6 +123,7 @@ final class CreateCollectionPaymentResource implements Initialisable
     public function setAmount($amount): self
     {
         $this->amount = $amount;
+
         return $this;
     }
 }

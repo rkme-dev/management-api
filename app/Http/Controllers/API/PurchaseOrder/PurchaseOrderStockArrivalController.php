@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\PurchaseOrder;
 
 use App\Enums\PurchaseOrderStatusEnum;
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\PurchaseOrder\PurchaseOrderApproveRequest;
 use App\Http\Requests\PurchaseOrder\PurchaseOrderStockArrivalRequest;
 use App\Models\PurchaseOrder;
 use Illuminate\Support\Carbon;

@@ -13,7 +13,8 @@ final class AbilityCreateController extends AbstractAPIController
 {
     private Bouncer $bouncer;
 
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 

@@ -39,8 +39,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP OK (200) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondOk(array $data = [], ?array $headers = []): JsonResponse
     {
@@ -50,8 +50,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP bad request (400) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondBadRequest(array $data = [], ?array $headers = []): ErrorResource
     {
@@ -66,8 +66,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP created (201) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondCreated(array $data = [], ?array $headers = []): JsonResponse
     {
@@ -82,7 +82,7 @@ abstract class AbstractAPIController
     protected function respondForbidden(?string $message, ?array $headers = []): ErrorResource
     {
         return $this->respondError(
-            $message ?? "You do not have permission to access this.",
+            $message ?? 'You do not have permission to access this.',
             ResponseAlias::HTTP_FORBIDDEN, $headers
         );
     }
@@ -90,7 +90,7 @@ abstract class AbstractAPIController
     /**
      * Return HTTP no content (204) response
      *
-     * @param mixed[] $headers
+     * @param  mixed[]  $headers
      */
     protected function respondNoContent(?array $headers = []): JsonResponse
     {
@@ -99,7 +99,8 @@ abstract class AbstractAPIController
 
     /**
      * Return HTTP not found (404) response
-     * @param mixed[] $headers
+     *
+     * @param  mixed[]  $headers
      */
     protected function respondNotFound(string $message, ?array $headers = []): ErrorResource
     {
@@ -109,8 +110,8 @@ abstract class AbstractAPIController
     /**
      * Return HTTP unauthorized (401) response
      *
-     * @param mixed[] $data
-     * @param mixed[] $headers
+     * @param  mixed[]  $data
+     * @param  mixed[]  $headers
      */
     protected function respondUnauthorised(?array $headers = []): ErrorResource
     {

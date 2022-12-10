@@ -14,6 +14,6 @@ final class CustomerShowController extends AbstractAPIController
     {
         $customer = Customer::findOrFail($id);
 
-        return $this->respondOK(['data' => $customer,]);
+        return $this->respondOK(['data' => $customer]);
     }
 }

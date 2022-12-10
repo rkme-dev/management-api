@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 final class PurchaseOrder extends Model
@@ -51,7 +50,8 @@ final class PurchaseOrder extends Model
         return $this->belongsTo(Supplier::class);
     }
 
-    public function purchaseOrderLogs(): HasMany {
+    public function purchaseOrderLogs(): HasMany
+    {
         return $this->hasMany(PurchaseOrderLogs::class);
     }
 }

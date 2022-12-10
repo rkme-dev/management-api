@@ -23,8 +23,8 @@ final class UserCreateController extends AbstractAPIController
         $data['status'] = ucfirst($request->get('status'));
         $data['is_active'] = ucfirst($request->get('status')) === UserStatusesEnum::ACTIVE->value;
 
-        $data['birth_date'] = ($request->get('birth_date') !== null) ? new Carbon($request->get('birth_date'))  : null;
-        $data['date_hired'] = ($request->get('date_hired') !== null) ? new Carbon($request->get('date_hired'))  : null;
+        $data['birth_date'] = ($request->get('birth_date') !== null) ? new Carbon($request->get('birth_date')) : null;
+        $data['date_hired'] = ($request->get('date_hired') !== null) ? new Carbon($request->get('date_hired')) : null;
 
         $user = User::create($data);
 

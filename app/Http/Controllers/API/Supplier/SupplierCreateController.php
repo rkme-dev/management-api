@@ -7,8 +7,6 @@ namespace App\Http\Controllers\API\Supplier;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\Supplier\SupplierCreateRequest;
 use App\Models\Supplier;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 final class SupplierCreateController extends AbstractAPIController
 {

@@ -10,7 +10,6 @@ use Illuminate\Validation\Rule;
 
 final class UserEditRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

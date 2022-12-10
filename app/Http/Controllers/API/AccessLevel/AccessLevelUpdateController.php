@@ -17,7 +17,8 @@ final class AccessLevelUpdateController extends AbstractAPIController
 {
     private Bouncer $bouncer;
 
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 
@@ -32,9 +33,9 @@ final class AccessLevelUpdateController extends AbstractAPIController
         }
 
         if ($exist !== null) {
-            return Response::json(array(
+            return Response::json([
                 'name' => 'AccessLevel name already exist.',
-            ), 422);
+            ], 422);
         }
 
         if ($accessLevel === null) {
@@ -45,7 +46,6 @@ final class AccessLevelUpdateController extends AbstractAPIController
 
         if (\count($request->getRoleIds() ?? []) > 0) {
             $roles = Role::whereIn('id', $request->getRoleIds())->get();
-
         }
 
         $abilities = [];

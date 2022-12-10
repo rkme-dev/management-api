@@ -28,7 +28,7 @@ final class UserResource extends Resource
 
         $user = $this->resource;
 
-        $employeeId = \str_pad((string) $user->getId(),8,"0",STR_PAD_LEFT);
+        $employeeId = \str_pad((string) $user->getId(), 8, '0', STR_PAD_LEFT);
 
         $employeeId = sprintf('EMP-%s', $employeeId);
 

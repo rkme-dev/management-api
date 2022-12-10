@@ -50,30 +50,35 @@ final class CreateFileResource implements Initialisable
     public function setCreatedBy(User $createdBy): self
     {
         $this->createdBy = $createdBy;
+
         return $this;
     }
 
     public function setMorphable(mixed $morphable): self
     {
         $this->morphable = $morphable;
+
         return $this;
     }
 
     public function setFilename(string $filename): self
     {
         $this->filename = $filename;
+
         return $this;
     }
 
     public function setFilepath(?string $filepath): self
     {
         $this->filepath = $filepath;
+
         return $this;
     }
 
     public function setFormat(?string $format): self
     {
         $this->format = $format;
+
         return $this;
     }
 }

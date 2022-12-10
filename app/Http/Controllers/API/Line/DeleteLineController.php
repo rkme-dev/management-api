@@ -11,7 +11,6 @@ final class DeleteLineController extends AbstractAPIController
 {
     public function __invoke(): JsonResponse
     {
-
         return $this->respondNoContent();
     }
 }

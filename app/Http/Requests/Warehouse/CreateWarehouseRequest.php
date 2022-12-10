@@ -10,7 +10,6 @@ use Illuminate\Validation\Rule;
 
 final class CreateWarehouseRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

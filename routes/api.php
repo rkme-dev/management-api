@@ -13,9 +13,9 @@ use App\Http\Controllers\API\AccessLevel\AccessLevelDeleteController;
 use App\Http\Controllers\API\AccessLevel\AccessLevelListController;
 use App\Http\Controllers\API\AccessLevel\AccessLevelShowController;
 use App\Http\Controllers\API\AccessLevel\AccessLevelUpdateController;
-use App\Http\Controllers\API\AccountReceivablesReport\CustomerSubsidiaryLedgerController;
 use App\Http\Controllers\API\AccountReceivablesReport\CustomerAgingController;
 use App\Http\Controllers\API\AccountReceivablesReport\CustomerAgingTransactionController;
+use App\Http\Controllers\API\AccountReceivablesReport\CustomerSubsidiaryLedgerController;
 use App\Http\Controllers\API\Accounts\CreateAccountController;
 use App\Http\Controllers\API\Accounts\DeleteAccountsController;
 use App\Http\Controllers\API\Accounts\ListAccountController;
@@ -80,10 +80,10 @@ use App\Http\Controllers\API\Locations\UpdateLocationController;
 use App\Http\Controllers\API\Module\ModuleListController;
 use App\Http\Controllers\API\PhysicalCount\CreatePhysicalCountController;
 use App\Http\Controllers\API\PhysicalCount\ListPhysicalCountController;
-use App\Http\Controllers\API\PhysicalCount\ShowPhysicalCountController;
-use App\Http\Controllers\API\PhysicalCount\UpdatePhysicalCountController;
 use App\Http\Controllers\API\PhysicalCount\PostPhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\ShowPhysicalCountController;
 use App\Http\Controllers\API\PhysicalCount\UnpostPhysicalCountController;
+use App\Http\Controllers\API\PhysicalCount\UpdatePhysicalCountController;
 use App\Http\Controllers\API\Product\ProductCreateController;
 use App\Http\Controllers\API\Product\ProductDeleteController;
 use App\Http\Controllers\API\Product\ProductListController;
@@ -131,8 +131,8 @@ use App\Http\Controllers\API\SalesOrders\CreateSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ListSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\ListSalesOrderItemsController;
 use App\Http\Controllers\API\SalesOrders\ListSalesOrderWithoutDRController;
-use App\Http\Controllers\API\SalesOrders\SalesOrderItemsByCustomerController;
 use App\Http\Controllers\API\SalesOrders\PostSalesOrderController;
+use App\Http\Controllers\API\SalesOrders\SalesOrderItemsByCustomerController;
 use App\Http\Controllers\API\SalesOrders\ShowSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UnpostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UpdateSalesOrderController;
@@ -196,7 +196,6 @@ Route::post('/login', [
     'uses' => LoginController::class,
 ]);
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -206,7 +205,6 @@ Route::group([
     'as' => 'enco.api.v1.',
     'prefix' => '',
 ], function () {
-
     Route::post('/logout', [
         'as' => 'logout',
         'uses' => LogoutController::class,
@@ -276,11 +274,11 @@ Route::group([
     ], function () {
         Route::group([
             'as' => 'sales.customer',
-            'prefix' => '/customer'
+            'prefix' => '/customer',
         ], function () {
             Route::get('/{id}', [
                 'as' => 'show',
-                'uses' => CustomerShowController::class
+                'uses' => CustomerShowController::class,
             ]);
 
             Route::post('/update/{id}', [
@@ -301,7 +299,7 @@ Route::group([
 
         Route::group([
             'as' => 'sales.customers',
-            'prefix' => '/customers'
+            'prefix' => '/customers',
         ], function () {
             Route::get('/', [
                 'as' => 'list',
@@ -317,11 +315,11 @@ Route::group([
     ], function () {
         Route::group([
             'as' => 'product',
-            'prefix' => '/product'
+            'prefix' => '/product',
         ], function () {
             Route::get('/{id}', [
                 'as' => 'show',
-                'uses' => ProductShowController::class
+                'uses' => ProductShowController::class,
             ]);
 
             Route::put('/update/{id}', [
@@ -340,11 +338,9 @@ Route::group([
             ]);
         });
 
-
-
         Route::group([
             'as' => 'products',
-            'prefix' => '/products'
+            'prefix' => '/products',
         ], function () {
             Route::get('/', [
                 'as' => 'list',
@@ -364,12 +360,11 @@ Route::group([
 
         Route::group([
             'as' => 'raw-materials',
-            'prefix' => '/raw-materials'
+            'prefix' => '/raw-materials',
         ], function () {
             Route::get('/', [
                 'as' => 'list',
-                'uses' =>
-                    RawMaterialsListController::class,
+                'uses' => RawMaterialsListController::class,
             ]);
         });
     });
@@ -381,11 +376,11 @@ Route::group([
     ], function () {
         Route::group([
             'as' => 'supplier',
-            'prefix' => '/supplier'
+            'prefix' => '/supplier',
         ], function () {
             Route::get('/{id}', [
                 'as' => 'show',
-                'uses' => SupplierShowController::class
+                'uses' => SupplierShowController::class,
             ]);
 
             Route::put('/update/{id}', [
@@ -406,7 +401,7 @@ Route::group([
 
         Route::group([
             'as' => 'suppliers',
-            'prefix' => '/suppliers'
+            'prefix' => '/suppliers',
         ], function () {
             Route::get('/', [
                 'as' => 'list',
@@ -422,19 +417,19 @@ Route::group([
     ], function () {
         Route::group([
             'as' => 'purchase-order',
-            'prefix' => '/purchase-order'
+            'prefix' => '/purchase-order',
         ], function () {
             Route::get('/{id}', [
                 'as' => 'show',
-                'uses' => PurchaseOrderShowController::class
+                'uses' => PurchaseOrderShowController::class,
             ]);
             Route::get('/order-logs/{id}', [
                 'as' => 'show-order-logs',
-                'uses' => PurchaseOrderLogShowController::class
+                'uses' => PurchaseOrderLogShowController::class,
             ]);
             Route::get('/payment-logs/{id}', [
                 'as' => 'show-payment-logs',
-                'uses' => PurchaseOrderPaymentLogShowController::class
+                'uses' => PurchaseOrderPaymentLogShowController::class,
             ]);
 //
 //            Route::post('/update/{id}', [
@@ -475,7 +470,7 @@ Route::group([
 
         Route::group([
             'as' => 'purchase-orders',
-            'prefix' => '/purchase-orders'
+            'prefix' => '/purchase-orders',
         ], function () {
             Route::get('/', [
                 'as' => 'list',
@@ -952,7 +947,6 @@ Route::group([
         ]);
     });
 
-
     Route::group([
         'as' => 'sales-drs.',
         'prefix' => '',
@@ -1007,8 +1001,6 @@ Route::group([
             'as' => 'show',
             'uses' => ShowSalesDrController::class,
         ]);
-
-
     });
 
     Route::group([
@@ -1170,7 +1162,7 @@ Route::group([
 
     Route::group([
         'as' => '',
-        'prefix' => ''
+        'prefix' => '',
     ], function () {
         Route::get('/products/{product}/stockcard-report/', [
             'as' => 'stockcard-report',
@@ -1180,5 +1172,3 @@ Route::group([
 });
 
 Route::post('/message', [MessageController::class, 'create']);
-
-

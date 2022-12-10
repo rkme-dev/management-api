@@ -52,7 +52,8 @@ final class PurchaseOrderInTransitController extends AbstractAPIController
         }
     }
 
-    private function attachExpenseLogs(string $orderId, $userId, array $expenses): void {
+    private function attachExpenseLogs(string $orderId, $userId, array $expenses): void
+    {
         foreach ($expenses as $expense) {
             PaymentLogs::create([
                 'amount' => $expense['amount'],

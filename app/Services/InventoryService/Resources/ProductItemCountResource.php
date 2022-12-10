@@ -26,7 +26,7 @@ final class ProductItemCountResource implements Initialisable
     }
 
     /**
-     * @param int $productId
+     * @param  int  $productId
      */
     public function setProductId(int $productId): void
     {
@@ -42,7 +42,7 @@ final class ProductItemCountResource implements Initialisable
     }
 
     /**
-     * @param string $unit
+     * @param  string  $unit
      */
     public function setUnit(string $unit): void
     {
@@ -58,7 +58,7 @@ final class ProductItemCountResource implements Initialisable
     }
 
     /**
-     * @param string $quantity
+     * @param  string  $quantity
      */
     public function setQuantity(string $quantity): void
     {

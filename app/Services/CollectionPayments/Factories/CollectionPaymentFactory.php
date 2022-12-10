@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Services\CollectionPayments\Factories;
 
 use App\Models\CollectionPayment;
-use App\Services\CollectionPayments\Resources\CreateCollectionPaymentResource;
 use App\Services\CollectionPayments\Interfaces\CollectionPaymentFactoryInterface;
+use App\Services\CollectionPayments\Resources\CreateCollectionPaymentResource;
 
 final class CollectionPaymentFactory implements CollectionPaymentFactoryInterface
 {

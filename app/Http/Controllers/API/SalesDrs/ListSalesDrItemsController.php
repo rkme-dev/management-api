@@ -14,7 +14,7 @@ final class ListSalesDrItemsController extends AbstractAPIController
 {
     public function __invoke(int $id): JsonResource
     {
-        $orderItems = OrderItem::whereHasMorph('orderable', [SalesDr::class], function ($query) use($id) {
+        $orderItems = OrderItem::whereHasMorph('orderable', [SalesDr::class], function ($query) use ($id) {
             $query->where('status', '=', SaleOrderStatusesEnum::POSTED->value);
             $query->where('customer_id', $id);
         })

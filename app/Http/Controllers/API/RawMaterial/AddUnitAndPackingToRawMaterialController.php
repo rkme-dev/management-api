@@ -15,7 +15,7 @@ final class AddUnitAndPackingToRawMaterialController extends AbstractAPIControll
     {
         $rawMaterial = RawMaterial::find($id);
 
-        $data[$request->get('unit_id')]['packing'] =  $request->get('packing');
+        $data[$request->get('unit_id')]['packing'] = $request->get('packing');
 
         $rawMaterial->units()->sync($data);
 

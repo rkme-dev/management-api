@@ -34,7 +34,6 @@ final class CreateDepositController extends AbstractAPIController
             ],
         ]);
 
-
         $checks = CheckPayment::whereIn('id', $request->get('check_ids'))->get();
 
         // @TODO each check update should be trigger thru an event or job

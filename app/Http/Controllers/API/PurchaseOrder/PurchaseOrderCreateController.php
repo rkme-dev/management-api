@@ -58,13 +58,14 @@ final class PurchaseOrderCreateController extends AbstractAPIController
         }
     }
 
-    private function attachLogs(int $id, int $userId, string $updateStatus) {
+    private function attachLogs(int $id, int $userId, string $updateStatus)
+    {
         PurchaseOrderLogs::create([
             'message' => \sprintf('Purchase Order: %s has been created', $id),
             'status' => $updateStatus,
             'order_id' => $id,
             'user_id' => $userId,
-            'action' => 'Created'
+            'action' => 'Created',
         ]);
     }
 }

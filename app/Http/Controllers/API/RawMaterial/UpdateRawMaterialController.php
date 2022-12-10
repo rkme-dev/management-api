@@ -10,7 +10,6 @@ use App\Models\RawMaterial;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
 
-
 final class UpdateRawMaterialController extends AbstractAPIController
 {
     public function __invoke(UpdateRawMaterialRequest $request, int $id): JsonResource
@@ -26,7 +25,7 @@ final class UpdateRawMaterialController extends AbstractAPIController
             'unit_id',
             'price',
             'active',
-            'type'
+            'type',
         ]);
 
         $data = [
@@ -34,7 +33,7 @@ final class UpdateRawMaterialController extends AbstractAPIController
             ...[
                 'slug' => Str::slug($request->get('name')),
                 'updated_by' => $this->getUser()->getId(),
-            ]
+            ],
         ];
 
         $rawMaterial->update($data);

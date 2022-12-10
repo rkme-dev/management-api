@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API\Ability;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\Ability\AbilityCreateRequest;
 use App\Http\Resources\Ability\AbilityResource;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Silber\Bouncer\Database\Ability;
 

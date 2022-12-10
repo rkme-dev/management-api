@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\SaleOrderStatusesEnum;
-use App\Models\OrderItem;
 use App\Models\SalesDr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,7 +18,7 @@ class ListTripTicketSalesDrController extends Controller
     {
         $area = $request->get('area');
         $items = SalesDr::with('customer')
-            ->with('salesDrItems', function($query) use ($tripTicketId) {
+            ->with('salesDrItems', function ($query) use ($tripTicketId) {
                 if ($tripTicketId > 0) {
                     $query->where('trip_ticket_id', $tripTicketId);
                 } else {
@@ -28,7 +26,7 @@ class ListTripTicketSalesDrController extends Controller
                 }
             })
             ->where('area', $area)
-            ->where('remaining_balance', '>' ,0)
+            ->where('remaining_balance', '>', 0)
             ->where('is_linked', $tripTicketId > 0 ? 1 : 0)
             ->get();
 

@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class UpdateVatRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

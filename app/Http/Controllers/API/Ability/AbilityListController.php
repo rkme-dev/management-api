@@ -19,7 +19,7 @@ final class AbilityListController extends AbstractAPIController
         $byModule = filter_var($byModule, FILTER_VALIDATE_BOOLEAN);
 
         return new JsonResource([
-            'data' => new AbilitiesResource(Ability::all(), $byModule)
+            'data' => new AbilitiesResource(Ability::all(), $byModule),
         ]);
     }
 }

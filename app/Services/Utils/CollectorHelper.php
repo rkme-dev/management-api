@@ -7,8 +7,7 @@ namespace App\Services\Utils;
 final class CollectorHelper
 {
     /**
-     * @param iterable<mixed> $items
-     *
+     * @param  iterable<mixed>  $items
      * @return mixed[]
      */
     public static function convertToArray(iterable $items): array
@@ -17,8 +16,7 @@ final class CollectorHelper
     }
 
     /**
-     * @param iterable<mixed> $items
-     *
+     * @param  iterable<mixed>  $items
      * @return iterable<mixed>
      *
      * @throws \Exception
@@ -39,8 +37,7 @@ final class CollectorHelper
     }
 
     /**
-     * @param iterable<mixed> $items
-     *
+     * @param  iterable<mixed>  $items
      * @return mixed[]
      */
     public static function ensureClassAsArray(iterable $items, string $class): array
@@ -49,9 +46,8 @@ final class CollectorHelper
     }
 
     /**
-     * @param iterable<mixed> $items
-     * @param class-string $class
-     *
+     * @param  iterable<mixed>  $items
+     * @param  class-string  $class
      * @return mixed[]
      */
     public static function filterByClassAsArray(iterable $items, string $class): array
@@ -60,8 +56,7 @@ final class CollectorHelper
     }
 
     /**
-     * @param iterable<mixed> $items
-     *
+     * @param  iterable<mixed>  $items
      * @return iterable<mixed>
      */
     public static function filterByClass(iterable $items, string $class): iterable

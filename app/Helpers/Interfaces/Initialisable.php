@@ -9,7 +9,7 @@ interface Initialisable
     /**
      * Initialisable constructor should be implement along with \App\Helpers\InitialisableTrait
      *
-     * @param mixed[]|null $payload
+     * @param  mixed[]|null  $payload
      */
     public function __construct(?array $payload = []);
 }

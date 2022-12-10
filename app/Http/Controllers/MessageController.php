@@ -13,7 +13,7 @@ class MessageController extends Controller
     public function create(Request $request): void
     {
         $request->validate([
-            'message' => 'required'
+            'message' => 'required',
         ]);
 
         $user = Auth::user();

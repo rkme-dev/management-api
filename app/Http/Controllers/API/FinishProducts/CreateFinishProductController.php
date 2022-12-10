@@ -33,7 +33,7 @@ final class CreateFinishProductController extends AbstractAPIController
                 'slug' => Str::slug($request->get('name')),
                 'type' => ProductTypeEnums::FINISHED_PRODUCT->value,
                 'created_by' => $this->getUser()->getId(),
-            ]
+            ],
         ];
 
         $product = Product::create($data);
@@ -48,6 +48,6 @@ final class CreateFinishProductController extends AbstractAPIController
 
         $product->refresh();
 
-         return new JsonResource($product);
+        return new JsonResource($product);
     }
 }

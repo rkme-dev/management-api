@@ -6,7 +6,6 @@ namespace App\Http\Controllers\API\Ability;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Silber\Bouncer\Database\Ability;
 
 final class AbilityDeleteController extends AbstractAPIController

@@ -19,7 +19,8 @@ final class PostSalesDrJob implements ShouldQueue
 
     public function __construct(
        public int $orderItemId
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {

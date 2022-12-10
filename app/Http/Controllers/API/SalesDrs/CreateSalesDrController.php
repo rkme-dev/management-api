@@ -11,9 +11,7 @@ use App\Models\OrderItem;
 use App\Models\SalesDr;
 use App\Models\SalesDrItem;
 use App\Models\SalesOrder;
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Arr;
 
 final class CreateSalesDrController extends AbstractAPIController
 {
@@ -73,7 +71,7 @@ final class CreateSalesDrController extends AbstractAPIController
             $orderDrItem->setAttribute('unit', $orderItem->getAttribute('unit'));
             $orderDrItem->setAttribute('actual_quantity', $orderItem->getAttribute('actual_quantity'));
             $orderDrItem->setAttribute('total_amount', $orderItem->getAttribute('total_amount'));
-            $orderDrItem->setAttribute('price',  $orderItem->getAttribute('price'));
+            $orderDrItem->setAttribute('price', $orderItem->getAttribute('price'));
             $orderDrItem->save();
 
             SalesDrItem::create([

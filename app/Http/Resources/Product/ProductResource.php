@@ -3,11 +3,13 @@
 declare(strict_types=1);
 
 namespace App\Http\Resources\Product;
+
 use App\Exceptions\InvalidResourceTypeException;
 use App\Http\Resources\Resource;
 use App\Models\Product;
 
-final class ProductResource extends Resource {
+final class ProductResource extends Resource
+{
     /**
      * @throws InvalidResourceTypeException
      */
@@ -21,7 +23,7 @@ final class ProductResource extends Resource {
 
         $product = $this->resource;
 
-        $productNumber = \str_pad((string) $product->id,8,"0",STR_PAD_LEFT);
+        $productNumber = \str_pad((string) $product->id, 8, '0', STR_PAD_LEFT);
 
         $productNumber = sprintf('RM-%s', $productNumber);
 

@@ -85,6 +85,7 @@ final class CreateStockcardResource implements Initialisable
     public function setDate(?string $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -96,6 +97,7 @@ final class CreateStockcardResource implements Initialisable
     public function setEvent(?string $event): self
     {
         $this->event = $event;
+
         return $this;
     }
 
@@ -107,6 +109,7 @@ final class CreateStockcardResource implements Initialisable
     public function setDocument(?string $document): self
     {
         $this->document = $document;
+
         return $this;
     }
 
@@ -118,6 +121,7 @@ final class CreateStockcardResource implements Initialisable
     public function setDocumentNumber(?string $documentNumber): self
     {
         $this->documentNumber = $documentNumber;
+
         return $this;
     }
 
@@ -129,6 +133,7 @@ final class CreateStockcardResource implements Initialisable
     public function setRemarks(?string $remarks): self
     {
         $this->remarks = $remarks;
+
         return $this;
     }
 
@@ -140,6 +145,7 @@ final class CreateStockcardResource implements Initialisable
     public function setQuantity(?string $quantity): self
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -151,6 +157,7 @@ final class CreateStockcardResource implements Initialisable
     public function setUnit(?string $unit): self
     {
         $this->unit = $unit;
+
         return $this;
     }
 
@@ -162,6 +169,7 @@ final class CreateStockcardResource implements Initialisable
     public function setPrice(?string $price): self
     {
         $this->price = $price;
+
         return $this;
     }
 
@@ -173,6 +181,7 @@ final class CreateStockcardResource implements Initialisable
     public function setStatus(?string $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -184,6 +193,7 @@ final class CreateStockcardResource implements Initialisable
     public function setQuantityIn(?string $quantityIn): self
     {
         $this->quantityIn = $quantityIn;
+
         return $this;
     }
 

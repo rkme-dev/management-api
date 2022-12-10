@@ -18,7 +18,7 @@ class StockCardReportController extends AbstractAPIController
         $toDate = $request->getToDate();
 
         $result = StockcardReport::where('product_id', $product->getAttribute('id'))
-            ->where(function ($query) use ($fromDate, $toDate, $unit){
+            ->where(function ($query) use ($fromDate, $toDate, $unit) {
                 if ($fromDate !== null) {
                     $query->where('date', '>=', $fromDate);
                 }
@@ -43,14 +43,14 @@ class StockCardReportController extends AbstractAPIController
                 'event' => $stockcardReport->getAttribute('event'),
                 'document' => $stockcardReport->getAttribute('document'),
                 'document_number' => $stockcardReport->getAttribute('document_number'),
-                'remarks'  => $stockcardReport->getAttribute('remarks'),
+                'remarks' => $stockcardReport->getAttribute('remarks'),
                 'quantity' => number_format($stockcardReport->getAttribute('quantity')),
                 'unit' => $stockcardReport->getAttribute('unit'),
                 'price' => number_format($stockcardReport->getAttribute('price'), 2, '.'),
                 'status' => 'Good',
                 'quantity_in' => number_format($stockcardReport->getAttribute('quantity_in')),
                 'quantity_out' => number_format($stockcardReport->getAttribute('quantity_out')),
-                'balance'  => number_format($stockcardReport->getAttribute('balance')),
+                'balance' => number_format($stockcardReport->getAttribute('balance')),
             ];
         });
 

@@ -19,7 +19,7 @@ final class UpdateVatController extends AbstractAPIController
             'code',
             'name',
             'percentage',
-            'notes'
+            'notes',
         ]);
 
         $vat = Vat::find($id);
@@ -28,9 +28,9 @@ final class UpdateVatController extends AbstractAPIController
             $exist = Vat::where('code', $request->get('code'))->first();
 
             if ($exist !== null) {
-                return Response::json(array(
+                return Response::json([
                     'code' => 'Vat code already exist.',
-                ), 422);
+                ], 422);
             }
         }
 
@@ -38,9 +38,9 @@ final class UpdateVatController extends AbstractAPIController
             $exist = Vat::where('name', $request->get('name'))->first();
 
             if ($exist !== null) {
-                return Response::json(array(
+                return Response::json([
                     'name' => 'Vat name already exist.',
-                ), 422);
+                ], 422);
             }
         }
 

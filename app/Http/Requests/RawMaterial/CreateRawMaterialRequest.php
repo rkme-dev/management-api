@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\RawMaterial;
 
-use App\Enums\ProductTypeEnums;
 use App\Enums\RawMaterialTypeEnums;
-use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseRequest;
+use Illuminate\Validation\Rule;
 
 final class CreateRawMaterialRequest extends BaseRequest
 {

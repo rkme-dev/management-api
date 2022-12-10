@@ -30,6 +30,7 @@ final class AbilitiesResource extends Resource
 
             if ($this->orderByModule === false) {
                 $abilities[] = new AbilityResource($ability);
+
                 continue;
             }
 

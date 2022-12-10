@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\RawMaterial;
 
 use App\Http\Requests\BaseRequest;
-use App\Models\ProductReleaseOrder;
 
 final class CreateRawMaterialReleaseOrderRequest extends BaseRequest
 {

@@ -32,7 +32,7 @@ class CustomerUpdateRequest extends FormRequest
             'email' => [
                 'nullable',
                 'email:rfc,dns',
-                Rule::unique('customers','email')->ignore($this->id),
+                Rule::unique('customers', 'email')->ignore($this->id),
             ],
             'contact_person' => 'nullable|string',
             'contact_no' => 'nullable|string',

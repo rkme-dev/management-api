@@ -38,7 +38,6 @@ return new class extends Migration
                 $table->dropForeign('users_access_level_id_foreign');
                 $table->dropColumn('access_level_id');
             }
-
         });
     }
 };

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 final class PurchaseOrderLogs extends Model
 {
     use HasFactory, HasRelationshipWithUser;
+
     protected $fillable = [
         'message',
         'status',

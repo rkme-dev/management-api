@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Documents;
 
-use App\Http\Requests\BaseRequest;
 use App\Enums\DocumentsEnums;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
 final class UpdateDocumentRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

@@ -14,7 +14,8 @@ final class PostCollectionController extends AbstractAPIController
 {
     private CollectionPostedResolverInterface $collectionPostedResolver;
 
-    public function __construct(CollectionPostedResolverInterface $collectionPostedResolver) {
+    public function __construct(CollectionPostedResolverInterface $collectionPostedResolver)
+    {
         $this->collectionPostedResolver = $collectionPostedResolver;
     }
 
