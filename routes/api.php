@@ -90,9 +90,6 @@ use App\Http\Controllers\API\Product\ProductListController;
 use App\Http\Controllers\API\Product\ProductShowController;
 use App\Http\Controllers\API\Product\ProductSupplierListController;
 use App\Http\Controllers\API\Product\ProductUpdateController;
-use App\Http\Controllers\API\ProductionProcedure\CreateProductionProcedureController;
-use App\Http\Controllers\API\ProductionProcedure\CreateProductionProcedureRequestController;
-use App\Http\Controllers\API\ProductionProcedure\ListProductionProcedureController;
 use App\Http\Controllers\API\ProductPackageType\CreateProductPackageTypeController;
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderApproveController;
 use App\Http\Controllers\API\PurchaseOrder\PurchaseOrderCreateController;
@@ -110,10 +107,6 @@ use App\Http\Controllers\API\RawMaterial\RawMaterialsListController;
 use App\Http\Controllers\API\RawMaterial\RemoveUnitAndPackingToRawMaterialController;
 use App\Http\Controllers\API\RawMaterial\ShowRawMaterialController;
 use App\Http\Controllers\API\RawMaterial\UpdateRawMaterialController;
-use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderCreateController;
-use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderListController;
-use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderShowController;
-use App\Http\Controllers\API\ReleaseOrder\ReleaseOrderUpdateController;
 use App\Http\Controllers\API\Role\RoleCreateController;
 use App\Http\Controllers\API\Role\RoleDeleteController;
 use App\Http\Controllers\API\Role\RoleListController;
@@ -123,7 +116,6 @@ use App\Http\Controllers\API\SalesDrs\AreaListBySalesDRController;
 use App\Http\Controllers\API\SalesDrs\CreateSalesDrController;
 use App\Http\Controllers\API\SalesDrs\ListDrByCustomerController;
 use App\Http\Controllers\API\SalesDrs\ListSalesDrController;
-use App\Http\Controllers\API\SalesDrs\ListSalesDrItemsController;
 use App\Http\Controllers\API\SalesDrs\PostSalesDrController;
 use App\Http\Controllers\API\SalesDrs\ShowSalesDrController;
 use App\Http\Controllers\API\SalesDrs\UnlinkSalesDrItemsController;
@@ -590,53 +582,6 @@ Route::group([
             'uses' => AccessLevelDeleteController::class,
         ]);
     });
-
-    Route::group([
-        'as' => 'raw-materials.',
-        'prefix' => '',
-    ], function () {
-//        Route::post('/raw-materials/release-orders', [
-//            'as' => 'create',
-//            'uses' => ReleaseOrderCreateController::class,
-//        ]);
-//
-//        Route::get('/raw-materials/release-orders', [
-//            'as' => 'list',
-//            'uses' => ReleaseOrderListController::class,
-//        ]);
-//
-//        Route::get('/raw-materials/release-orders/{id}', [
-//            'as' => 'show',
-//            'uses' => ReleaseOrderShowController::class,
-//        ]);
-//
-//        Route::put('/raw-materials/release-orders/{id}', [
-//            'as' => 'update',
-//            'uses' => ReleaseOrderUpdateController::class,
-//        ]);
-    });
-
-
-    Route::group([
-        'as' => 'production-procedures.',
-        'prefix' => '',
-    ], function () {
-        Route::post('/production-procedures', [
-            'as' => 'create',
-            'uses' => CreateProductionProcedureController::class,
-        ]);
-
-        Route::get('/production-procedures', [
-            'as' => 'list',
-            'uses' => ListProductionProcedureController::class,
-        ]);
-
-        Route::post('/production-procedures/{id}/requests', [
-            'as' => 'create.requests',
-            'uses' => CreateProductionProcedureRequestController::class,
-        ]);
-    });
-
 
     Route::group([
         'as' => 'lines.',
