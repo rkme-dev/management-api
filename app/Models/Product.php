@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Product extends Model
 {
@@ -59,5 +60,10 @@ final class Product extends Model
             'product_id',
             'supplier_id',
         );
+    }
+
+    public function rawMaterials(): HasMany
+    {
+        return $this->hasMany(ProductRawMaterial::class, 'product_id');
     }
 }
