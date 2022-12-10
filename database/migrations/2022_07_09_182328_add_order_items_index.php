@@ -26,7 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        return;
         Schema::table('order_items', function (Blueprint $table) {
             if (Schema::hasColumn('order_items', 'product_id') === true) {
                 $table->dropForeign('order_items_product_id_foreign');

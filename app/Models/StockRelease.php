@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-final class StockRequest extends Model
+final class StockRelease extends Model
 {
     use HasFactory;
 
@@ -24,21 +24,24 @@ final class StockRequest extends Model
         'posted_by',
     ];
 
-    protected $table = 'stock_requests';
+    protected $table = 'stock_releases';
 
-    public function stockRequestItems(): HasMany
+    public function setStockRequest(array $ids): self
     {
-        return $this->hasMany(StockRequestItem::class, 'stock_request_id');
+        StockRequest::where('stock_release_id', $this->getAttribute('id'))->update([
+            'stock_release_id' => null,
+        ]);
+
+        StockRequest::whereIn('id', $ids)->update([
+            'stock_release_id' => $this->getAttribute('id'),
+        ]);
+
+        return $this;
     }
 
-    public function stockRequestProduceItems(): HasMany
+    public function stockRequests(): HasMany
     {
-        return $this->hasMany(StockRequestProduceItem::class, 'stock_request_id');
-    }
-
-    public function stockRelease(): BelongsTo
-    {
-        return $this->belongsTo(StockRelease::class, 'stock_release_id');
+        return $this->hasMany(StockRequest::class);
     }
 
     public function document(): BelongsTo

@@ -136,10 +136,16 @@ use App\Http\Controllers\API\SalesOrders\ShowSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UnpostSalesOrderController;
 use App\Http\Controllers\API\SalesOrders\UpdateSalesOrderController;
 use App\Http\Controllers\API\StockCard\StockCardReportController;
+use App\Http\Controllers\API\StockReleases\CreateStockReleaseController;
+use App\Http\Controllers\API\StockReleases\ListStockReleaseController;
+use App\Http\Controllers\API\StockReleases\PostStockReleaseController;
+use App\Http\Controllers\API\StockReleases\UnpostStockReleaseController;
+use App\Http\Controllers\API\StockReleases\UpdateStockReleaseController;
 use App\Http\Controllers\API\StockRequests\CreateStockRequestController;
 use App\Http\Controllers\API\StockRequests\ListStockRequestController;
 use App\Http\Controllers\API\StockRequests\PostStockRequestController;
 use App\Http\Controllers\API\StockRequests\UnpostStockRequestController;
+use App\Http\Controllers\API\StockRequests\UnReleaseStockRequestListController;
 use App\Http\Controllers\API\StockRequests\UpdateStockRequestController;
 use App\Http\Controllers\API\Supplier\SupplierCreateController;
 use App\Http\Controllers\API\Supplier\SupplierDeleteController;
@@ -1192,6 +1198,36 @@ Route::group([
         Route::put('/stock-requests/{id}', [
             'as' => 'update',
             'uses' => UpdateStockRequestController::class,
+        ]);
+        Route::get('/stock-requests/un-release', [
+            'as' => 'list-unrelease',
+            'uses' => UnReleaseStockRequestListController::class,
+        ]);
+    });
+
+    Route::group([
+        'as' => 'stock-releases.',
+        'prefix' => '',
+    ], function () {
+        Route::post('/stock-releases', [
+            'as' => 'create',
+            'uses' => CreateStockReleaseController::class,
+        ]);
+        Route::get('/stock-releases', [
+            'as' => 'list',
+            'uses' => ListStockReleaseController::class,
+        ]);
+        Route::post('/stock-releases/{id}/post', [
+            'as' => 'post',
+            'uses' => PostStockReleaseController::class,
+        ]);
+        Route::post('/stock-releases/{id}/unpost', [
+            'as' => 'unpost',
+            'uses' => UnpostStockReleaseController::class,
+        ]);
+        Route::put('/stock-releases/{id}', [
+            'as' => 'update',
+            'uses' => UpdateStockReleaseController::class,
         ]);
     });
 });

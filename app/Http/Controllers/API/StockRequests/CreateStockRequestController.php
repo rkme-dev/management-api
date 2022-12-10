@@ -27,7 +27,7 @@ final class CreateStockRequestController extends AbstractAPIController
             ]),
             ...[
                 'date' => $this->generateDateTime($request->get('date')),
-                'code' => $this->generateNumber('stock_requests', 'SR'),
+                'code' => $this->generateNumber('stock_requests', 'S-REQUEST'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
             ],
