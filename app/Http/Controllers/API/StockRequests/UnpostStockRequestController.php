@@ -20,6 +20,7 @@ final class UnpostStockRequestController extends AbstractAPIController
             return $this->respondNotFound('Stock Request not found.');
         }
 
+        $stockRequest->setAttribute('posted_by', null);
         $stockRequest->setAttribute('status', SaleOrderStatusesEnum::FOR_REVIEW);
         $stockRequest->save();
 

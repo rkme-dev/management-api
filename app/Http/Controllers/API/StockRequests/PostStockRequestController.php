@@ -20,6 +20,7 @@ final class PostStockRequestController extends AbstractAPIController
             return $this->respondNotFound('Stock Request not found.');
         }
 
+        $stockRequest->setAttribute('posted_by', $this->getUser()->getId());
         $stockRequest->setAttribute('status', SaleOrderStatusesEnum::POSTED);
         $stockRequest->save();
 

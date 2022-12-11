@@ -20,6 +20,7 @@ final class UnpostStockReleaseController extends AbstractAPIController
             return $this->respondNotFound('Stock Release not found.');
         }
 
+        $stockRelease->setAttribute('posted_by', null);
         $stockRelease->setAttribute('status', SaleOrderStatusesEnum::POSTED);
         $stockRelease->save();
 
