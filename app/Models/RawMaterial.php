@@ -41,7 +41,12 @@ final class RawMaterial extends Model
             'raw_material_unit_packing',
             'raw_material_id',
             'unit_packing_id',
-        )->withPivot(['packing']);
+        )->withPivot([
+            'packing',
+            'unit_packing_id',
+            'actual_balance',
+            'reserved_balance',
+        ]);
     }
 
     public function suppliers(): BelongsToMany

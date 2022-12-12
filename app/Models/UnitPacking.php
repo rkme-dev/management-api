@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class UnitPacking extends Model
+final class UnitPacking extends Model
 {
     use HasFactory;
 
@@ -22,5 +22,10 @@ class UnitPacking extends Model
     public function product(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function rawMaterial(): BelongsToMany
+    {
+        return $this->belongsToMany(RawMaterial::class);
     }
 }

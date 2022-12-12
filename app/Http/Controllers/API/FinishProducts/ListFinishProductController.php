@@ -15,7 +15,7 @@ final class ListFinishProductController extends AbstractAPIController
     {
         return new JsonResource(Product::where('type', ProductTypeEnums::FINISHED_PRODUCT->value)
             ->whereNull('deleted_at')
-        ->with('units')
+        ->with(['units', 'rawMaterials.rawMaterial'])
             ->orderBy('created_at', 'desc')
             ->get());
     }
