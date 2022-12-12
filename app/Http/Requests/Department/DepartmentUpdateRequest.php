@@ -8,7 +8,6 @@ use App\Http\Requests\BaseRequest;
 
 final class DepartmentUpdateRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;
@@ -34,7 +33,7 @@ final class DepartmentUpdateRequest extends BaseRequest
         return [
             'name' => 'nullable|string',
             'role_ids' => 'array|nullable',
-            'ability_ids' => 'array|nullable'
+            'ability_ids' => 'array|nullable',
         ];
     }
 }

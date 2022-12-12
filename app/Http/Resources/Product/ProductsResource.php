@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Resources\Product;
 
 use App\Http\Resources\Resource;
-use App\Models\Product;
 
 final class ProductsResource extends Resource
 {

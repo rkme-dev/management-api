@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('raw_material_supplier')) {
+        if (! Schema::hasTable('raw_material_supplier')) {
             Schema::create('raw_material_supplier', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('raw_material_id');

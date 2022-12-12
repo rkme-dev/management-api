@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Product;
 
-use App\Enums\ProductTypeEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\Product\ProductCreateRequest;
 use App\Http\Resources\Product\ProductResource;
@@ -24,6 +23,6 @@ final class ProductCreateController extends AbstractAPIController
 
         $newProduct = new ProductResource(Product::create($product));
 
-        return $this->respondCreated((array)$newProduct);
+        return $this->respondCreated((array) $newProduct);
     }
 }

@@ -18,7 +18,8 @@ final class RemoveStockcardReportJob implements ShouldQueue
     public function __construct(
         public string $type,
         public int $typeId
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {

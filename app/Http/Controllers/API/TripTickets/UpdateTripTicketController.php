@@ -71,11 +71,13 @@ final class UpdateTripTicketController extends AbstractAPIController
 
                 if ($collectionCountByDr > 0 || $salesDrItemCountByDr > 0) {
                     $salesDrItem->save();
+
                     continue;
                 }
 
                 $salesDr->setAttribute('is_linked', 0);
                 $salesDr->save();
+
                 continue;
             }
 

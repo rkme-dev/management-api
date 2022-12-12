@@ -24,7 +24,7 @@ final class UnpaidSalesDrListController extends AbstractAPIController
             $query->where('status', '=', SaleOrderStatusesEnum::POSTED->value);
             $query->where('remaining_balance', '>', 0);
         })
-            ->with(['orderable', 'product',])
+            ->with(['orderable', 'product'])
             ->orderBy('created_at', 'desc')
             ->get();
 

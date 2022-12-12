@@ -13,7 +13,8 @@ final class ShowSalesDrController extends AbstractAPIController
 {
     private ModuleNumberResolverInterface $moduleNumberResolver;
 
-    public function __construct(ModuleNumberResolverInterface $moduleNumberResolver) {
+    public function __construct(ModuleNumberResolverInterface $moduleNumberResolver)
+    {
         $this->moduleNumberResolver = $moduleNumberResolver;
     }
 

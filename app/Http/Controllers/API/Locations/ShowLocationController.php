@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Locations;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\Terms\CreateTermRequest;
 use App\Models\Location;
 use Illuminate\Http\Resources\Json\JsonResource;
 

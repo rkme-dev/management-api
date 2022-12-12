@@ -15,7 +15,8 @@ final class RolesSeeder extends Seeder
 {
     private Bouncer $bouncer;
 
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 

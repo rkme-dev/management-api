@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Carbon\Carbon;
 
 final class TripTicket extends Model
 {
@@ -38,7 +38,7 @@ final class TripTicket extends Model
     protected $appends = [
         'sales_dr',
         'departed_date',
-        'departed_time'
+        'departed_time',
     ];
 
     public function document(): BelongsTo
@@ -84,9 +84,10 @@ final class TripTicket extends Model
         return $salesDrItems = $this->sales_dr_items;
         $response = [];
 
-        foreach($salesDrItems as $salesDrItem) {
+        foreach ($salesDrItems as $salesDrItem) {
             $response[] = $salesDrItem->sales_dr;
         }
+
         return $response;
     }
 }

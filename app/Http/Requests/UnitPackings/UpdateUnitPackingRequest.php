@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 
 final class UpdateUnitPackingRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

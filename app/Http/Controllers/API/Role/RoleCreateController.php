@@ -13,7 +13,8 @@ use Silber\Bouncer\Database\Ability;
 
 final class RoleCreateController extends AbstractAPIController
 {
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 

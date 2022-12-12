@@ -10,7 +10,6 @@ use App\Http\Requests\User\UserEditRequest;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Response;
 use Silber\Bouncer\Bouncer;
 use Silber\Bouncer\Database\Ability;
@@ -20,7 +19,8 @@ final class UserEditController extends AbstractAPIController
 {
     private Bouncer $bouncer;
 
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 
@@ -39,9 +39,9 @@ final class UserEditController extends AbstractAPIController
         }
 
         if ($emailExist !== null) {
-            return Response::json(array(
+            return Response::json([
                 'email' => 'Email already exist',
-            ), 422);
+            ], 422);
         }
 
         $data = \array_filter($request->all());
@@ -56,9 +56,9 @@ final class UserEditController extends AbstractAPIController
             $role = Role::find($request->get('role_id'));
 
             if ($role === null) {
-                return Response::json(array(
+                return Response::json([
                     'role_id' => 'Invalid Role selected',
-                ), 422);
+                ], 422);
             }
 
             $user->assign($role->name);
@@ -66,8 +66,8 @@ final class UserEditController extends AbstractAPIController
 
         $data['is_active'] = $request->get('status') === UserStatusesEnum::ACTIVE->value;
 
-        $data['birth_date'] = ($request->get('birth_date') !== null) ? new Carbon($request->get('birth_date'))  : null;
-        $data['date_hired'] = ($request->get('date_hired') !== null) ? new Carbon($request->get('date_hired'))  : null;
+        $data['birth_date'] = ($request->get('birth_date') !== null) ? new Carbon($request->get('birth_date')) : null;
+        $data['date_hired'] = ($request->get('date_hired') !== null) ? new Carbon($request->get('date_hired')) : null;
 
         $user->update($data);
 

@@ -9,7 +9,6 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\BouncedDeposits\CreateBouncedDepositRequest;
 use App\Models\BouncedDeposit;
 use App\Models\CollectionPaymentTypes\CheckPayment;
-use App\Models\Deposit;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class CreateBouncedDepositController extends AbstractAPIController

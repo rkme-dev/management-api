@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\SalesOrders;
 
-use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\SalesOrders\UpdateSalesOrderRequest;
 use App\Models\OrderItem;

@@ -14,10 +14,10 @@ final class SalesOrderItemsByCustomerController extends AbstractAPIController
 {
     public function __invoke(int $id): JsonResource
     {
-        $orderItems = OrderItem::whereHasMorph('orderable', [SalesOrder::class], function ($query) use($id) {
-                $query->where('status', '=', SaleOrderStatusesEnum::POSTED->value);
-                $query->where('customer_id', $id);
-            })
+        $orderItems = OrderItem::whereHasMorph('orderable', [SalesOrder::class], function ($query) use ($id) {
+            $query->where('status', '=', SaleOrderStatusesEnum::POSTED->value);
+            $query->where('customer_id', $id);
+        })
             ->orderBy('id', 'desc')
             ->get();
 

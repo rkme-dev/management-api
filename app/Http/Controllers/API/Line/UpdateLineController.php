@@ -13,7 +13,7 @@ final class UpdateLineController extends AbstractAPIController
 {
     public function __invoke(CreateLineRequest $request, int $id): JsonResource
     {
-        $line =  Line::find($id);
+        $line = Line::find($id);
 
         $data = $request->all('name', 'description', 'procedure_type');
 

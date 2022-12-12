@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\PurchaseOrder;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Models\PurchaseOrder;
 use App\Models\PurchaseOrderLogs;
 use Illuminate\Http\JsonResponse;
 

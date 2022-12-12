@@ -7,7 +7,6 @@ namespace App\Http\Controllers\API\BouncedDeposits;
 use App\Enums\CheckStatusEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\BouncedDeposits\UpdateBouncedDepositRequest;
-use App\Http\Requests\Deposits\UpdateDepositRequest;
 use App\Models\BouncedDeposit;
 use App\Models\CollectionPaymentTypes\CheckPayment;
 use Illuminate\Http\Resources\Json\JsonResource;

@@ -14,7 +14,7 @@ final class Term extends Model implements AuditableInterface
     use HasFactory, HasRelationshipWithUser, SoftDeletes, Auditable;
 
     protected $casts = [
-      'is_active' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     protected $fillable = [

@@ -6,7 +6,6 @@ namespace App\Http\Controllers\API\SalesOrders;
 
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Models\SalesOrder;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ListSalesOrderController extends AbstractAPIController

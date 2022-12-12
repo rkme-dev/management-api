@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Accounts;
 
-use App\Http\Requests\BaseRequest;
 use App\Enums\AccountsNormalEnums;
 use App\Enums\AccountsTypeEnums;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 
 final class CreateAccountRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Logistics;
 
 use App\Http\Controllers\Controller;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Request;
 use App\Models\TripTicket;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class TripTicketsController extends Controller
 {
@@ -14,8 +14,8 @@ class TripTicketsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request, string $id)
-    {   
-        $ticket = TripTicket::with('salesDrItems.salesDr.customer','document', 'orderItems')
+    {
+        $ticket = TripTicket::with('salesDrItems.salesDr.customer', 'document', 'orderItems')
                             ->where('id', $id)->first()?->toArray();
 
         $ticket['date_posted'] = Carbon::parse($ticket['date_posted'])->format('Y-m-d');
@@ -28,11 +28,11 @@ class TripTicketsController extends Controller
         }
 
         $pdf = PDF::loadView('logistics/trip-ticket', [
-                'ticket' => $ticket,
-                'salesDr' => $salesDrArr->unique()
-            ]
+            'ticket' => $ticket,
+            'salesDr' => $salesDrArr->unique(),
+        ]
         );
-        
+
         return $pdf->stream();
     }
 }

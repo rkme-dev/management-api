@@ -10,7 +10,6 @@ use App\Services\PurchaseOrder\Processors\Interfaces\OrderContextInterface;
 
 class ApprovePendingPurchaseOrderMiddleware implements MiddlewareInterface
 {
-
     public function process(OrderContextInterface $orderContext, StackInterface $stack): OrderContextInterface
     {
         //$orderContext

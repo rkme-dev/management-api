@@ -18,12 +18,12 @@ final class CreateStockcardReportJob implements ShouldQueue
 
     public function __construct(
         public CreateStockcardResource $resource
-    ) {}
+    ) {
+    }
 
     public function handle(
         StockcardFactoryInterface $stockcardFactory
-    ): void
-    {
+    ): void {
         $stockcardFactory->make($this->resource);
     }
 }

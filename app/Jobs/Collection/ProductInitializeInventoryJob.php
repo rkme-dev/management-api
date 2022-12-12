@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Jobs\Collection;
 
-use App\Models\SalesDr;
-use App\Models\SalesDrPayment;
-use App\Services\Collections\Interfaces\SalesDrPaymentResolverInterface;
 use App\Services\InventoryService\Interfaces\ProductItemCountResolverInterface;
 use App\Services\InventoryService\Resources\ProductItemCountResource;
 use Illuminate\Bus\Queueable;
@@ -37,8 +34,7 @@ final class ProductInitializeInventoryJob implements ShouldQueue
 
     public function handle(
         ProductItemCountResolverInterface $productItemCountResolver
-    ): void
-    {
+    ): void {
         $productItemCountResolver->resolve(new ProductItemCountResource([
             'productId' => $this->productId,
             'unit' => $this->unit,

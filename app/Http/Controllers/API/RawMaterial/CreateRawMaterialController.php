@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\RawMaterial;
 
-use App\Enums\ProductTypeEnums;
-use App\Enums\RawMaterialTypeEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\RawMaterial\CreateRawMaterialRequest;
 use App\Models\RawMaterial;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
-
 
 final class CreateRawMaterialController extends AbstractAPIController
 {
@@ -35,7 +32,7 @@ final class CreateRawMaterialController extends AbstractAPIController
                 'active' => true,
                 'slug' => Str::slug($request->get('name')),
                 'created_by' => $this->getUser()->getId(),
-            ]
+            ],
         ];
 
         $rawMaterial = RawMaterial::create($data);

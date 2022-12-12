@@ -16,7 +16,8 @@ final class CollectionTypeFactoryResolver implements CollectionTypeFactoryResolv
      */
     private array $drivers;
 
-    public function __construct(iterable $drivers) {
+    public function __construct(iterable $drivers)
+    {
         $this->drivers = CollectorHelper::filterByClassAsArray(
             $drivers,
             PaymentTypeFactoryInterface::class

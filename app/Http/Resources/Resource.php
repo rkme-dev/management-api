@@ -16,8 +16,7 @@ abstract class Resource extends JsonResource
      *
      * @noinspection PhpMissingParentCallCommonInspection
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return string[]
      */
     public function toArray($request): array
@@ -31,8 +30,7 @@ abstract class Resource extends JsonResource
      * Create an HTTP response that represents the object
      * and set the status code and return type
      *
-     * @param Request $request
-     *
+     * @param  Request  $request
      * @return JsonResponse
      */
     public function toResponse($request)

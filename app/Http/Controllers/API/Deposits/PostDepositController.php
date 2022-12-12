@@ -13,8 +13,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 final class PostDepositController extends AbstractAPIController
 {
-    public function __invoke(int $id): JsonResource {
-        $deposit = Deposit::with(['account','document','checks'])->where('id', $id)->first();
+    public function __invoke(int $id): JsonResource
+    {
+        $deposit = Deposit::with(['account', 'document', 'checks'])->where('id', $id)->first();
 
         if ($deposit === null) {
             return $this->respondNotFound('Deposit not found');

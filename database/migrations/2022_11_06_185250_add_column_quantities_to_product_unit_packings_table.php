@@ -29,7 +29,6 @@ return new class extends Migration
         Schema::table('product_unit_packing', function (Blueprint $table) {
             $table->removeColumn('actual_balance');
             $table->removeColumn('reserved_balance');
-
         });
     }
 };

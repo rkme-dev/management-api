@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Department;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Resources\Role\RoleResource;
 use App\Http\Resources\Role\RolesResource;
 use App\Models\Department;
 use Illuminate\Http\Resources\Json\JsonResource;

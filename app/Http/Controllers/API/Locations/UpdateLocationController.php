@@ -14,21 +14,18 @@ final class UpdateLocationController extends AbstractAPIController
 {
     public function __invoke(UpdateLocationRequest $request, int $id)
     {
-        
-
         $location = Location::find($id);
 
         if ($request->get('location_code') !== $location->location_code) {
-
             $exist = Location::where('location_code', $request->get('location_code'))->first();
 
             if ($exist !== null) {
-                return Response::json(array(
+                return Response::json([
                     'location_code' => 'Location code already exist.',
-                ), 422);
+                ], 422);
             }
         }
-        
+
         $data = \array_merge($request->all(), ['updated_by' => $this->getUser()->getId()]);
 
         $location->update($data);

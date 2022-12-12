@@ -11,9 +11,9 @@ use OwenIt\Auditing\Models\Audit;
 
 final class AuditsResolver
 {
-    public function resolve(Model $model, Collection $audits) {
-
-        /** @var Audit $audit*/
+    public function resolve(Model $model, Collection $audits)
+    {
+        /** @var Audit $audit */
         foreach ($audits as $index => $audit) {
             $data = [
                 'action' => $audit->getAttribute('event'),
@@ -21,7 +21,7 @@ final class AuditsResolver
                     $audit->getAttribute('auditable_type'),
                     $model->getAttribute('id'),
                     $audit->getAttribute('event'),
-                )
+                ),
             ];
 
             $changes = [];
@@ -51,7 +51,6 @@ final class AuditsResolver
             }
 
             $results[] = $data;
-
         }
 
         return $results;

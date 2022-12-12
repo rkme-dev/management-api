@@ -24,4 +24,3 @@ final class ListPhysicalCountController extends AbstractAPIController
         return new JsonResource($physicalCount);
     }
 }
-

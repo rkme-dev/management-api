@@ -15,7 +15,7 @@ final class AddUnitAndPackingToProductController extends AbstractAPIController
     {
         $product = Product::find($id);
 
-        $data[$request->get('unit_id')]['packing'] =  $request->get('packing');
+        $data[$request->get('unit_id')]['packing'] = $request->get('packing');
 
         $product->units()->sync($data);
 

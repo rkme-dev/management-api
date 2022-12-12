@@ -38,7 +38,7 @@ class Stack implements MiddlewareInterface, StackInterface
         }
 
         // Increment index for next call
-        ++$this->index;
+        $this->index++;
 
         return $next->process($orderContext, $this);
     }

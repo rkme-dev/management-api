@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Requests\Line;
 
 use App\Enums\ProductionProcedureTypesEnum;
-use App\Enums\ProductTypeEnums;
 use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 

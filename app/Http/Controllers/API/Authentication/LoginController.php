@@ -24,7 +24,7 @@ final class LoginController extends AbstractAPIController
 
         if ($user->status !== UserStatusesEnum::ACTIVE->value) {
             return $this->respondForbidden(\sprintf(
-            'Your account status is %s',
+                'Your account status is %s',
                 lcfirst($user->status)
             ));
         }
@@ -37,7 +37,6 @@ final class LoginController extends AbstractAPIController
         $role = Role::where('name', $user->getRoles()->first())->first();
 
         $user->role_title = $role->title;
-
 
         if ($authenticate === false) {
             return $this->respondUnauthorised();

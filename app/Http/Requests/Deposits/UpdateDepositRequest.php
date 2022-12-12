@@ -21,7 +21,7 @@ final class UpdateDepositRequest extends BaseRequest
             'deposit_number' => [
                 'string',
                 'required',
-                Rule::unique('deposits','deposit_number')->ignore($this->id),
+                Rule::unique('deposits', 'deposit_number')->ignore($this->id),
             ],
             'amount' => 'required',
             'date_posted' => 'required',

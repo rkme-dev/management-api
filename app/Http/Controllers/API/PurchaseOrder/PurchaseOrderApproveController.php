@@ -25,7 +25,6 @@ final class PurchaseOrderApproveController extends AbstractAPIController
                 'status' => $expectedStatus,
             ])->firstOrFail();
 
-
             $rawMaterials = $request->get('raw_materials');
             $orderItems = $order->orderItems;
 

@@ -39,7 +39,7 @@ final class UserUploadValidIdController extends AbstractAPIController
 
         $originalFileName = trim(
             preg_replace(
-                "/[^a-zA-Z0-9._ -]/",
+                '/[^a-zA-Z0-9._ -]/',
                 '',
                 $request->getFile()->getClientOriginalName()
             )
@@ -50,7 +50,7 @@ final class UserUploadValidIdController extends AbstractAPIController
             'morphable' => $user,
             'filename' => $originalFileName,
             'filepath' => self::VALID_ID_PATH,
-            'format' => $request->getFile()->getClientMimeType() ?? ''
+            'format' => $request->getFile()->getClientMimeType() ?? '',
         ]));
 
         $url = $this->fileUploader->upload($file, $request->getFile());

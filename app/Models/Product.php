@@ -47,7 +47,7 @@ final class Product extends Model
             'packing',
             'unit_packing_id',
             'actual_balance',
-            'reserved_balance'
+            'reserved_balance',
         ]);
     }
 

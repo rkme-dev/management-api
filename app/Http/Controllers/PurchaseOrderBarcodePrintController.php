@@ -18,9 +18,9 @@ class PurchaseOrderBarcodePrintController extends Controller
         $purchaseOrder = PurchaseOrder::find($id);
 
         $pdf = PDF::loadView('barcode', [
-                'barcode' => $purchaseOrder->getAttribute('barcode'),
-                'count' => $request->query('count'),
-            ]
+            'barcode' => $purchaseOrder->getAttribute('barcode'),
+            'count' => $request->query('count'),
+        ]
         );
 
         return $pdf->download(sprintf('purchase-order-%s.pdf', $purchaseOrder->getAttribute('id')));

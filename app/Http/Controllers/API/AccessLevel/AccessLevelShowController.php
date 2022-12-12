@@ -13,7 +13,7 @@ final class AccessLevelShowController extends AbstractAPIController
 {
     public function __invoke(int $id): JsonResource
     {
-        $accessLevel = AccessLevel::with(['roles','abilities'])->find($id);
+        $accessLevel = AccessLevel::with(['roles', 'abilities'])->find($id);
 
         if ($accessLevel === null) {
             return $this->respondNotFound('Access Level not found');

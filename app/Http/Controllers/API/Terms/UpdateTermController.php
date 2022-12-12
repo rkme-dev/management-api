@@ -19,7 +19,7 @@ final class UpdateTermController extends AbstractAPIController
             'code',
             'days',
             'description',
-            'notes'
+            'notes',
         ]);
 
         $term = Term::find($id);
@@ -28,9 +28,9 @@ final class UpdateTermController extends AbstractAPIController
             $exist = Term::where('code', $request->get('code'))->first();
 
             if ($exist !== null) {
-                return Response::json(array(
+                return Response::json([
                     'code' => 'Term code already exist.',
-                ), 422);
+                ], 422);
             }
         }
 

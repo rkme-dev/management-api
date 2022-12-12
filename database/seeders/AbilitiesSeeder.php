@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Silber\Bouncer\Bouncer;
 
@@ -12,7 +11,8 @@ final class AbilitiesSeeder extends Seeder
 {
     private Bouncer $bouncer;
 
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 

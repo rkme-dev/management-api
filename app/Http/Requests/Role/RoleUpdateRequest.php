@@ -30,7 +30,7 @@ final class RoleUpdateRequest extends BaseRequest
     {
         return [
             'name' => 'string|nullable',
-            'abilities' => 'array|nullable'
+            'abilities' => 'array|nullable',
         ];
     }
 }

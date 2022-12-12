@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\Supplier;
 
 use App\Http\Controllers\API\AbstractAPIController;
-use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Http\Requests\Supplier\SupplierUpdateRequest;
-use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\JsonResponse;
 

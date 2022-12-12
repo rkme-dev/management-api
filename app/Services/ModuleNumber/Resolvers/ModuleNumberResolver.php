@@ -6,7 +6,6 @@ namespace App\Services\ModuleNumber\Resolvers;
 
 use App\Services\ModuleNumber\Interfaces\ModuleNumberResolverInterface;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 final class ModuleNumberResolver implements ModuleNumberResolverInterface
@@ -27,7 +26,7 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
             $id = $id + 1;
         }
 
-        $id = \str_pad((string) $id,7,"0",STR_PAD_LEFT);
+        $id = \str_pad((string) $id, 7, '0', STR_PAD_LEFT);
 
         if ($withYear === true) {
             $year = (new Carbon())->format('Y');

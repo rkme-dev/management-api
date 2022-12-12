@@ -18,8 +18,7 @@ final class ListSalesOrderItemsController extends AbstractAPIController
         $orderItems = OrderItem::whereHasMorph('orderable', [SalesOrder::class], function ($query) {
             $query->where('status', '=', SaleOrderStatusesEnum::POSTED->value);
         })
-            ->whereNotExists(function($query)
-            {
+            ->whereNotExists(function ($query) {
                 $query->select(DB::raw(1))
                     ->from('sales_dr_items')
                     ->whereRaw('sales_dr_items.sales_order_item_id = order_items.id');

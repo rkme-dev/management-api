@@ -30,8 +30,8 @@ class ProductCreateRequest extends BaseRequest
     {
         return [
             'type' => [
-              'string',
-              'required',
+                'string',
+                'required',
                 Rule::in(array_column(ProductTypeEnums::cases(), 'value')),
             ],
             'raw_material_type' => [

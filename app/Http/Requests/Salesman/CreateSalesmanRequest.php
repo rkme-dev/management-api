@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Requests\Salesman;
 
 use App\Http\Requests\BaseRequest;
-use Illuminate\Validation\Rule;
 
 final class CreateSalesmanRequest extends BaseRequest
 {
-
     public function authorize(): bool
     {
         return true;

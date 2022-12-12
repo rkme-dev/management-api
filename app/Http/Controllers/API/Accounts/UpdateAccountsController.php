@@ -25,13 +25,12 @@ final class UpdateAccountsController extends AbstractAPIController
         $account = Account::find($id);
 
         if ($request->get('account_code') !== $account->account_code) {
-
             $exist = Account::where('account_code', $request->get('account_code'))->first();
 
             if ($exist !== null) {
-                return Response::json(array(
+                return Response::json([
                     'account_code' => 'Account code already exist.',
-                ), 422);
+                ], 422);
             }
         }
 

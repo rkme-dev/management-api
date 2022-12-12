@@ -15,7 +15,7 @@ class SalesOrderCollectionReceiptController extends Controller
      */
     public function __invoke(Request $request, string $id)
     {
-        $salesOrder = SalesOrder::with('orderItems','customer','term')->where('id', $id)->first()->toArray();
+        $salesOrder = SalesOrder::with('orderItems', 'customer', 'term')->where('id', $id)->first()->toArray();
 
         $currency = new \NumberFormatter(
             'en_US',
@@ -26,8 +26,8 @@ class SalesOrderCollectionReceiptController extends Controller
         $salesOrder['created_at'] = new Carbon($salesOrder['created_at']);
 
         $pdf = PDF::loadView('sales-order/collection-receipt', [
-                'order' => $salesOrder,
-            ]
+            'order' => $salesOrder,
+        ]
         );
 
         return $pdf->stream();

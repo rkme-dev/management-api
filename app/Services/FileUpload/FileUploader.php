@@ -9,7 +9,7 @@ use App\Services\FileUpload\Interfaces\FileUploaderInterface;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\URL;
 
-final class FileUploader implements  FileUploaderInterface
+final class FileUploader implements FileUploaderInterface
 {
     public function upload(File $file, UploadedFile $uploadedFile): string
     {

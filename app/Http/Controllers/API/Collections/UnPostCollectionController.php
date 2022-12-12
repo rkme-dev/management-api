@@ -14,7 +14,8 @@ final class UnPostCollectionController extends AbstractAPIController
 {
     private CollectionUnpostResolverInterface $collectionUnpostResolver;
 
-    public function __construct(CollectionUnpostResolverInterface $collectionUnpostResolver) {
+    public function __construct(CollectionUnpostResolverInterface $collectionUnpostResolver)
+    {
         $this->collectionUnpostResolver = $collectionUnpostResolver;
     }
 

@@ -21,7 +21,7 @@ final class ListSalesDrController extends AbstractAPIController
         $dateToday = new Carbon();
 
         $salesDr = SalesDr::with('customer', 'document', 'orderItems', 'salesDrItems')
-            ->where(function($query) use ($todayOnly, $dateToday) {
+            ->where(function ($query) use ($todayOnly, $dateToday) {
                 if ($todayOnly === true) {
                     $query->whereDate('date_posted', $dateToday);
                 }

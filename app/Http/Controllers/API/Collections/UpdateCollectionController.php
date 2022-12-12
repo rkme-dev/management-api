@@ -111,7 +111,7 @@ final class UpdateCollectionController extends AbstractAPIController
             $orderDrItem->setAttribute('unit', $orderItem->getAttribute('unit'));
             $orderDrItem->setAttribute('actual_quantity', $orderItem->getAttribute('actual_quantity'));
             $orderDrItem->setAttribute('total_amount', $orderItem->getAttribute('total_amount'));
-            $orderDrItem->setAttribute('price',  $orderItem->getAttribute('price'));
+            $orderDrItem->setAttribute('price', $orderItem->getAttribute('price'));
             $orderDrItem->save();
         }
     }
@@ -162,7 +162,7 @@ final class UpdateCollectionController extends AbstractAPIController
                 'collection' => $collection,
                 'accountId' => Arr::get($payment, 'account_id'),
                 'type' => $paymentType,
-                'paymentDate' => new Carbon(Arr::get($payment,'payment_date')),
+                'paymentDate' => new Carbon(Arr::get($payment, 'payment_date')),
                 'createdBy' => $user,
                 'amount' => Arr::get($payment, 'amount'),
             ]));

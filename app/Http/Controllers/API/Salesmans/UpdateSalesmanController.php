@@ -17,7 +17,7 @@ final class UpdateSalesmanController extends AbstractAPIController
             'is_active',
             'salesman_name',
             'quota',
-            'notes'
+            'notes',
         ]);
 
         $salesman = Salesman::find($id);

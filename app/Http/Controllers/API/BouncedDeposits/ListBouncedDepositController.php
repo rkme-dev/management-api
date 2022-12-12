@@ -13,10 +13,10 @@ final class ListBouncedDepositController extends AbstractAPIController
     public function __invoke(): JsonResource
     {
         return new JsonResource(BouncedDeposit::with([
-                'document',
-                'account',
-                'createdBy',
-            ])
+            'document',
+            'account',
+            'createdBy',
+        ])
             ->orderBy('created_at', 'desc')
             ->get()
         );

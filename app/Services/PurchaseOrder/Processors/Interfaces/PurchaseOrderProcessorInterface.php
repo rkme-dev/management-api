@@ -6,5 +6,4 @@ namespace App\Services\PurchaseOrder\Processors\Interfaces;
 
 interface PurchaseOrderProcessorInterface extends OrderProcessorInterface
 {
-
 }

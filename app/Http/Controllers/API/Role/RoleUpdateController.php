@@ -16,7 +16,8 @@ final class RoleUpdateController extends AbstractAPIController
 {
     private Bouncer $bouncer;
 
-    public function __construct(Bouncer $bouncer) {
+    public function __construct(Bouncer $bouncer)
+    {
         $this->bouncer = $bouncer;
     }
 
@@ -29,7 +30,7 @@ final class RoleUpdateController extends AbstractAPIController
         }
 
         foreach ($role->abilities as $ability) {
-            if (\in_array($ability->id , $request->getAbilityIds()) === false) {
+            if (\in_array($ability->id, $request->getAbilityIds()) === false) {
                 $this->bouncer->disallow($role)->to($ability);
             }
         }
@@ -40,7 +41,7 @@ final class RoleUpdateController extends AbstractAPIController
             $this->bouncer->allow($role)->to($ability);
         }
 
-        if ($role->title !== $request->getName() && $request->getName() !== null ) {
+        if ($role->title !== $request->getName() && $request->getName() !== null) {
             $role->title = $request->getName();
             $role->name = str_replace(' ', '-', strtolower($request->getName()));
             $role->save();

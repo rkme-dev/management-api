@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API\PhysicalCount;
 
 use App\Http\Controllers\API\AbstractAPIController;
+use App\Http\Requests\PhysicalCount\UpdatePhysicalCountRequest;
 use App\Models\CountItem;
 use App\Models\PhysicalCount;
-use App\Http\Requests\PhysicalCount\UpdatePhysicalCountRequest;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +25,7 @@ final class UpdatePhysicalCountController extends AbstractAPIController
                             ['count_items']
                         )
                     );
-                
+
                 $this->setCountItems($physicalCount, $request->get('count_items'));
 
                 return $physicalCount;

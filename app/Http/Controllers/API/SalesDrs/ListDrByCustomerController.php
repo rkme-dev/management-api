@@ -12,6 +12,6 @@ final class ListDrByCustomerController extends AbstractAPIController
 {
     public function __invoke(int $id): JsonResource
     {
-        return new JsonResource(SalesDr::where('customer_id', $id)->where('remaining_balance', '>' ,0)->get());
+        return new JsonResource(SalesDr::where('customer_id', $id)->where('remaining_balance', '>', 0)->get());
     }
 }

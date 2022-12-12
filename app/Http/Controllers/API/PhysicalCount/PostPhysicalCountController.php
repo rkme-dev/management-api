@@ -49,8 +49,6 @@ final class PostPhysicalCountController extends AbstractAPIController
             );
         }
 
-
-
         return new JsonResource($physicalCount);
     }
 }

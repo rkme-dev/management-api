@@ -39,10 +39,10 @@ final class StockcardRequest extends BaseRequest
 
     public function rules(): array
     {
-       return [
-           'unit' => 'string|nullable',
-           'from_date' => 'date|nullable',
-           'to_date' => 'date|nullable',
-       ];
+        return [
+            'unit' => 'string|nullable',
+            'from_date' => 'date|nullable',
+            'to_date' => 'date|nullable',
+        ];
     }
 }

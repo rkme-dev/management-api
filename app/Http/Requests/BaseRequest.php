@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Interfaces\RequestInterface;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use App\Http\Requests\Interfaces\RequestInterface;
 
 abstract class BaseRequest extends FormRequest implements RequestInterface
 {
@@ -19,9 +19,8 @@ abstract class BaseRequest extends FormRequest implements RequestInterface
      * This method belongs to Symfony HttpFoundation and is not usually needed when using Laravel.
      * Instead, you may use the "input" method.
      *
-     * @param string $key
-     * @param mixed $default
-     *
+     * @param  string  $key
+     * @param  mixed  $default
      * @return mixed
      */
     public function get($key, $default = null): mixed
