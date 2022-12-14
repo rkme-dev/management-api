@@ -45,6 +45,7 @@ final class CreateFinishProductController extends AbstractAPIController
             $syncData[$unit['id']]['packing'] = $unit['pivot']['packing'];
         }
 
+        // Arrays of raw material ids
         if (count($request->get('raw_materials')) > 0) {
             foreach ($request->get('raw_materials') as $rawMaterialId) {
                 ProductRawMaterial::create([

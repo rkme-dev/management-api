@@ -27,7 +27,7 @@ final class UpdateStockReleaseRequest extends BaseRequest
             'remarks' => 'string|nullable',
             'document_id' => 'int|required|exists:App\Models\Document,id',
             'location_id' => 'int|required|exists:App\Models\Location,id',
-            'stock_requests' => 'array|required'
+            'stock_requests' => 'array|required',
         ];
     }
 }

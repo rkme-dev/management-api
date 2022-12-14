@@ -141,7 +141,8 @@ use App\Http\Controllers\API\StockReleases\ListStockReleaseController;
 use App\Http\Controllers\API\StockReleases\PostStockReleaseController;
 use App\Http\Controllers\API\StockReleases\UnpostStockReleaseController;
 use App\Http\Controllers\API\StockReleases\UpdateStockReleaseController;
-use App\Http\Controllers\API\StockRequests\CreateStockRequestController;
+use App\Http\Controllers\API\StockRequests\CreateStockRequestBottleBlowingController;
+use App\Http\Controllers\API\StockRequests\CreateStockRequestBottleFilling;
 use App\Http\Controllers\API\StockRequests\ListStockRequestController;
 use App\Http\Controllers\API\StockRequests\PostStockRequestController;
 use App\Http\Controllers\API\StockRequests\UnpostStockRequestController;
@@ -1179,9 +1180,13 @@ Route::group([
         'as' => 'stock-requests.',
         'prefix' => '',
     ], function () {
-        Route::post('/stock-requests', [
+        Route::post('/stock-requests/bottle-filling', [
             'as' => 'create',
-            'uses' => CreateStockRequestController::class,
+            'uses' => CreateStockRequestBottleFilling::class,
+        ]);
+        Route::post('/stock-requests/bottle-blowing', [
+            'as' => 'create',
+            'uses' => CreateStockRequestBottleBlowingController::class,
         ]);
         Route::get('/stock-requests', [
             'as' => 'list',
