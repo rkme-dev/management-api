@@ -1182,11 +1182,11 @@ Route::group([
         'prefix' => '',
     ], function () {
         Route::post('/stock-requests/bottle-filling', [
-            'as' => 'create',
+            'as' => 'create-bottle-filling',
             'uses' => CreateStockRequestBottleFilling::class,
         ]);
         Route::post('/stock-requests/bottle-blowing', [
-            'as' => 'create',
+            'as' => 'create-bottle-blowing',
             'uses' => CreateStockRequestBottleBlowingController::class,
         ]);
 
