@@ -1211,7 +1211,7 @@ Route::group([
             'uses' => UnReleaseStockRequestListController::class,
         ]);
         Route::get('/stock-requests/{id}', [
-            'as' => 'unpost',
+            'as' => 'show',
             'uses' => ShowStockRequestController::class,
         ]);
     });
