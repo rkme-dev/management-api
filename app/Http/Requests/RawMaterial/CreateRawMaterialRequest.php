@@ -18,6 +18,7 @@ final class CreateRawMaterialRequest extends BaseRequest
     public function rules(): array
     {
         return [
+            'raw_material_id' => 'required_if:type,preform',
             'name' => 'string|required|unique:App\Models\Product,name',
             'sku' => 'nullable|unique:App\Models\Product,sku|string',
             'description' => 'string|nullable',

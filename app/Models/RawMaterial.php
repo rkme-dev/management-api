@@ -18,6 +18,7 @@ final class RawMaterial extends Model
 
     protected $fillable = [
         'active',
+        'raw_material_id',
         'name',
         'sku',
         'slug',
@@ -47,6 +48,11 @@ final class RawMaterial extends Model
             'actual_balance',
             'reserved_balance',
         ]);
+    }
+
+    public function rawMaterial(): BelongsTo
+    {
+        return $this->belongsTo(RawMaterial::class, 'raw_material_id');
     }
 
     public function suppliers(): BelongsToMany

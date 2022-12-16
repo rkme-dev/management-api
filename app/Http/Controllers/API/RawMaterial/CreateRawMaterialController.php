@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\RawMaterial;
 
+use App\Enums\RawMaterialTypeEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\RawMaterial\CreateRawMaterialRequest;
 use App\Models\RawMaterial;
@@ -34,6 +35,10 @@ final class CreateRawMaterialController extends AbstractAPIController
                 'created_by' => $this->getUser()->getId(),
             ],
         ];
+
+        if ($request->get('type') === RawMaterialTypeEnums::PREFORM->value) {
+            $data['raw_material_id'] = $request->get('raw_material_id');
+        }
 
         $rawMaterial = RawMaterial::create($data);
 

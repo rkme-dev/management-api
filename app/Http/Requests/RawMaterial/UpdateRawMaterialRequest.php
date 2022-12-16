@@ -18,6 +18,7 @@ final class UpdateRawMaterialRequest extends BaseRequest
     public function rules(): array
     {
         return [
+            'raw_material_id' => 'required_if:type,preform',
             'active' => '',
             'name' => [
                 'string',

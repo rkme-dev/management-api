@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\RawMaterial;
 
+use App\Enums\RawMaterialTypeEnums;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\RawMaterial\UpdateRawMaterialRequest;
 use App\Models\RawMaterial;
@@ -35,6 +36,10 @@ final class UpdateRawMaterialController extends AbstractAPIController
                 'updated_by' => $this->getUser()->getId(),
             ],
         ];
+
+        if ($request->get('type') === RawMaterialTypeEnums::PREFORM->value) {
+            $data['raw_material_id'] = $request->get('raw_material_id');
+        }
 
         $rawMaterial->update($data);
 
