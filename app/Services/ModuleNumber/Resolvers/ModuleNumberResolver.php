@@ -20,9 +20,9 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 
         $id = $id + 1;
 
-        $exist = DB::table($table)->where('id', $id);
+        $count = DB::table($table)->where('id', $id)->count();
 
-        if ($exist !== null) {
+        if ($count > 0) {
             $id = $id + 1;
         }
 
