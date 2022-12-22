@@ -203,6 +203,7 @@ Route::post('/fireEvent', function (Request $request) {
     MessageEvent::dispatch($request->get('message'));
 })->name('fire.public.event');
 
+
 Route::post('/login', [
     'as' => 'login',
     'uses' => LoginController::class,
