@@ -28,8 +28,6 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 
         $id = \str_pad((string) $id, 7, '0', STR_PAD_LEFT);
 
-        $count = DB::table($table)->where('sales-', $id)->count();
-
         if ($withYear === true) {
             $year = (new Carbon())->format('Y');
 
