@@ -12,7 +12,7 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 {
     public function resolve(string $table, string $key, bool $withYear = true): string
     {
-        $id = DB::table($table)->latest('id')->first()?->id;
+        $id = DB::table($table)->count();
 
         if ($id === null) {
             $id = 0;
@@ -27,6 +27,8 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
         }
 
         $id = \str_pad((string) $id, 7, '0', STR_PAD_LEFT);
+
+        $count = DB::table($table)->where('sales-', $id)->count();
 
         if ($withYear === true) {
             $year = (new Carbon())->format('Y');
