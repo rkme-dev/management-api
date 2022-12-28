@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ShowStockRequestController extends AbstractAPIController
 {
-    public function __invoke(UpdateStockRequestRequest $request, int $id): JsonResource
+    public function __invoke(int $id): JsonResource
     {
         /** @var StockRequest $stockRequest */
         $stockRequest = StockRequest::where('id', $id)->first();
