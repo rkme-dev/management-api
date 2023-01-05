@@ -20,7 +20,9 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 
         $id = $id + 1;
 
-        $count = DB::table($table)->where('id', $id)->count();
+        $existingCode = \str_pad((string) $id, 7, '0', STR_PAD_LEFT);
+
+        $count = DB::table($table)->where('code', 'LIKE', '%'.$existingCode.'%')->count();
 
         if ($count > 0) {
             $id = $id + 1;
