@@ -25,7 +25,11 @@ final class CreateStockReleaseController extends AbstractAPIController
             ]),
             ...[
                 'date' => $this->generateDateTime($request->get('date')),
-                'code' => $this->generateNumber('stock_releases', 'S-RELEASE'),
+                'code' => $this->generateNumber(
+                    'stock_releases',
+                    'S-RELEASE',
+                    'code',
+                ),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
             ],

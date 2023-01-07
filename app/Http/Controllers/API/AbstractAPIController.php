@@ -21,11 +21,15 @@ abstract class AbstractAPIController
         return new Carbon(\sprintf('%s %s', $date, $time));
     }
 
-    public function generateNumber(string $table, string $key, bool $withYear = true): string
-    {
+    public function generateNumber(
+        string $table,
+        string $key,
+        string $column,
+        bool $withYear = true
+    ): string {
         $resolver = new ModuleNumberResolver();
 
-        return $resolver->resolve($table, $key, $withYear);
+        return $resolver->resolve($table, $key, $column, $withYear);
     }
 
     public function getUser(): ?User

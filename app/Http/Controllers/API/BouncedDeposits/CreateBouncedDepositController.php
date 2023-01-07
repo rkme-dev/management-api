@@ -28,7 +28,11 @@ final class CreateBouncedDepositController extends AbstractAPIController
                 'account_id',
             ]),
             ...[
-                'bounced_number' => $this->generateNumber('bounced_deposits', 'BC'),
+                'bounced_number' => $this->generateNumber(
+                    'bounced_deposits',
+                    'BC',
+                    'bounced_number'
+                ),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
             ],

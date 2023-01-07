@@ -31,7 +31,7 @@ final class CreateTripTicketController extends AbstractAPIController
         $data = [
             ...$data,
             ...[
-                'trip_ticket_number' => $this->generateNumber('trip_tickets', 'TR'),
+                'trip_ticket_number' => $this->generateNumber('trip_tickets', 'TR', 'trip_ticket_number'),
                 'status' => TripTicketStatusesEnum::FOR_TRANSIT->value,
                 'created_by' => $this->getUser()->getId(),
                 'departed_at' => $data['departed_date'].' '.$data['departed_time'],

@@ -34,7 +34,11 @@ final class CreateSalesDrController extends AbstractAPIController
             ]),
             ...[
                 'date_posted' => $this->generateDateTime($request->get('date_posted')),
-                'sales_dr_number' => $this->generateNumber('sales_drs', 'DR'),
+                'sales_dr_number' => $this->generateNumber(
+                    'sales_drs',
+                    'DR',
+                    'sales_dr_number',
+                ),
                 'remaining_balance' => $request->get('amount'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),

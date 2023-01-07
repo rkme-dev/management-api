@@ -33,7 +33,12 @@ final class CustomerCreateController extends AbstractAPIController
             'notes',
         ]);
 
-        $data['code'] = $this->generateNumber('customers', 'CIF', false);
+        $data['code'] = $this->generateNumber(
+            'customers',
+            'CIF',
+            'code',
+            false
+        );
 
         $data['created_by'] = $this->getUser()->getId();
 

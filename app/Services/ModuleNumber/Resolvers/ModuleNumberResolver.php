@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 final class ModuleNumberResolver implements ModuleNumberResolverInterface
 {
-    public function resolve(string $table, string $key, bool $withYear = true): string
+    public function resolve(string $table, string $key, string $column, bool $withYear = true): string
     {
         $id = DB::table($table)->count();
 
@@ -22,7 +22,7 @@ final class ModuleNumberResolver implements ModuleNumberResolverInterface
 
         $existingCode = \str_pad((string) $id, 7, '0', STR_PAD_LEFT);
 
-        $count = DB::table($table)->where('code', 'LIKE', '%'.$existingCode.'%')->count();
+        $count = DB::table($table)->where($column, 'LIKE', '%'.$existingCode.'%')->count();
 
         if ($count > 0) {
             $id = $id + 1;

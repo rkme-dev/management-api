@@ -26,7 +26,7 @@ final class CreateStockRequestBottleFilling extends AbstractAPIController
             ]),
             ...[
                 'date' => $this->generateDateTime($request->get('date')),
-                'code' => $this->generateNumber('stock_requests', 'S-REQUEST'),
+                'code' => $this->generateNumber('stock_requests', 'S-REQUEST', 'code'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
                 'created_by' => $this->getUser()->getId(),
             ],
