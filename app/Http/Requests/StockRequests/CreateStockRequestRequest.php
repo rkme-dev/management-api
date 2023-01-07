@@ -26,7 +26,7 @@ final class CreateStockRequestRequest extends BaseRequest
             ],
             'remarks' => 'string|nullable',
             'document_id' => 'int|required|exists:App\Models\Document,id',
-            'location_id' => 'int|required|exists:App\Models\Location,id',
+            'location_id' => 'required|exists:App\Models\Location,id',
             'items_to_produce' => 'array|nullable',
             'stock_items' => 'array|required',
         ];

@@ -46,9 +46,9 @@ final class CreateStockRequestBottleBlowingController extends AbstractAPIControl
         foreach ($items as $item) {
             StockRequestItemJob::dispatch(
                 $stockRequest->getAttribute('id'),
-                Arr::get($item, 'quantity_of_unit'),
+//                Arr::get($item, 'quantity_of_unit'),
                 Arr::get($item, 'total_pieces'),
-                Arr::get($item, 'unit_id'),
+//                Arr::get($item, 'unit_id'),
                 Arr::get($item, 'raw_material_id')
             );
         }

@@ -17,10 +17,10 @@ final class StockRequestItemJob implements ShouldQueue
 
     public function __construct(
         protected int $stockRequestId,
-        protected string $quantityOfUnit,
         protected string $totalPieces,
-        protected int $unitId,
         protected int $rawMaterialId,
+        protected ?int $unitId = null,
+        protected ?string $quantityOfUnit = null,
     ) {
     }
 
