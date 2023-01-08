@@ -148,6 +148,7 @@ use App\Http\Controllers\API\StockRequests\PostStockRequestController;
 use App\Http\Controllers\API\StockRequests\ShowStockRequestController;
 use App\Http\Controllers\API\StockRequests\UnpostStockRequestController;
 use App\Http\Controllers\API\StockRequests\UnReleaseStockRequestListController;
+use App\Http\Controllers\API\StockRequests\UpdateStockRequestBottleBlowingController;
 use App\Http\Controllers\API\StockRequests\UpdateStockRequestController;
 use App\Http\Controllers\API\Supplier\SupplierCreateController;
 use App\Http\Controllers\API\Supplier\SupplierDeleteController;
@@ -1189,6 +1190,10 @@ Route::group([
         Route::post('/stock-requests/bottle-blowing', [
             'as' => 'create-bottle-blowing',
             'uses' => CreateStockRequestBottleBlowingController::class,
+        ]);
+        Route::put('/stock-requests/bottle-blowing/{id}', [
+            'as' => 'update-bottle-blowing',
+            'uses' => UpdateStockRequestBottleBlowingController::class,
         ]);
 
         Route::get('/stock-requests', [

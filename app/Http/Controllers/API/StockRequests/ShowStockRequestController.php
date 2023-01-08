@@ -14,7 +14,9 @@ final class ShowStockRequestController extends AbstractAPIController
     public function __invoke(int $id): JsonResource
     {
         /** @var StockRequest $stockRequest */
-        $stockRequest = StockRequest::where('id', $id)->first();
+        $stockRequest = StockRequest::where('id', $id)->with([
+            'stockRequestItems.rawMaterial.rawMaterial'
+        ])->first();
 
         if ($stockRequest === null) {
             return $this->respondNotFound('Stock Request not found.');
