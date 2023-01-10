@@ -20,8 +20,6 @@ final class ShowSalesDrController extends AbstractAPIController
 
     public function __invoke(int $id): JsonResource
     {
-        $test = $this->moduleNumberResolver->resolve('sales_drs', 'SO');
-
         $dr = SalesDr::with([
             'customer',
             'orderItems',
