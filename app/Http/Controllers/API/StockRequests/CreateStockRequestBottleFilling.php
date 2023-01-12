@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\StockRequests;
 
+use App\Enums\ProductionTypesEnum;
 use App\Enums\SaleOrderStatusesEnum;
 use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\StockRequests\CreateStockRequestRequest;
@@ -19,12 +20,12 @@ final class CreateStockRequestBottleFilling extends AbstractAPIController
     {
         $stockRequest = StockRequest::create([
             ...$request->only([
-                'process_type',
                 'remarks',
                 'document_id',
                 'location_id',
             ]),
             ...[
+                'process_type' => ProductionTypesEnum::BOTTLE_FILLING,
                 'date' => $this->generateDateTime($request->get('date')),
                 'code' => $this->generateNumber('stock_requests', 'S-REQUEST', 'code'),
                 'status' => SaleOrderStatusesEnum::FOR_REVIEW->value,
@@ -65,10 +66,10 @@ final class CreateStockRequestBottleFilling extends AbstractAPIController
         foreach ($items as $item) {
             StockRequestItemJob::dispatch(
                 $stockRequest->getAttribute('id'),
-                Arr::get($item, 'quantity_of_unit'),
                 Arr::get($item, 'total_pieces'),
+                Arr::get($item, 'raw_material_id'),
                 Arr::get($item, 'unit_id'),
-                Arr::get($item, 'raw_material_id')
+                Arr::get($item, 'quantity_of_unit'),
             );
         }
     }

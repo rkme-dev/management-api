@@ -19,11 +19,6 @@ final class CreateStockRequestRequest extends BaseRequest
     {
         return [
             'date' => 'date|required',
-            'process_type' => [
-                'string',
-                'required',
-                Rule::in(array_column(ProductionTypesEnum::cases(), 'value')),
-            ],
             'remarks' => 'string|nullable',
             'document_id' => 'int|required|exists:App\Models\Document,id',
             'location_id' => 'required|exists:App\Models\Location,id',

@@ -229,12 +229,12 @@
                 <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Address:</span> <span class="gray-color">{{$order['address'] ?? ''}}</span></p>
             </div>
             <div class="inline">
-                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Plate No:</span> <span class="gray-color">{{$order['plate_number']}}</span></p>
+                <p class="m-0 pt-5 w-100 pd-10"><span class="text-bold">Plate No:</span> <span class="gray-color">{{$order['plate_number']  ?? 'N/A'}}</span></p>
             </div>
         </div>
         <div class="nextline">
             <div class="inline w-60">
-                <p class="m-0 pd-10"><span class="text-bold">Terms:</span> <span class="gray-color"> {{ $order['term']['code'] }}</span></p>
+                <p class="m-0 pd-10"><span class="text-bold">Terms:</span> <span class="gray-color"> {{ $order['term']['code'] ?? 'N/A' }}</span></p>
             </div>
             <div class="inline w-30">
                 <p class="m-0 pt-5 w-100 pd-10 text-right pl-7"><span class="text-bold">Sales Agent:</span> <span class="gray-color">{{$order['salesman1']['salesman_name'] ?? 'N/A'}}</span></p>
@@ -270,7 +270,7 @@
         </div>
     </div>
     <div class="nextline pt-50">
-        <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']))}}</span></p>
+        <p class="m-0 pt-5 text-bold float-left">Remarks: <span class="gray-color">{{strtoupper(str_replace('_',' ', $order['remarks']  ?? ''))}}</span></p>
     </div>
     <p class="font-i text-bold text-center pt-130 font-9 pl-40 pr-40">
         The undersigned herein states that he/she has inspected the goods upon deliver and hereby acknowledges Receipt of items listed in this deliver receipt found to be in good order.
